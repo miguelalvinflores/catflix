@@ -9,7 +9,7 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(40), nullable = False, unique = True)
   # email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
-  membershipId = db.Column(db.Integer,db.ForeignKey("membership.id"), nullable = False)
+  membershipId = db.Column(db.Integer,db.ForeignKey("memberships.id"), nullable = False)
 
   profiles = db.relationship("Profile", backref="user", lazy="joined")
 

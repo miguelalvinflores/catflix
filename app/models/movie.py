@@ -8,3 +8,7 @@ class Movie(db.model):
     image = db.Column(db.String, nullalbe=False)
     description = db.Column(db.Text, nullable=False)
     cast = db.Column(db.String, nullable=False)
+
+    bookmarks = db.relationship("Profile", secondary=bookmarks, lazy="subquery",
+        backref=db.backref('movies', lazy=True)
+    )
