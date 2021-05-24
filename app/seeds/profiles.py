@@ -18,7 +18,7 @@ def seed_profiles():
     for userId in range(10):
         for n in range(3):
             profile = Profile(name=fake.name(),
-                        iconId=random.randint(1,6),
+                        iconId=random.randint(1,5),
                         userId= userId
             db.session.add(profile)
 
