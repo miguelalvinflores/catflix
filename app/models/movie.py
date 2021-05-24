@@ -1,4 +1,5 @@
 from .db import db
+from .bookmark import bookmarks
 
 class Movie(db.Model):
     __tablename__ = "movies"
