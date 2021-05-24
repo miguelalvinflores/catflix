@@ -4,6 +4,7 @@ class Profile(db.Model):
     __tablename__ = "profiles"
 
     id = db.Column(db.Integer, primary_key = True)
+    name = db.Column(db.String(255), nullable=False)
     iconId = db.Column(db.Integer, db.ForeignKey("icons.id"), nullable = False)
     userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
 
