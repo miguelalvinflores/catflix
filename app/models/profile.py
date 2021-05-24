@@ -9,4 +9,5 @@ class Profile(db.Model):
 
     # bookmarks = db.relationship("Bookmark", backref="profile", lazy="joined")
     movies = db.relationship("Movie", secondary=bookmarks, back_populates="profiles")
-    likes = db.relationship("Movie", secondary=likes, back_populates="profile_likes")
+    # likes = db.relationship("Movie", secondary=likes, back_populates="profile_likes")
+    likes = db.relationship("Likes", backref="movies", lazy="joined")
