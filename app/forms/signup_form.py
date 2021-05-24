@@ -8,6 +8,7 @@ def user_exists(form, field):
     print("Checking if user exits", field.data)
     email = field.data
     user = User.query.filter(User.email == email).first()
+    print(user)
     if user:
         raise ValidationError("User is already registered.")
 

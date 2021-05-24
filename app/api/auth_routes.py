@@ -62,13 +62,13 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    print(form.data)
     if form.validate_on_submit():
         user = User(
             membership=form.data['membership'],
             email=form.data['email'],
             password=form.data['password']
         )
-        print('backend after validation fired!')
         db.session.add(user)
         db.session.commit()
         login_user(user)
