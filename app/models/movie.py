@@ -11,9 +11,9 @@ class Movie(db.Model):
     cast = db.Column(db.String, nullable=False)
     url = db.Column(db.String)
 
-    bookmarks = db.relationship("Profile", secondary=bookmarks, lazy="subquery",
-        backref=db.backref('movies', lazy=True)
-    )
+    # bookmarks = db.relationship("Profile", secondary=bookmarks, lazy="subquery",
+    #     backref=db.backref('movies', lazy=True)
+    # )
 
     profiles = db.relationship("Profile", secondary=bookmarks, back_populates="movies")
     genres = db.relationship("Genre", secondary=movieGenres, back_populates="movies" )
