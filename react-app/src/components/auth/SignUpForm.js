@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux"
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect } from "react-router-dom";
+import { signUp } from "../../store/session";
 
 const SignUpForm = () => {
   const [membership, setMembership] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const user = useSelector(state => state.session.user);
+  const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      let membershipId = parseInt(membership)
+      let membershipId = parseInt(membership);
       let result = await dispatch(signUp(membershipId, email, password));
-      console.log(result)
+      console.log(result);
     } else {
-      console.log('wrong password!')
+      console.log("wrong password!");
     }
   };
 
