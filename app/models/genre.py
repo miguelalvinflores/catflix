@@ -1,4 +1,5 @@
 from .db import db
+from .movieGenre import movieGenres
 
 class Genre(db.Model):
     __tablename__="genres"

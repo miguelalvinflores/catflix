@@ -4,7 +4,7 @@ from app.models import db, Membership
 def seed_memberships():
 
     membership_low = Membership(type='Standard', price=10)
-    membership_mid = Membership(type='HD', price=15)
+    membership_mid = Membership(type='Deluxe', price=15)
     membership_high = Membership(type='Premium', price=20)
 
     db.session.add(membership_low)

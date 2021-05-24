@@ -5,4 +5,6 @@ from .icon import Icon
 from .membership import Membership
 from .profile import Profile
 from .bookmark import bookmarks
+from .genre import Genre
+from .likes import Like
 

@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 
 const SignUpForm = () => {
-  const [username, setUsername] = useState("");
+  const [membership, setMembership] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -14,12 +14,16 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(username, email, password));
+      let membershipId = parseInt(membership)
+      let result = await dispatch(signUp(membershipId, email, password));
+      console.log(result)
+    } else {
+      console.log('wrong password!')
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
+  const updateMembership = (e) => {
+    setMembership(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -41,13 +45,31 @@ const SignUpForm = () => {
   return (
     <form onSubmit={onSignUp}>
       <div>
-        <label>User Name</label>
+        <label>Membership</label>
         <input
-          type="text"
-          name="username"
-          onChange={updateUsername}
-          value={username}
+          type="radio"
+          name="membership"
+          onChange={updateMembership}
+          value="1"
+          checked={membership === "1"}
         ></input>
+        <label>Standard</label>
+        <input
+          type="radio"
+          name="membership"
+          onChange={updateMembership}
+          value="2"
+          checked={membership === "2"}
+        ></input>
+        <label>Deluxe</label>
+        <input
+          type="radio"
+          name="membership"
+          onChange={updateMembership}
+          value="3"
+          checked={membership === "3"}
+        ></input>
+        <label>Premium</label>
       </div>
       <div>
         <label>Email</label>

@@ -8,7 +8,7 @@ fake = Faker()
 Faker.seed(0)
 def seed_profiles():
 
-    demo = Profile(name='demo@aa.io',
+    demo = Profile(name='demo',
                 iconId=2,
                 userId=2
                 )
