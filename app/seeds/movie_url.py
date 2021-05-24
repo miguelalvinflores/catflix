@@ -1,3 +1,4 @@
+movie_list = [
 movie1= d23jaqdaucwmr3.cloudfront.net/1.mp4
 movie2= d23jaqdaucwmr3.cloudfront.net/2.mp4
 movie3= d23jaqdaucwmr3.cloudfront.net/3.mp4
@@ -13,3 +14,4 @@ movie12= d23jaqdaucwmr3.cloudfront.net/12.mp4
 movie13= d23jaqdaucwmr3.cloudfront.net/13.mp4
 movie14= d23jaqdaucwmr3.cloudfront.net/14.mp4
 movie15= d23jaqdaucwmr3.cloudfront.net/15.mp4
+]
