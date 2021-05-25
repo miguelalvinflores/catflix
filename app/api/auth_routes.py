@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
-from app.forms import SignUpForm
+from app.forms import SignUpForm, CheckEmailForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
@@ -53,6 +53,21 @@ def logout():
     """
     logout_user()
     return {'message': 'User logged out'}
+
+
+@auth_routes.route('/check_email', methods=['POST'])
+def check_address():
+    """
+    Checks if email already exists
+    """
+    form = CheckEmailForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        user = User.query.filter(User.email == form.data['email']).first()
+        if (user):
+            return {'email': user.email}
+        return {'email': None}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @auth_routes.route('/signup', methods=['POST'])

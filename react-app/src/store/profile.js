@@ -12,7 +12,7 @@ const removeProfile = () => ({
   type: REMOVE_PROFILE,
 });
 
-const deleteProfile = () => ({
+const deleteProfile = (profileId) => ({
   type: DELETE_PROFILE,
   payload: profileId,
 });

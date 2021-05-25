@@ -58,6 +58,24 @@ export const logout = () => async (dispatch) => {
   dispatch(removeUser());
 };
 
+export const checkEmail = (email) => async (dispatch) => {
+  const response = await fetch("/api/auth/check_email", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+    }),
+  })
+  const data = await response.json();
+  if (data.errors) {
+    return data;
+  }
+  return data
+}
+
+
 export const signUp = (membership, email, password) => async (dispatch) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
