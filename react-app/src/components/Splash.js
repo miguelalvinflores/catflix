@@ -1,14 +1,27 @@
+
 import React, { useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import { checkEmail } from '../store/session';
+import './CSS/Splash.css'
+
 
 const Splash = () => {
     const [email, setEmail] = useState("");
     const [errorArr, setErrorArr] = useState([]);
+    const [isActive, setIsActive] = useState(false);
     const dispatch = useDispatch();
     const history = useHistory()
 
+    const handleTextChange = (text) => {
+        setEmail(text);
+
+        if (text !== '') {
+          setIsActive(true);
+        } else {
+          setIsActive(false);
+        }
+      }
 
     const onGetStartedClick = async(e) => {
         e.preventDefault()
@@ -46,30 +59,39 @@ const Splash = () => {
 
     return (
         <div className="story-cards">
-            <div className="story-card">
+            <div className="story-card hero-card">
+                <div className="hero-card-background">
+                    <img className='hero-card-img' src='images/Splash-background.png' alt="Example Movie title panel" />
+                    <div class="concord-img-gradient"></div>
+                </div>
                 <div className="story-card-text">
                     <h1 className="story-card-title">
-                        Unlimited Cat Videos, Cat Meows, and Purrs.
+                        Unlimited Cat Paws, Meows, and Purrs.
                     </h1>
                     <h2 className="story-card-subtitle">
-                        Watch cats anywhere, upvote the furriest ones
+                        Watch cats doing cat things anywhere, upvote the cattiest ones
                     </h2>
                     <div className="story-signup-button">
-                    <h3 className="story-signup-text">Ready to watch?</h3>
-                    <form onSubmit={onGetStartedClick}>
-                        <ul>{emailCheckErrors}</ul>
-                        <label>Email address</label>
-                        <input 
-                            type="email"
-                            name="email"
-                            onChange={(e) => setEmail(e.target.value)}
-                            required
-                        ></input>
-                        <button type='submit'>Get Started</button>
-                    </form>
-                    <NavLink to='/signup'>Get Started</NavLink>
+                        <h3 className="story-signup-text">Ready to watch? Enter your email to create your account.</h3>
+                        <form className='email-form' onSubmit={onGetStartedClick}>
+                            <ul>{emailCheckErrors}</ul>
+                            <div className='email-form-lookup'>
+                                <div id='float-label'>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        id='email_hero'
+                                        onChange={(e) => handleTextChange(e.target.value)}
+                                        required
+                                    />
+                                    <label className={ isActive ? "Active" : ""} htmlFor='email_hero'>Email address</label>
+                                </div>
+                            </div>
+                            <button type='submit'>Get Started</button>
+                        </form>
                     </div>
                 </div>
+
             </div>
         </div>
     );
