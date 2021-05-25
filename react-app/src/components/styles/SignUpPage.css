@@ -1,0 +1,113 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.signup-form__container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+}
+
+.signup-logo {
+    background-image: url("./images/signup-image.png");
+    height: 300px;
+    width: 300px;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.signup-form {
+    box-sizing: border-box;
+    height: 300px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.email-input-box,
+.password-input-box,
+.repeat-password-input-box {
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+}
+
+.email-input-box input,
+.password-input-box input,
+.repeat-password-input-box input {
+    width: 100%;
+    height: 56px;
+    padding: 14px 16px 0 10px;
+    outline: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+.email-input-box label,
+.password-input-box label,
+.repeat-password-input-box label {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 12px;
+    color: #999;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(0, 26px) scale(1);
+}
+
+.email-input-box:focus-within label,
+.password-input-box:focus-within label,
+.repeat-password-input-box:focus-within label {
+    transform: translate(0, 12px) scale(0.75);
+}
+
+.email-input-box .active,
+.password-input-box .active,
+.repeat-password-input-box .active {
+    transform: translate(0, 12px) scale(0.75);
+}
+
+.membership-container {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.standard-radio-container,
+.deluxe-radio-container, 
+.premium-radio-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    background-color: #E50914;
+    color: black;
+    width: 200px;
+    height: 100px;
+}
+
+.standard-radio-container > input:checked {
+    background-color: red;
+}
+
+.signup-button {
+    margin-top: 10px;
+    padding: 15px;
+    background-color: #E50914;
+    color: white;
+    border: none;
+    font-size: 15px;
+    width: 400px;
+}
