@@ -1,25 +1,38 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux"
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { useSelector, useDispatch } from "react-redux";
+import { Redirect, useLocation } from "react-router-dom";
+import { signUp } from "../../store/session";
 
 const SignUpForm = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const location = useLocation()
+  const [membership, setMembership] = useState("");
+  const [email, setEmail] = useState(location.state ? location.state.userEmail : "");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const user = useSelector(state => state.session.user);
+  const [errorArr, setErrorArr] = useState([]);
+  const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(username, email, password));
+      setErrorArr([]);
+      let membershipId = parseInt(membership);
+      let result = await dispatch(signUp(membershipId, email, password));
+      if (result.errors) {
+        let errorList = [];
+        for (let err in result.errors) {
+          errorList.push(result.errors[err].split(":")[1]);
+        }
+        setErrorArr(errorList);
+      }
+    } else {
+      setErrorArr(["passwords do not match"]);
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
+  const updateMembership = (e) => {
+    setMembership(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -35,27 +48,51 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to="/" />;
+    return <Redirect to="/browse" />;
   }
+  let signupErrors = errorArr.map((err) => {
+    return <li key={err}>{err}</li>;
+  });
 
   return (
     <form onSubmit={onSignUp}>
+      <ul>{signupErrors}</ul>
       <div>
-        <label>User Name</label>
+        <label>Membership</label>
         <input
-          type="text"
-          name="username"
-          onChange={updateUsername}
-          value={username}
+          type="radio"
+          name="membership"
+          onChange={updateMembership}
+          value="1"
+          checked={membership === "1"}
+          required={true}
         ></input>
+        <label>Standard</label>
+        <input
+          type="radio"
+          name="membership"
+          onChange={updateMembership}
+          value="2"
+          checked={membership === "2"}
+        ></input>
+        <label>Deluxe</label>
+        <input
+          type="radio"
+          name="membership"
+          onChange={updateMembership}
+          value="3"
+          checked={membership === "3"}
+        ></input>
+        <label>Premium</label>
       </div>
       <div>
         <label>Email</label>
         <input
-          type="text"
+          type="email"
           name="email"
           onChange={updateEmail}
           value={email}
+          required={true}
         ></input>
       </div>
       <div>
@@ -65,6 +102,7 @@ const SignUpForm = () => {
           name="password"
           onChange={updatePassword}
           value={password}
+          required={true}
         ></input>
       </div>
       <div>
