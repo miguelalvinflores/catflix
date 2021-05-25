@@ -1,3 +1,6 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+
 export default function Splash() {
     const dispatch = useDispatch();
 
@@ -9,15 +12,14 @@ export default function Splash() {
                       Unlimited Cat Videos, Cat Meows, and Purrs.
                   </h1>
                   <h2 className="story-card-subtitle">
-                      Watch cats anywhere, pet them through the screen
+                      Watch cats anywhere, upvote the furriest ones
                   </h2>
-                  <div className="story-email-button">
-                  <a href="/signup" class="button">Get Started</a>
+                  <div className="story-signup-button">
+                    <h3 className="story-signup-text">Ready to watch?</h3>
+                    <NavLink to='/signup'>Get Started</NavLink>
                   </div>
-
               </div>
           </div>
-
       </div>
     );
 
