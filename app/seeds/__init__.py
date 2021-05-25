@@ -1,4 +1,5 @@
 from flask.cli import AppGroup
+from .memberships import seed_memberships, undo_memberships
 from .users import seed_users, undo_users
 from .memberships import seed_memberships, undo_memberships
 from .profileicon import seed_icons, undo_icons
