@@ -1,4 +1,5 @@
 from flask.cli import AppGroup
+from .memberships import seed_memberships, undo_memberships
 from .users import seed_users, undo_users
 from .memberships import seed_memberships
 
@@ -17,4 +18,5 @@ def seed():
 @seed_commands.command('undo')
 def undo():
     undo_users()
+    undo_memberships()
     # Add other undo functions here
