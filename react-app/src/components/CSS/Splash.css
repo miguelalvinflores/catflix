@@ -1,0 +1,115 @@
+div {
+    display: block;
+}
+img {
+    max-width:100%;
+    border: 0;
+}
+div.hero-card {
+    position: absolute;
+    color: aliceblue;
+    height: 100%;
+    width: 100%;
+}
+.hero-card-background {
+    height: fit-content;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.hero-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: none;
+}
+.concord-img-gradient {
+    background: rgba(0,0,0,.4);
+    background-image: linear-gradient(to top,rgba(0,0,0,.8) 0,rgba(0,0,0,0) 74%,rgba(0,0,0,.8) 85%);
+    height: auto;
+
+}
+.hero-card .concord-img-gradient {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.story-card-text {
+    position: relative;
+    width: 100%;
+    padding: 75px 0;
+    max-width: 950px;
+    margin: 0 auto;
+    text-align: center;
+    z-index: 1;
+}
+
+.email-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.email-form-lookup {
+    text-align: center;
+}
+
+#float-label {
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+    position: relative;
+}
+
+#float-label input {
+    width: 100%;
+    height: 56px;
+    padding: 14px 16px 0 10px;
+    outline: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+#float-label label {
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0 12px;
+    color: #999;
+    pointer-events: none;
+    position: absolute;
+    transform: translate(0, 26px) scale(1);
+    transform-origin: top left;
+    transition: all 0.2s ease-out;
+}
+
+#float-label:focus-within label {
+    transform: translate(0, 12px) scale(0.75);
+}
+
+#float-label .Active {
+    transform: translate(0, 12px) scale(0.75);
+}
+
+@media only screen and (min-width: 550px) and (max-width: 949px) and (orientation: portrait), only screen and (min-width: 400px) and (max-width: 549px), only screen and (min-width: 350px) and (max-width: 399px), only screen and (max-width: 349px) {
+    .hero-card .concord-img {
+        height: 100%;
+        width: auto;
+        -o-object-fit: cover;
+        object-fit: cover;
+    }
+}
+@media only screen and (min-width: 950px) and (max-width: 1449px), only screen and (min-width: 1450px) {
+    .email-form-lookup {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    }
+}
