@@ -8,17 +8,25 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [errorArr, setErrorArr] = useState([]);
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
+      setErrorArr([]);
       let membershipId = parseInt(membership);
       let result = await dispatch(signUp(membershipId, email, password));
-      console.log(result);
+      if (result.errors) {
+        let errorList = [];
+        for (let err in result.errors) {
+          errorList.push(result.errors[err].split(":")[1]);
+        }
+        setErrorArr(errorList);
+      }
     } else {
-      console.log("wrong password!");
+      setErrorArr(["passwords do not match"]);
     }
   };
 
@@ -39,11 +47,15 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to="/" />;
+    return <Redirect to="/browse" />;
   }
+  let signupErrors = errorArr.map((err) => {
+    return <li key={err}>{err}</li>;
+  });
 
   return (
     <form onSubmit={onSignUp}>
+      <ul>{signupErrors}</ul>
       <div>
         <label>Membership</label>
         <input
@@ -52,6 +64,7 @@ const SignUpForm = () => {
           onChange={updateMembership}
           value="1"
           checked={membership === "1"}
+          required={true}
         ></input>
         <label>Standard</label>
         <input
@@ -78,6 +91,7 @@ const SignUpForm = () => {
           name="email"
           onChange={updateEmail}
           value={email}
+          required={true}
         ></input>
       </div>
       <div>
@@ -87,6 +101,7 @@ const SignUpForm = () => {
           name="password"
           onChange={updatePassword}
           value={password}
+          required={true}
         ></input>
       </div>
       <div>
