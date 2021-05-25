@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import Splash from "./components/Splash"
 import { authenticate } from "./store/session";
 
 function App() {
@@ -36,13 +37,13 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path="/users" exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} >
-          <h1>My Home Page</h1>
+          <Splash />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
