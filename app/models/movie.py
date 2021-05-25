@@ -16,8 +16,6 @@ class Movie(db.Model):
     #     backref=db.backref('movies', lazy=True)
     # )
 
-    profiles = db.relationship("Profile", secondary=bookmarks, back_populates="movies")
+    profiles = db.relationship("Profile", secondary=bookmarks, back_populates="bookmarks")
     genres = db.relationship("Genre", secondary=movieGenres, back_populates="movies" )
-
-    # likes = db.relationship("Likes", back_populates="movies")
-    # likes = db.relationship("Like", backref="movies", lazy="joined")
+    likes = db.relationship("Like", backref="movie_likes", lazy="joined")

@@ -5,10 +5,11 @@ profile_routes = Blueprint('profile', __name__)
 
 @profile_routes.route('/<int:id>')
 def get_Profile(id):
-    # joins query and grab that profiles likes + bookmarks?
+    # joins query and grab that profiles likes + bookmarks
     profile = Profile.query.get(id)
     print(profile, '==== profile ====')
     # return some dictionary object of profile
+    # add a to_dict instance method after everything works
     # return {
     #     "id": profile.id,
     #     "name":profile.name

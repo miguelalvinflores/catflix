@@ -34,14 +34,12 @@ export const clearLikes = (likes) => (dispatch) => {
 
 export const addOneLike =
   (profileId, movieId, upvoteDownvote) => async (dispatch) => {
-    const res = await fetch("/api/likes", {
+    const res = await fetch(`/api/movies/${movieId}/likes/${profileId}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        profileId,
-        movieId,
         upvoteDownvote,
       }),
     });
@@ -49,15 +47,15 @@ export const addOneLike =
   };
 
 export const deleteOneLike = (profileId, movieId) => async (dispatch) => {
-  const res = await fetch("/api/likes", {
+  const res = await fetch(`/api/movies/${movieId}/likes/${profileId}`, {
     method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      profileId,
-      movieId,
-    }),
+    // headers: {
+    //   "Content-Type": "application/json",
+    // },
+    // body: JSON.stringify({
+    //   profileId,
+    //   movieId,
+    // }),
   });
   dispatch(deleteLike(movieId));
 };
