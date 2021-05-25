@@ -59,7 +59,6 @@ export const logout = () => async (dispatch) => {
 };
 
 export const signUp = (membership, email, password) => async (dispatch) => {
-  console.log("inside sign up thunk", membership, email, password);
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: {
@@ -72,7 +71,6 @@ export const signUp = (membership, email, password) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  console.log("recieved json from backend");
   if (data.errors) {
     return data;
   }
