@@ -18,6 +18,6 @@ class Movie(db.Model):
 
     profiles = db.relationship("Profile", secondary=bookmarks, back_populates="movies")
     genres = db.relationship("Genre", secondary=movieGenres, back_populates="movies" )
-    # relationship names must be unique? or reusable?
+
     # likes = db.relationship("Likes", back_populates="movies")
     # likes = db.relationship("Like", backref="movies", lazy="joined")
