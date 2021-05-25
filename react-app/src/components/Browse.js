@@ -7,7 +7,10 @@ const Browse = () => {
   if (user) {
     if (profile) {
       //   render browse
+    } else {
+      // modal force them pick profile
     }
   }
+
   return <h1>hi!</h1>;
 };
