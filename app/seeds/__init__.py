@@ -12,7 +12,6 @@ seed_commands = AppGroup('seed')
 def seed():
     seed_memberships()
     seed_users()
-    seed_memberships()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command

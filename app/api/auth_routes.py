@@ -62,11 +62,6 @@ def sign_up():
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-<<<<<<< HEAD
-    print(form.data)
-=======
-    print(isinstance(form.data['membership'],int), 'coco for cocopuffs')
->>>>>>> main
     if form.validate_on_submit():
         user = User(
             membershipId=int(form.data['membership']),
