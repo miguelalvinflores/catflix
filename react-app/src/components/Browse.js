@@ -13,4 +13,8 @@ const Browse = () => {
   }
 
   return <h1>hi!</h1>;
+  // <navbar>
+  //     <search component />
+  //     <tabs/>
+  //  </navbar>
 };

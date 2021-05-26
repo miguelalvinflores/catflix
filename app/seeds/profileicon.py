@@ -1,7 +1,7 @@
 from app.models import db, Icon
 
 # Adds a movie, you can add other movies here if you want
-def seed_memberships():
+def seed_icons():
 
     icon1 = Icon(
         image_url="https://i.pinimg.com/280x280_RS/38/1d/17/381d17279beb9a56bc1f22df17f62e69.jpg")
@@ -43,6 +43,6 @@ def seed_memberships():
 # the auto incrementing primary key
 
 
-def undo_memberships():
-    db.session.execute('TRUNCATE memberships RESTART IDENTITY CASCADE;')
+def undo_icons():
+    db.session.execute('TRUNCATE icons RESTART IDENTITY CASCADE;')
     db.session.commit()
