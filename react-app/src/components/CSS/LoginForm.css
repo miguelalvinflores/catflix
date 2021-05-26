@@ -5,8 +5,9 @@
   border: 1px rgba(0, 0, 0, 0.75) solid;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   box-sizing: content-box;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.75);
   z-index: 1;
+  margin-top: 50px;
 }
 .main-form {
   /* margin: auto; */
@@ -50,12 +51,13 @@ select {
 }
 .hero-card-img {
   z-index: -1;
-  /* height: 100%; */
-  /* width: 100%; */
+  height: 100% vh;
   position: absolute;
   top: 0;
-  max-height: fit-content;
+  /* max-height: fit-content; */
+  object-fit: cover;
 }
+
 .form-other-details {
   color: #737373;
   margin-top: 50px;
@@ -77,9 +79,6 @@ select {
 }
 #float-label {
   position: relative;
-}
-.footer-container {
-  bottom: 0;
 }
 html,
 body,
