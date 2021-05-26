@@ -8,13 +8,17 @@ const Footer = () => {
         <section>
           <ul className="icons">
             <li>
-              <a href="" class="icon brands fa-github alt"></a>Alvin Huang
+              <a href="" class="icon brands fa-github alt"></a>
+              <span>Alvin Huang</span>
             </li>
             <li>
               <a href="" class="icon brands fa-github alt"></a>Miguel Flores
             </li>
             <li>
-              <a href="" class="icon brands fa-github alt"></a>Franco Portin
+              <a href="">
+                <i class="fab fa-github"></i>
+              </a>
+              Franco Portin
             </li>
           </ul>
         </section>
