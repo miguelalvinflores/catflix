@@ -1,4 +1,5 @@
 /* TODO Add site wide styles */
+
 body, html {
     font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
     background-color: #f3f3f3;
@@ -10,20 +11,22 @@ body, html {
 }
 
 div {
-    display: block;
+  display: block;
 }
 
 #root {
+
     width:100%;
     z-index: 1;
     background-color: #333;
     color:aliceblue
+
 }
 
 .authLinks {
-    color: #fff;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    border-radius: 3px;
-    margin-top: .5rem;
+  color: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin-top: 0.5rem;
 }
