@@ -64,12 +64,12 @@ const Splash = () => {
                     <img className='hero-card-img' src='images/Splash-background.png' alt="Example Movie title panel" />
                     <div class="concord-img-gradient"></div>
                 </div>
-                <div className="story-card-text">
+                <div className="hero-story-card-text">
                     <h1 className="story-card-title">
                         Unlimited Cat Paws, Meows, and Purrs.
                     </h1>
                     <h2 className="story-card-subtitle">
-                        Watch cats doing cat things anywhere, upvote the cattiest ones
+                        Watch cats doing cat things anywhere, upvote the cattiest ones.
                     </h2>
                     <div className="story-signup-button">
                         <h3 className="story-signup-text">Ready to watch? Enter your email to create your account.</h3>
@@ -86,9 +86,20 @@ const Splash = () => {
                                     />
                                     <label className={ isActive ? "Active" : ""} htmlFor='email_hero'>Email address</label>
                                 </div>
+                                <button className='hero-btn-red' type='submit'>Get Started ></button>
                             </div>
-                            <button type='submit'>Get Started</button>
                         </form>
+                    </div>
+                </div>
+            </div>
+            <div className='story-card watchOnPC'>
+                <div className='story-card-container'>
+                    <div className='story-card-text'>
+                        <h1 className='story-card-title'>Enjoy your cat content.</h1>
+                        <h2 className='story-card-subtitle'>Stream cat clips on your phone, tablet, laptop, and any other devices with internet browser access.</h2>
+                    </div>
+                    <div className='story-card-img-container'>
+
                     </div>
                 </div>
 

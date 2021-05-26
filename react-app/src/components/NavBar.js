@@ -22,7 +22,7 @@ const NavBar = () => {
     );
   } else {
     sessionLinks = (
-      <button className='login-btn authLinks'>
+      <button className='btn-red authLinks'>
         <NavLink to='/login' className='login-nav' style={{ textDecoration: 'none' }}>Sign In</NavLink>
       </button>
     )
@@ -30,7 +30,7 @@ const NavBar = () => {
 
   return (
     <nav>
-      <NavLink to="/" exact={true} activeClassName="active">
+      <NavLink className='logo-container' to="/" exact={true} activeClassName="active">
         <img src="https://fontmeme.com/permalink/210524/34096974b6eb42471ca7fafc9afb884e.png" alt="Catflix banner" border="0" />
       </NavLink>
       {sessionLinks}
