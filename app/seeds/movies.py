@@ -1,17 +1,13 @@
 from app.models import db, Movie
+from app.seeds.movie_api import get_movie_data
+
 
 # Adds a movie, you can add other movies here if you want
 def seed_movies():
 
-    movie1 = Movie(
-        title='', 
-        image='',
-        description='',
-        cast='',
-        url=''
-        )
+    get_movie_data()
 
-    db.session.add(movie1)
+    # db.session.add(movie1)
 
     db.session.commit()
 
