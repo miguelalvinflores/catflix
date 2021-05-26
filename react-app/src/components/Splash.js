@@ -59,7 +59,7 @@ const Splash = () => {
 
     return (
         <div className="story-cards">
-            <div className="story-card hero-card">
+            <div className="hero-card">
                 <div className="hero-card-background">
                     <img className='hero-card-img' src='images/Splash-background.png' alt="Example Movie title panel" />
                     <div class="concord-img-gradient"></div>
@@ -99,7 +99,7 @@ const Splash = () => {
                         <h2 className='story-card-subtitle'>Stream cat clips on your phone, tablet, laptop, and any other devices with internet browser access.</h2>
                     </div>
                     <div className='story-card-img-container'>
-
+                        <img className='story-card-img' src='images/Splash-Device_Screens.png' alt="Example Movie title panel" />
                     </div>
                 </div>
 

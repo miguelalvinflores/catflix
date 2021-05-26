@@ -12,7 +12,7 @@ div.hero-card {
     width: 100%;
 }
 .hero-card-background {
-    height: fit-content;
+    height: 568px;
     width: 100%;
     position: absolute;
     top: 0;
@@ -103,6 +103,7 @@ div.hero-card {
 
 .hero-btn-red {
     width: fit-content;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
     margin-left: 18px;
     margin-right: 5%;
     background-color: #e50914;
@@ -114,6 +115,21 @@ div.hero-card {
     color: aliceblue;
     white-space: nowrap;
     text-align: center;
+}
+
+.story-card {
+    position: relative;
+    color: aliceblue;
+    height: fit-content;
+    margin-top: 4px;
+    background-color: #000000;
+    width: 100%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.story-card-container {
+    display: flex;
 }
 
 @media only screen and (min-width: 550px) and (max-width: 949px) and (orientation: portrait), only screen and (min-width: 400px) and (max-width: 549px), only screen and (min-width: 350px) and (max-width: 399px), only screen and (max-width: 349px) {
