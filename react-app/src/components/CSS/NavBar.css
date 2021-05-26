@@ -1,9 +1,8 @@
 nav {
-  /* position:absolute; */
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 100;
 }
 .logo-container {
   margin-top: 10px;
