@@ -10,6 +10,6 @@ class Profile(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable = False)
 
     # bookmarks = db.relationship("Bookmark", backref="profile", lazy="joined")
-    movies = db.relationship("Movie", secondary=bookmarks, back_populates="profiles")
+    bookmarks = db.relationship("Movie", secondary=bookmarks, back_populates="profiles")
     # likes = db.relationship("Movie", secondary=likes, back_populates="profile_likes")
-    profile_likes = db.relationship("Like", backref="movies", lazy="joined")
+    likes = db.relationship("Like", backref="profile_movies", lazy="joined")

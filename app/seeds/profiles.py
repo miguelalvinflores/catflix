@@ -1,7 +1,7 @@
 from werkzeug.security import generate_password_hash
 from app.models import db, Profile
 from faker import Faker
-from math import random
+import random
 
 # Adds a demo user, you can add other users here if you want
 fake = Faker()
@@ -10,18 +10,17 @@ def seed_profiles():
 
     demo = Profile(name='demo',
                 iconId=2,
-                userId=2
+                userId=1
                 )
 
     db.session.add(demo)
 
-    for userId in range(10):
+    for userId in list(range(1,11)):
         for n in range(3):
             profile = Profile(name=fake.name(),
-                        iconId=random.randint(1,5),
-                        userId= userId
+                    iconId=random.randint(1,10),
+                    userId= userId)
             db.session.add(profile)
-
     db.session.commit()
 
 # Uses a raw SQL query to TRUNCATE the users table.
