@@ -16,15 +16,19 @@ def get_movie_data(pagenum):
     movies = res.json()
     for movie in movies["results"]:
         rand_url = movie_url.movie_list[random.randint(0, 14)]
-        if movie["poster_path"] and movie["overview"]:
+        if movie["poster_path"] and movie["overview"] and movie["genre_ids"]:
             movie_seed = Movie(
                 title=movie["original_title"],
                 image="https://image.tmdb.org/t/p/original/"+movie["poster_path"],
                 description=movie["overview"],
                 url=rand_url
                 )
-
-        db.session.add(movie_seed)
+            for genre_id in movie["genre_ids"]:
+                genre = Genre.query.filter_by(mdb_id=genre_id).first()
+                movie_seed.genres.append(genre)
+            # grab list genreObj thru filter query of genre['name']
+            # append each genreObj to movie.genres
+            db.session.add(movie_seed)
 
 
 def get_movie_genres():
@@ -34,13 +38,14 @@ def get_movie_genres():
     genres = res.json()
     for genre in genres['genres']:
         genre_seed = Genre(
-            type=genre['name']
+            type=genre['name'],
+            mdb_id=genre["id"]
         )
         db.session.add(genre_seed)
 
 # def test():
 #     res = requests.get(
-#       f'https://api.themoviedb.org/3/genre/movie/list?api_key={key}'
+#       f'https://api.themoviedb.org/3/search/movie?api_key={key}&query="cat"&include_adult=false'
 # )
 #     genres = res.json()
 #     print(genres)

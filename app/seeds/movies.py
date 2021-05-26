@@ -1,12 +1,12 @@
-from app.models import db, Movie
+from app.models import db, Movie, Genre
 from app.seeds.movie_api import get_movie_data
 
 
 # Adds a movie, you can add other movies here if you want
 def seed_movies():
 
-    get_movie_data(3)
-    get_movie_data(4)
+    for x in range(1,6):
+        get_movie_data(x)
 
     # db.session.add(movie1)
 

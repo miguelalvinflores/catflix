@@ -3,6 +3,7 @@ from .bookmark import bookmarks
 from .movieGenre import movieGenres
 
 
+
 class Movie(db.Model):
     __tablename__ = "movies"
 
