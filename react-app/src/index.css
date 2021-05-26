@@ -1,5 +1,6 @@
 /* TODO Add site wide styles */
 
+
 body, html {
     font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
     /* background-color: #f3f3f3; */
@@ -8,6 +9,7 @@ body, html {
     direction: ltr;
     margin: 0;
     padding: 0;
+
 }
 
 div {
@@ -15,6 +17,7 @@ div {
 }
 
 #root {
+
 
     width:100%;
     z-index: -1;
