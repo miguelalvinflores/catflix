@@ -42,12 +42,23 @@ export const selectProfile = (profileId) => async (dispatch) => {
 };
 
 export const retrieveProfiles = (userId) => async (dispatch) => {
-  const res = await fetch(`/api/profiles`);
-  if (res.ok) {
+  console.log('thunk fired!')
+  const res = await fetch(`/api/profiles/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId
+    }),
+  });
+  // const data = await res.json()
+  // if (res.ok) {
     const data = await res.json();
+    console.log("From Thunk", res)
     
-    dispatch(getProfiles(data));
-  }
+    // dispatch(getProfiles(data));
+  // }
   // return res;
 };
 

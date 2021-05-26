@@ -14,9 +14,9 @@ function ProfileTile() {
 
     useEffect(() => {
         if (sessionUser) {
-            dispatch(profileActions.retrieveProfiles())
+            dispatch(profileActions.retrieveProfiles(sessionUser.id))
         }
-    }, [dispatch]);
+    }, [sessionUser]);
 
    
 
