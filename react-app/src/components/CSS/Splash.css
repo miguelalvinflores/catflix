@@ -6,9 +6,9 @@ img {
     border: 0;
 }
 div.hero-card {
-    position: absolute;
+    position: relative;
     color: aliceblue;
-    height: 100%;
+    height: 568px;
     width: 100%;
 }
 .hero-card-background {
@@ -40,7 +40,7 @@ div.hero-card {
     left: 0;
 }
 
-.story-card-text {
+.hero-story-card-text {
     position: relative;
     width: 100%;
     padding: 75px 0;
@@ -57,6 +57,8 @@ div.hero-card {
 
 .email-form-lookup {
     text-align: center;
+    display: flex;
+    margin: 0 auto;
 }
 
 #float-label {
@@ -64,12 +66,13 @@ div.hero-card {
     flex-direction: column;
     min-width: 350px;
     position: relative;
+
 }
 
 #float-label input {
     width: 100%;
     height: 56px;
-    padding: 14px 16px 0 10px;
+    padding: 14px 16px 0 0px;
     outline: 0;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -96,6 +99,21 @@ div.hero-card {
 
 #float-label .Active {
     transform: translate(0, 12px) scale(0.75);
+}
+
+.hero-btn-red {
+    width: fit-content;
+    margin-left: 18px;
+    margin-right: 5%;
+    background-color: #e50914;
+    line-height: normal;
+    padding: 7px 17px;
+    font-weight: 400;
+    font-size: 1rem;
+    height: 72px;
+    color: aliceblue;
+    white-space: nowrap;
+    text-align: center;
 }
 
 @media only screen and (min-width: 550px) and (max-width: 949px) and (orientation: portrait), only screen and (min-width: 400px) and (max-width: 549px), only screen and (min-width: 350px) and (max-width: 399px), only screen and (max-width: 349px) {
