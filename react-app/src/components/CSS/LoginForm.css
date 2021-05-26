@@ -51,7 +51,7 @@ select {
 .hero-card-img {
   z-index: -1;
   /* height: 100%; */
-  width: 100%;
+  /* width: 100%; */
   position: absolute;
   top: 0;
   max-height: fit-content;
@@ -79,7 +79,12 @@ select {
   position: relative;
 }
 .footer-container {
-  margin-top: 100px;
+  bottom: 0;
+}
+html,
+body,
+#root {
+  height: 100%;
 }
 .error {
   color: rgb(175, 29, 29);

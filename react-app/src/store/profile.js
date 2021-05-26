@@ -2,6 +2,7 @@ const SET_PROFILE = "profile/SET_PROFILE";
 const REMOVE_PROFILE = "profile/REMOVE_PROFILE";
 const DELETE_PROFILE = "profile/DELETE_PROFILE";
 const ADD_PROFILE = "profile/ADD_PROFILE";
+const GET_PROFILES = "profile/GET_PROFILES";
 
 const setProfile = (profile) => ({
   type: SET_PROFILE,
@@ -22,6 +23,13 @@ const addProfile = (data) => ({
   payload: data,
 });
 
+const getProfiles = (allProfiles) => {
+  return {
+    type: GET_PROFILES,
+    payload: allProfiles
+  }
+}
+
 export const selectProfile = (profileId) => async (dispatch) => {
   let res = await fetch(`/api/profile/${profileId}`);
   let profile = await res.json();
@@ -33,6 +41,16 @@ export const selectProfile = (profileId) => async (dispatch) => {
   dispatch(setProfile(profile));
 };
 
+export const retrieveProfiles = (userId) => async (dispatch) => {
+  const res = await fetch(`/api/profiles`);
+  if (res.ok) {
+    const data = await res.json();
+    
+    dispatch(getProfiles(data));
+  }
+  // return res;
+};
+
 const initialState = { profile: null };
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -40,6 +58,11 @@ export default function reducer(state = initialState, action) {
       return { profile: action.payload };
     case REMOVE_PROFILE:
       return { profile: null };
+    case GET_PROFILES:
+      return {
+        ...state,
+        allProfiles: action.payload
+      }
     default:
       return state;
   }
