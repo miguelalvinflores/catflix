@@ -27,6 +27,7 @@ nav {
 .authLinks,
 .btn-red {
     /* height: 100%; */
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
     margin-top: 30px;
     margin-right: 5%;
     background-color: #e50914;
