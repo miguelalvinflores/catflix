@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useLocation } from "react-router-dom";
 import { signUp } from "../../store/session";
 
-import '../styles/SignUpPage.css'
+import '../CSS/SignUpPage.css'
 
 const SignUpForm = () => {
   const location = useLocation()
@@ -17,6 +17,12 @@ const SignUpForm = () => {
   const [repeatPasswordActive, setRepeatPasswordActive] = useState(false);
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (location.state) {
+      setEmailActive(true)
+    }
+  }, [])
 
   const onSignUp = async (e) => {
     e.preventDefault();
