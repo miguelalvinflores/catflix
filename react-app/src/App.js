@@ -7,19 +7,19 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import Splash from "./components/Splash"
-import Browse from "./components/Browse"
-import ManageProfiles from "./components/ManageProfiles"
+import Splash from "./components/Splash";
+import Browse from "./components/Browse";
+import ManageProfiles from "./components/ManageProfiles";
 import { authenticate } from "./store/session";
-import './index.css'
+import "./index.css";
 
 function App() {
-  const user = useSelector(state => state.session.user)
+  const user = useSelector((state) => state.session.user);
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -34,7 +34,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Switch>
-          <Route path="/" exact={true} >
+          <Route path="/" exact={true}>
             <Splash />
           </Route>
           <Route path="/login" exact={true}>
@@ -49,10 +49,10 @@ function App() {
           <Route path="/manage_profiles" exact={true}>
             <ManageProfiles />
           </Route>
-          <ProtectedRoute path="/users" exact={true} >
+          <ProtectedRoute path="/users" exact={true}>
             <UsersList />
           </ProtectedRoute>
-          <ProtectedRoute path="/users/:userId" exact={true} >
+          <ProtectedRoute path="/users/:userId" exact={true}>
             <User />
           </ProtectedRoute>
         </Switch>
