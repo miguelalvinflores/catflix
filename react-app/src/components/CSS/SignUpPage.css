@@ -9,28 +9,50 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100%;
+    height: 100vh;
     width: 100%;
-    top: 0;
 }
 
 .signup-logo {
-    background-image: url("./images/signup-image.png");
-    height: 300px;
-    width: 300px;
+    background-image: url("images/signup-image.png");
+    height: 200px;
+    width: 200px;
     background-size: 100% 100%;
     background-repeat: no-repeat;
+    margin-top: 75px;
+}
+
+.signup-text {
+    box-sizing: border-box;
+    width: 400px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.signup-greeting {
+    font-weight: bold;
+    font-size: 23px;
+    color: white;
+}
+
+.signup-instructions {
+    font-size: 19px;
+    color: whitesmoke;
 }
 
 .signup-form {
     box-sizing: border-box;
-    height: 300px;
-    width: 500px;
+    height: 500px;
+    width: 600px;
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: space-between; */
+    overflow: hidden;
+    align-items: center;
+    justify-content: flex-start;
     position: relative;
+    gap: 10px;
 }
 
 .email-input-box,
@@ -38,7 +60,15 @@ html, body {
 .repeat-password-input-box {
     display: flex;
     flex-direction: column;
+    width: 400px;
+    height: 70px;
     min-width: 350px;
+}
+
+.email-input-box > input:focus,
+.password-input-box > input:focus,
+.repeat-password-input-box > input:focus {
+    border: 2px solid #1E90FF;
 }
 
 .email-input-box input,
@@ -79,28 +109,72 @@ html, body {
     transform: translate(0, 12px) scale(0.75);
 }
 
+.membership-label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
 .membership-container {
     box-sizing: border-box;
     display: flex;
     width: 100%;
     justify-content: center;
+    gap: 10px;
+    margin-left: 25px;
+}
+
+.membership-container input[type="radio"] {
+    opacity: 0;
+    width: 0;
+    position: absolute;
+    
 }
 
 .standard-radio-container,
 .deluxe-radio-container, 
 .premium-radio-container {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid #ddd;
-    background-color: #E50914;
+    background-color: white;
     color: black;
-    width: 200px;
+    width: 136px;
     height: 50px;
+    font-size: 17px;
+    border-radius: 3px;
 }
 
-.standard-radio-container > input:checked {
-    background-color: red;
+.standard-radio-container:hover,
+.deluxe-radio-container:hover,
+.premium-radio-container:hover {
+    color: transparent;
+    font-size: 0;
+    border: 2px solid #E50914;
+}
+
+.standard-radio-container:hover::after {
+    color: black;
+    font-size: 17px;
+    content: "480p";
+}
+
+.deluxe-radio-container:hover::after {
+    color: black;
+    font-size: 17px;
+    content: "1080p";
+}
+
+.premium-radio-container:hover::after {
+    color: black;
+    font-size: 17px;
+    content: "4K+HDR";
+}
+
+.checked {
+    background-color: #E50914;
+    color: white;
 }
 
 .signup-button {
@@ -109,6 +183,14 @@ html, body {
     background-color: #E50914;
     color: white;
     border: none;
+    border-radius: 3px;
     font-size: 15px;
-    width: 400px;
+    margin-left: 25px;
+    width: 430px;
+}
+
+.signup-button:hover {
+    filter: contrast(100);
+    cursor: pointer;
+    
 }

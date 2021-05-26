@@ -43,7 +43,25 @@ const SignUpForm = () => {
   };
 
   const updateMembership = (e) => {
+    let standardRadio = document.querySelector('.standard-radio-container')
+    let deluxeRadio = document.querySelector('.deluxe-radio-container')
+    let premiumRadio = document.querySelector('.premium-radio-container')
+
     setMembership(e.target.value);
+    console.log(e.target.value)
+    if (e.target.value === "1") {
+      deluxeRadio.classList.remove('checked')
+      premiumRadio.classList.remove('checked')
+      standardRadio.classList.add('checked')
+    } else if (e.target.value === "2") {
+      standardRadio.classList.remove('checked')
+      premiumRadio.classList.remove('checked')
+      deluxeRadio.classList.add('checked')
+    } else if (e.target.value === "3") {
+      premiumRadio.classList.add('checked')
+      standardRadio.classList.remove('checked')
+      deluxeRadio.classList.remove('checked')
+    }
   };
 
   const updateEmail = (e) => {
@@ -83,6 +101,10 @@ const SignUpForm = () => {
   return (
     <div className="signup-form__container">
       <div className="signup-logo"></div>
+      <div className="signup-text">
+        <div className="signup-greeting">Joining Catflix is easy.</div>
+        <div className="signup-instructions">Complete the form below and you'll be watching in no time.</div>
+      </div>
       <form className='signup-form' onSubmit={onSignUp}>
       <ul>{signupErrors}</ul>
       <div className="email-input-box">
@@ -115,9 +137,8 @@ const SignUpForm = () => {
         ></input>
           <label className={repeatPasswordActive ? "active" : ""}>Repeat Password</label>
       </div>
-      <label>Membership</label>
+      <label className="membership-label">Choose your Plan:</label>
       <div className="membership-container">
-        <div className="standard-radio-container">
         <input
           type="radio"
           name="membership"
@@ -125,30 +146,33 @@ const SignUpForm = () => {
           value="1"
           checked={membership === "1"}
           required={true}
-          className="radior"
+          id="standard"
         ></input>
-        <label>Standard</label>
-        </div>
-        <div className="deluxe-radio-container">
+        <label htmlFor="standard">
+          <div className="standard-radio-container">Standard</div>
+        </label>
         <input
           type="radio"
           name="membership"
           onChange={updateMembership}
           value="2"
           checked={membership === "2"}
+          id="deluxe"
         ></input>
-        <label>Deluxe</label>
-        </div>
-        <div className="premium-radio-container">
+        <label htmlFor="deluxe">
+          <div className="deluxe-radio-container">Deluxe</div>
+        </label>
         <input
           type="radio"
           name="membership"
           onChange={updateMembership}
           value="3"
           checked={membership === "3"}
+          id="premium"
         ></input>
-        <label>Premium</label>
-        </div>
+        <label htmlFor="premium">
+          <div className="premium-radio-container">Premium</div>
+        </label>
       </div>
       <button className="signup-button" type="submit">Sign Up</button>
     </form>

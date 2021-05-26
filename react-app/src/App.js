@@ -8,6 +8,8 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Splash from "./components/Splash"
+import Browse from "./components/Browse"
+import ManageProfiles from "./components/ManageProfiles"
 import { authenticate } from "./store/session";
 import './index.css'
 
@@ -40,6 +42,12 @@ function App() {
           </Route>
           <Route path="/sign-up" exact={true}>
             <SignUpForm />
+          </Route>
+          <Route path="/browse" exact={true}>
+            <Browse />
+          </Route>
+          <Route path="/manage_profiles" exact={true}>
+            <ManageProfiles />
           </Route>
           <ProtectedRoute path="/users" exact={true} >
             <UsersList />
