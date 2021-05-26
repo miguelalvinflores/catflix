@@ -5,6 +5,12 @@ img {
     max-width:100%;
     border: 0;
 }
+.story-cards {
+    position: absolute;
+    z-index:-1;
+    top:0px;
+    width:100%;
+}
 div.hero-card {
     position: relative;
     color: aliceblue;
@@ -16,7 +22,7 @@ div.hero-card {
     width: 100%;
     position: absolute;
     top: 0;
-    bottom: 0;
+    /* bottom: 0; */
     right: 0;
     left: 0;
 }
@@ -28,7 +34,7 @@ div.hero-card {
 }
 .concord-img-gradient {
     background: rgba(0,0,0,.4);
-    background-image: linear-gradient(to top,rgba(0,0,0,.8) 0,rgba(0,0,0,0) 74%,rgba(0,0,0,.8) 85%);
+    background-image: linear-gradient(to top,rgba(0,0,0,.8) 0,rgba(0,0,0,0) 25%,rgba(0,0,0,.8) 65%);
     height: auto;
 
 }
@@ -44,6 +50,7 @@ div.hero-card {
     position: relative;
     width: 100%;
     padding: 75px 0;
+    padding-top: 150px;
     max-width: 950px;
     margin: 0 auto;
     text-align: center;
@@ -117,19 +124,39 @@ div.hero-card {
     text-align: center;
 }
 
+.card-spacer {
+    height: 4px;
+    background-color: rgba(0, 0, 0, 0.65);
+}
+
 .story-card {
     position: relative;
-    color: aliceblue;
-    height: fit-content;
-    margin-top: 4px;
+    border-bottom: 8px solid #222;
+    padding: 50px 5%;
+    margin-bottom: 0;
     background-color: #000000;
-    width: 100%;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    color: #fff;
 }
 
 .story-card-container {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.story-card-text{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin: -2% 0;
+    width: 52%;
+    height: 100%;
+}
+
+.story-card-subtitle {
+    font-size: 1.625rem;
+    font-weight: 400;
 }
 
 @media only screen and (min-width: 550px) and (max-width: 949px) and (orientation: portrait), only screen and (min-width: 400px) and (max-width: 549px), only screen and (min-width: 350px) and (max-width: 399px), only screen and (max-width: 349px) {
@@ -145,5 +172,10 @@ div.hero-card {
     display: flex;
     flex-direction: row;
     margin: 0 auto;
+    }
+}
+@media only screen and (min-width: 550px) and (max-width: 949px), only screen and (min-width: 950px) and (max-width: 1449px), only screen and (min-width: 1450px) {
+    .story-card {
+        padding: 70px 45px;
     }
 }

@@ -92,6 +92,7 @@ const Splash = () => {
                     </div>
                 </div>
             </div>
+            <div className='card-spacer'></div>
             <div className='story-card watchOnPC'>
                 <div className='story-card-container'>
                     <div className='story-card-text'>
@@ -99,7 +100,7 @@ const Splash = () => {
                         <h2 className='story-card-subtitle'>Stream cat clips on your phone, tablet, laptop, and any other devices with internet browser access.</h2>
                     </div>
                     <div className='story-card-img-container'>
-                        <img className='story-card-img' src='images/Splash-Device_Screens.png' alt="Example Movie title panel" />
+                        <img className='-card-img' src='images/Splash-Device_Screens.png' alt="Example Movie title panel" />
                     </div>
                 </div>
 
