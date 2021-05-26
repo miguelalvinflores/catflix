@@ -16,13 +16,13 @@ seed_commands = AppGroup('seed')
 
 @seed_commands.command('all')
 def seed():
-    seed_likes()
     seed_icons()
     seed_memberships()
     seed_users()
-    seed_profiles()
     seed_genres()
     seed_movies()
+    seed_profiles()
+    seed_likes()
 
     # Add other seed functions here
 
