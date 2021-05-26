@@ -5,7 +5,8 @@ from app.seeds.movie_api import get_movie_data
 # Adds a movie, you can add other movies here if you want
 def seed_movies():
 
-    get_movie_data()
+    get_movie_data(3)
+    get_movie_data(4)
 
     # db.session.add(movie1)
 
