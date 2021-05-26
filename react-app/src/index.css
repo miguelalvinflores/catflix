@@ -1,13 +1,14 @@
 /* TODO Add site wide styles */
 
-body, html {
-    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
-    background-color: #f3f3f3;
-    color: #333;
-    font-size: 16px;
-    direction: ltr;
-    margin: 0;
-    padding: 0;
+body,
+html {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* background-color: #f3f3f3; */
+  color: #333;
+  font-size: 16px;
+  direction: ltr;
+  margin: 0;
+  padding: 0;
 }
 
 div {
@@ -15,12 +16,11 @@ div {
 }
 
 #root {
-
-    width:100%;
-    z-index: 1;
-    background-color: #333;
-    color:aliceblue
-
+  width: 100%;
+  z-index: 1;
+  /* background-color: #333; */
+  background-color: rgba(0, 0, 0, 0.822);
+  color: aliceblue;
 }
 
 .authLinks {
