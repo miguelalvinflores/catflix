@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./CSS/Footer.css";
 
 const Footer = () => {
@@ -8,16 +9,9 @@ const Footer = () => {
         <section>
           <ul className="icons">
             <li>
-              <a href="" class="icon brands fa-github alt"></a>
-              <span>Alvin Huang</span>
-            </li>
-            <li>
-              <a href="" class="icon brands fa-github alt"></a>Miguel Flores
-            </li>
-            <li>
-              <a href="">
+              <Link to="/">
                 <i class="fab fa-github"></i>
-              </a>
+              </Link>
               Franco Portin
             </li>
           </ul>
