@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Splash from "./components/Splash";
 import Browse from "./components/Browse";
+import Watch from "./components/Watch";
 import ManageProfiles from "./components/ManageProfiles";
 import { authenticate } from "./store/session";
 import "./index.css";
@@ -54,6 +55,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path="/users/:userId" exact={true}>
             <User />
+          </ProtectedRoute>
+          <ProtectedRoute path="/watch/:movieId" exact={true}>
+            <Watch />
           </ProtectedRoute>
         </Switch>
       </BrowserRouter>
