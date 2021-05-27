@@ -5,6 +5,11 @@ import "./CSS/Footer.css";
 const Footer = () => {
   return (
     <div className="footer-container">
+      <div className="mdb-credit-container">
+        {/* <p className="mdb-credit"> */}
+        All movie information is sourced through themoviedb.org's API
+        {/* </p> */}
+      </div>
       <div className="bio-container">
         <section>
           <ul className="icons">

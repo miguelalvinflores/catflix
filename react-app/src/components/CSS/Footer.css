@@ -7,6 +7,8 @@
   bottom: 0;
   position: absolute;
   width: 100%;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
 }
 ul.icons {
   cursor: default;
@@ -35,4 +37,11 @@ ul.icons li {
 }
 .github-bio a {
   color: red;
+}
+.mdb-credit-container {
+  display: flex;
+  align-self: end;
+  padding-bottom: 15px;
+  font-size: 13px;
+  justify-content: center;
 }
