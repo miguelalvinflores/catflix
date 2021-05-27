@@ -1,5 +1,5 @@
-from flask import Blueprint, jsonify, session, request
-from app.models import Profile, Movie, Like, db
+from flask import Blueprint
+from app.models import Movie
 
 movie_routes = Blueprint('movie', __name__)
 
@@ -14,7 +14,7 @@ movie_routes = Blueprint('movie', __name__)
 #         db.session.add(like)
 #         db.commit()
 #         return
-@movie_routes.route('/<int:id>')
-def movies():
+@movie_routes.route('/')
+def get_movies():
     movies = Movie.query.all()
     return {'movies': [movie.to_dict() for movie in movies]}
