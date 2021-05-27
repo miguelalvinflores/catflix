@@ -12,6 +12,8 @@ const LoginForm = () => {
     location.state ? location.state.userEmail : ""
   );
   const [password, setPassword] = useState("");
+  const [emailIsActive, setEmailIsActive] = useState(false);
+  const [passwordIsActive, setPasswordIsActive] = useState(false);
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
@@ -23,11 +25,20 @@ const LoginForm = () => {
     }
   };
 
+  const handleTextChange = (text, cb) => {
+    if (text !== "") {
+      cb(true);
+    } else {
+      cb(false);
+    }
+  };
   const updateEmail = (e) => {
+    handleTextChange(e.target.value, setEmailIsActive);
     setEmail(e.target.value);
   };
 
   const updatePassword = (e) => {
+    handleTextChange(e.target.value, setPasswordIsActive);
     setPassword(e.target.value);
   };
 
@@ -38,11 +49,13 @@ const LoginForm = () => {
   return (
     <>
       <div className="form-wrapper">
+        <div className="overlay"></div>
         <img
           className="hero-card-img login"
           src="images/Splash-background.png"
           alt="Example Movie title panel"
         />
+
         <div className="form-container">
           <div className="main-form">
             <h1 className="form-label">Sign In</h1>
@@ -53,7 +66,12 @@ const LoginForm = () => {
                 ))}
               </div>
               <div id="float-label">
-                <label htmlFor="email">Email</label>
+                <label
+                  className={emailIsActive ? "Active" : ""}
+                  htmlFor="email"
+                >
+                  Email
+                </label>
                 <input
                   name="email"
                   type="text"
@@ -64,7 +82,12 @@ const LoginForm = () => {
                 />
               </div>
               <div id="float-label">
-                <label htmlFor="password">Password</label>
+                <label
+                  className={passwordIsActive ? "Active" : ""}
+                  htmlFor="password"
+                >
+                  Password
+                </label>
                 <input
                   name="password"
                   type="password"
