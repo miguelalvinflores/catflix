@@ -15,8 +15,8 @@ const SelectProfile = () => {
 
     return (
         <div className="select-profile__container">
+            <div className="profile-list__text">Who's watching?</div>
             <div className="profile-list__container">
-                <div className="profile-list__text">Who's watching?</div>
                 <ProfileTile />
             </div>
             <div className="manage-profiles-button" onClick={manageProfileClick}>MANAGE PROFILES</div>

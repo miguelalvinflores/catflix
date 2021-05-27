@@ -30,14 +30,8 @@ const getProfiles = (allProfiles) => {
   }
 }
 
-export const selectProfile = (profileId) => async (dispatch) => {
-  let res = await fetch(`/api/profile/${profileId}`);
-  let profile = await res.json();
-
-  if (!profile) {
-    //   return some error msg
-    // return;
-  }
+export const selectProfile = (profile) => async (dispatch) => {
+  
   dispatch(setProfile(profile));
 };
 
@@ -53,13 +47,13 @@ export const retrieveProfiles = (userId) => async (dispatch) => {
     }),
   });
   // const data = await res.json()
-  // if (res.ok) {
+  if (res.ok) {
     const data = await res.json();
-    console.log("From Thunk", res)
+    console.log("From Thunk", data)
     
-    // dispatch(getProfiles(data));
-  // }
-  // return res;
+    dispatch(getProfiles(data));
+  }
+  return res;
 };
 
 const initialState = { profile: null };
