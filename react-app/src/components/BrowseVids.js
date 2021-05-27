@@ -8,15 +8,17 @@ function BrowseVids() {
     const dispatch = useDispatch()
     const history = useHistory();
     const sessionUser = useSelector((state) => state.sessionUser);
-    const userProfile = useSelector((state) => state.profile.profile);
+    const userProfiles = useSelector((state) => state.profile);
 
 
     useEffect(() => {
-        if (sessionUser && userProfile) {
+        console.log('in useEffect')
+        if (userProfiles) {
+            console.log('in useEffect if statement')
             dispatch(movieActions.retrieveMovies())
-            dispatch(movieActions.retrieveMoviesByGenreId())
+            dispatch(movieActions.retrieveMoviesByGenreId(2))
         }
-    }, [dispatch, sessionUser, userProfile]);
+    }, [dispatch, sessionUser, userProfiles]);
 
     const movies = useSelector((state) => state.session.movies)
 
@@ -39,3 +41,4 @@ function BrowseVids() {
     )
 
 }
+export default BrowseVids;

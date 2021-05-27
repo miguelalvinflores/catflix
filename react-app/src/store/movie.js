@@ -15,11 +15,17 @@ const getMoviesbyGenre = (genre) => {
 }
 
 export const retrieveMovies = () => async (dispatch) => {
-    let res = await fetch(`/api/movies/`)
+    console.log('in retrieveMovies before fetch')
+
+    let res = await fetch(`/api/movies`)
+
+    console.log('in retrieveMovies after fetch')
+
     if (res.ok) {
         const allMovies = await res.json();
         let normMovies = {}
-        for (let movie in allMovies.movies) {
+        for (let i = 0; i < allMovies['movies'].length; i++) {
+            let movie = allMovies.movies[i]
             normMovies[movie.id] = movie
         }
         dispatch(getMovies(normMovies));
@@ -28,8 +34,11 @@ export const retrieveMovies = () => async (dispatch) => {
 };
 
 export const retrieveMoviesByGenreId = (genreId) => async (dispatch) => {
+    console.log('genreId', genreId)
+    console.log('in retrieveMoviesByGenre before fetch')
     let res = await fetch(`/api/movies/genre/${genreId}`)
-
+    console.log('in retrieveMoviesByGenre after fetch')
+    console.log('res =', res)
     if (res.ok) {
         const genre = await res.json();
 

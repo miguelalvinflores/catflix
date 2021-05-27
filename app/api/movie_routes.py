@@ -16,15 +16,25 @@ movie_routes = Blueprint('movie', __name__)
 #         return
 @movie_routes.route('/')
 def get_movies():
+
     movies = Movie.query.all()
-    return {'movies': [movie.to_dict() for movie in movies]}
+
+    movielist = {'movies': [movie.to_dict() for movie in movies]}
+
+    return movielist
 
 
 @movie_routes.route('/genre/<int:genreId>')
 def get_movies_by_genreId(genreId):
+    print('in api/movies/genre/id')
+    print("="*10)
     genre = Genre.query.filter(Genre.id == genreId)
     # movies = Movie.query.join(Movie.genres).filter(Genre.type == genre.type)
     # movies = Movie.query.filter(Movie.genres.id == genre.id)
+    print("GENRE glkjdfoghdjgoi", genre)
+    movies = Movie.query.filter(Movie.genres.any(genreId == genre.id)).all()
+    print(movies, 'in api/movies/genre/id after querying')
 
-    movies = Movie.query.filter(Movie.genres.any(genreId=genre.id)).all()
-    return {'genres': [movie.to_dict() for movie in movies]}
+    genremovie = {'genres': [movie.to_dict() for movie in movies]}
+    print(genremovie)
+    return genremovie
