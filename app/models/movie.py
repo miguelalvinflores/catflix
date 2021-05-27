@@ -3,7 +3,6 @@ from .bookmark import bookmarks
 from .movieGenre import movieGenres
 
 
-
 class Movie(db.Model):
     __tablename__ = "movies"
 
@@ -26,3 +25,12 @@ class Movie(db.Model):
         "Genre", secondary=movieGenres, back_populates="movies"
         )
     likes = db.relationship("Like", backref="movie_likes", lazy="joined")
+
+    def to_dict(self):
+        return{
+            "id": self.id,
+            "title": self.title,
+            "image": self.image,
+            "description": self.description,
+            "url": self.url
+        }

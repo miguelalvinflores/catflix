@@ -2,5 +2,6 @@
     "python.linting.pylintEnabled": false,
     "python.linting.enabled": true,
     "python.linting.pycodestyleEnabled": false,
-    "python.linting.pydocstyleEnabled": true
+    "python.linting.pydocstyleEnabled": false,
+    "python.linting.flake8Enabled": true
 }
