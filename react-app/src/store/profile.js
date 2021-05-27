@@ -30,32 +30,38 @@ const getProfiles = (allProfiles) => {
   }
 }
 
-export const selectProfile = (profileId) => async (dispatch) => {
-  let res = await fetch(`/api/profile/${profileId}`);
-  let profile = await res.json();
-
-  if (!profile) {
-    //   return some error msg
-    // return;
-  }
+export const selectProfile = (profile) => async (dispatch) => {
+  
   dispatch(setProfile(profile));
 };
 
 export const retrieveProfiles = (userId) => async (dispatch) => {
-  const res = await fetch(`/api/profiles`);
+  console.log('thunk fired!')
+  const res = await fetch(`/api/profiles/`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId
+    }),
+  });
+  // const data = await res.json()
   if (res.ok) {
     const data = await res.json();
+    console.log("From Thunk", data)
     
     dispatch(getProfiles(data));
   }
-  // return res;
+  return res;
 };
 
 const initialState = { profile: null };
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_PROFILE:
-      return { profile: action.payload };
+      return { 
+        profile: action.payload };
     case REMOVE_PROFILE:
       return { profile: null };
     case GET_PROFILES:
