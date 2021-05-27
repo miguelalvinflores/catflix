@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash
-from app.models import db, Profile
+from app.models import db, Profile, Movie
 from faker import Faker
 import random
 
@@ -14,6 +14,10 @@ def seed_profiles():
         iconId=2,
         userId=1
     )
+
+    for movie_PK in range(1,10):
+        movie = Movie.query.get(movie_PK)
+        demo.bookmarks.append(movie)
 
     db.session.add(demo)
 
