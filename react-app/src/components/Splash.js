@@ -58,7 +58,7 @@ const Splash = () => {
             <div className="hero-card">
                 <div className="hero-card-background">
                     <img className='hero-card-img' src='images/Splash-background.png' alt="Example Movie title panel" />
-                    <div class="concord-img-gradient"></div>
+                    <div className="concord-img-gradient"></div>
                 </div>
                 <div className="hero-story-card-text">
                     <h1 className="story-card-title">
