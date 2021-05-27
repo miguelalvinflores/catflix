@@ -6,9 +6,8 @@ img {
     border: 0;
 }
 .story-cards {
-    position: absolute;
-    z-index:-1;
-    top:0px;
+    position: relative;
+    top:-80px;
     width:100%;
 }
 div.hero-card {
@@ -20,11 +19,11 @@ div.hero-card {
 .hero-card-background {
     height: 568px;
     width: 100%;
-    position: absolute;
+    position: relative;
     top: 0;
-    /* bottom: 0; */
     right: 0;
     left: 0;
+    z-index: -1;
 }
 .hero-card-img {
     width: 100%;
@@ -39,15 +38,18 @@ div.hero-card {
 
 }
 .hero-card .concord-img-gradient {
-    position: absolute;
+    position: relative;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
+    height: 568px;
+    z-index: -1;
 }
 
 .hero-story-card-text {
     position: relative;
+    top: -568px;
     width: 100%;
     padding: 75px 0;
     padding-top: 150px;
