@@ -1,8 +1,8 @@
-"""empty message
+"""full db
 
-Revision ID: 3caebfb89c44
-Revises: 
-Create Date: 2021-05-26 14:25:54.180861
+Revision ID: e199950fe9b9
+Revises:
+Create Date: 2021-05-26 16:37:42.407848
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '3caebfb89c44'
+revision = 'e199950fe9b9'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,6 +21,7 @@ def upgrade():
     op.create_table('genres',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('type', sa.String(), nullable=False),
+    sa.Column('mdb_id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('icons',
@@ -79,7 +80,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('profileId', sa.Integer(), nullable=True),
     sa.Column('movieId', sa.Integer(), nullable=True),
-    sa.Column('upvoteDownvote', sa.Integer(), nullable=False),
+    sa.Column('upvoteDownvote', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['movieId'], ['movies.id'], ),
     sa.ForeignKeyConstraint(['profileId'], ['profiles.id'], ),
     sa.PrimaryKeyConstraint('id')

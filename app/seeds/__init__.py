@@ -6,6 +6,7 @@ from .profileicon import seed_icons, undo_icons
 from .profiles import seed_profiles, undo_profiles
 from .movies import seed_movies, undo_movies
 from .genres import seed_genres, undo_genres
+from .likes import seed_likes, undo_likes
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
@@ -15,13 +16,13 @@ seed_commands = AppGroup('seed')
 
 @seed_commands.command('all')
 def seed():
-
     seed_icons()
     seed_memberships()
     seed_users()
-    seed_profiles()
-    seed_movies()
     seed_genres()
+    seed_movies()
+    seed_profiles()
+    seed_likes()
 
     # Add other seed functions here
 
@@ -30,6 +31,7 @@ def seed():
 
 @seed_commands.command('undo')
 def undo():
+    undo_likes()
     undo_profiles()
     undo_icons()
     undo_users()

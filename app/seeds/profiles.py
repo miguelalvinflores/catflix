@@ -6,20 +6,22 @@ import random
 # Adds a demo user, you can add other users here if you want
 fake = Faker()
 Faker.seed(0)
+
+
 def seed_profiles():
 
     demo = Profile(name='demo',
-                iconId=2,
-                userId=1
-                )
+        iconId=2,
+        userId=1
+    )
 
     db.session.add(demo)
 
     for userId in list(range(1,11)):
         for n in range(3):
             profile = Profile(name=fake.name(),
-                    iconId=random.randint(1,10),
-                    userId= userId)
+                iconId=random.randint(1, 10),
+                userId=userId)
             db.session.add(profile)
     db.session.commit()
 
