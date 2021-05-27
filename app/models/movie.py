@@ -11,7 +11,8 @@ class Movie(db.Model):
     image = db.Column(db.String, nullable=False)
     description = db.Column(db.Text, nullable=False)
     # cast = db.Column(db.String, nullable=False)
-    url = db.Column(db.String)
+    url = db.Column(db.String, nullable=False)
+    backdrop = db.Column(db.String, nullable=False)
 
     # bookmarks = db.relationship(
     #     "Profile", secondary=bookmarks, lazy="subquery",
@@ -32,5 +33,6 @@ class Movie(db.Model):
             "title": self.title,
             "image": self.image,
             "description": self.description,
-            "url": self.url
+            "url": self.url,
+            "backdrop": self.backdrop
         }
