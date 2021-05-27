@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { checkEmail } from "../store/session";
 import "./CSS/Splash.css";
@@ -30,23 +30,23 @@ const Splash = () => {
                 errorList.push(result.errors[err].split(":")[1]);
             }
         setErrorArr(errorList);
-            } else {
-                if (result.email) {
-                    history.push({
-                        pathname: "/login",
-                            state: {
-                                userEmail: result.email,
-                            },
-                    });
-                } else {
-                    history.push({
-                        pathname: "/sign-up",
+        } else {
+            if (result.email) {
+                history.push({
+                    pathname: "/login",
                         state: {
-                            userEmail: email,
+                            userEmail: result.email,
                         },
-                    });
-                }
+                });
+            } else {
+                history.push({
+                    pathname: "/sign-up",
+                    state: {
+                        userEmail: email,
+                    },
+                });
             }
+        }
   };
 
     let emailCheckErrors = errorArr.map((err) => {
@@ -58,7 +58,7 @@ const Splash = () => {
             <div className="hero-card">
                 <div className="hero-card-background">
                     <img className='hero-card-img' src='images/Splash-background.png' alt="Example Movie title panel" />
-                    <div class="concord-img-gradient"></div>
+                    <div className="concord-img-gradient"></div>
                 </div>
                 <div className="hero-story-card-text">
                     <h1 className="story-card-title">

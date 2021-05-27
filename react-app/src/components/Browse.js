@@ -5,11 +5,12 @@ import SelectProfile from "./SelectProfile"
 
 const Browse = () => {
   const user = useSelector((state) => state.session.user);
-  const profile = useSelector((state) => state.session.profile);
+  const profile = useSelector((state) => state.profile.profile);
   if (user) {
     if (profile) {
       //   render browse
       console.log("I went to if")
+      return <h1>Keeping state</h1>
     } else {
       // modal force them pick profile
       console.log("I went to else")

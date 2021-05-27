@@ -1,8 +1,9 @@
 nav {
+  position: relative;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    z-index: 100;
+    z-index: 2;
 }
 .logo-container {
   margin-top: 10px;

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory} from "react-router-dom";
 
 import * as profileActions from "../store/profile"
+import "./CSS/ProfileTile.css"
 
 function ProfileTile() {
     const dispatch = useDispatch();
@@ -14,20 +15,26 @@ function ProfileTile() {
 
     useEffect(() => {
         if (sessionUser) {
-            dispatch(profileActions.retrieveProfiles())
+            dispatch(profileActions.retrieveProfiles(sessionUser.id))
         }
-    }, [dispatch]);
+    }, [sessionUser]);
 
-   
+    const handleClick = profile => (e) => {
+        e.preventDefault();
+        dispatch(profileActions.selectProfile(profile))
+        // history.push('/test')
+    }
 
+    
     if (userProfiles) {
+        const profileList = userProfiles.profiles
 
         return (
             <>
-                {userProfiles?.map(profile => {
+                {profileList?.map(profile => {
                     return (
-                        <div key={profile.id} className='profile-tile__container' /*style={{ backgroundImage: `url(${})` }} onClick={handleClick(profile.id)}*/ >
-                            <span>{profile.name}</span>
+                        <div key={profile[0].id} className='profile-tile__container' style={{ backgroundImage: `url(${profile[1].image_url})` }} onClick={handleClick(profile)} >
+                            <span className="profile-tile__name">{profile[0].name}</span>
                         </div>
                     )
                 })}
