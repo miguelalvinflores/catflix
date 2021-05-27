@@ -7,19 +7,23 @@ import './CSS/NavBar.css'
 
 const NavBar = () => {
   const sessionUser = useSelector( state => state.session.user);
+  const profile = useSelector((state) => state.profile.profile);
 
   let sessionLinks;
   if (sessionUser) {
-    sessionLinks = (
-      <>
-        <li>Placeholder for nav links when signed in</li>
-        <li>
-          <ProfileButton user = {sessionUser} />
-        </li>
-
-      </>
-
-    );
+    if (profile) {
+      sessionLinks = (
+        <>
+          <li>Placeholder for nav links when signed in</li>
+          <li>
+            <ProfileButton user = {sessionUser} />
+          </li>
+  
+        </>
+  
+      );
+    }
+    
   } else {
     sessionLinks = (
       <button className='btn-red authLinks'>

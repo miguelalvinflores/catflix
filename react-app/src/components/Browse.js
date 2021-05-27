@@ -10,7 +10,7 @@ const Browse = () => {
     if (profile) {
       //   render browse
       console.log("I went to if")
-      return <h1>Keeping state</h1>
+      return <h1>Logged in as {profile[0].name} profile</h1>
     } else {
       // modal force them pick profile
       console.log("I went to else")

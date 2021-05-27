@@ -61,6 +61,7 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_PROFILE:
       return { 
+        ...state,
         profile: action.payload };
     case REMOVE_PROFILE:
       return { profile: null };

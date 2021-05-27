@@ -41,7 +41,7 @@ const LoginForm = () => {
     handleTextChange(e.target.value, setPasswordIsActive);
     setPassword(e.target.value);
   };
-
+  
   if (user) {
     return <Redirect to="/browse" />;
   }

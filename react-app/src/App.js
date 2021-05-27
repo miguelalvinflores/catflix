@@ -11,6 +11,7 @@ import Splash from "./components/Splash";
 import Browse from "./components/Browse";
 import ManageProfiles from "./components/ManageProfiles";
 import { authenticate } from "./store/session";
+import * as profileActions from "./store/profile"
 import "./index.css";
 
 function App() {
@@ -21,6 +22,11 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
+      const profile = localStorage.getItem('chosenProfile');
+      console.log(JSON.parse(profile))
+      if (profile) {
+        await dispatch(profileActions.selectProfile(JSON.parse(profile)))
+      }
       setLoaded(true);
     })();
   }, []);
