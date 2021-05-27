@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { checkEmail } from "../store/session";
 import "./CSS/Splash.css";
@@ -30,23 +30,23 @@ const Splash = () => {
                 errorList.push(result.errors[err].split(":")[1]);
             }
         setErrorArr(errorList);
-            } else {
-                if (result.email) {
-                    history.push({
-                        pathname: "/login",
-                            state: {
-                                userEmail: result.email,
-                            },
-                    });
-                } else {
-                    history.push({
-                        pathname: "/sign-up",
+        } else {
+            if (result.email) {
+                history.push({
+                    pathname: "/login",
                         state: {
-                            userEmail: email,
+                            userEmail: result.email,
                         },
-                    });
-                }
+                });
+            } else {
+                history.push({
+                    pathname: "/sign-up",
+                    state: {
+                        userEmail: email,
+                    },
+                });
             }
+        }
   };
 
     let emailCheckErrors = errorArr.map((err) => {
