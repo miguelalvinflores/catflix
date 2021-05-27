@@ -1,9 +1,5 @@
-import requests
-import json
-import random
-import os
-from app.models import db, Movie, Genre, movieGenres
-from app.seeds import movie_url
+
+from app.models import db
 from app.seeds.movie_api import get_movie_genres
 
 

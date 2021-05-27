@@ -14,8 +14,9 @@ function BrowseVids() {
     useEffect(() => {
         if (sessionUser && userProfile) {
             dispatch(movieActions.retrieveMovies())
+            dispatch(movieActions.retrieveMoviesByGenreId())
         }
-    }, [sessionUser, userProfile]);
+    }, [dispatch, sessionUser, userProfile]);
 
     const movies = useSelector((state) => state.session.movies)
 
@@ -31,7 +32,7 @@ function BrowseVids() {
                     </div>
                 </div>
                 <div className='lolomoRow title_card'>
-                    
+
                 </div>
             </div>
         </div>
