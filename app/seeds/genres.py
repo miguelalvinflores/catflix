@@ -1,12 +1,16 @@
-from app.models import db, Movie, Genre
-from app.seeds.movie_api import get_movie_data
+import requests
+import json
+import random
+import os
+from app.models import db, Movie, Genre, movieGenres
+from app.seeds import movie_url
+from app.seeds.movie_api import get_movie_genres
 
 
 # Adds a movie, you can add other movies here if you want
-def seed_movies():
+def seed_genres():
 
-    for x in range(1,6):
-        get_movie_data(x)
+    get_movie_genres()
 
     # db.session.add(movie1)
 
@@ -18,6 +22,6 @@ def seed_movies():
 # the auto incrementing primary key
 
 
-def undo_movies():
-    db.session.execute('TRUNCATE movies RESTART IDENTITY CASCADE;')
+def undo_genres():
+    db.session.execute('TRUNCATE genres RESTART IDENTITY CASCADE;')
     db.session.commit()
