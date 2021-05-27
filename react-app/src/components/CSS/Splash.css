@@ -6,7 +6,7 @@ img {
     border: 0;
 }
 .story-cards {
-    position: absolute;
+    /* position: absolute; */
     z-index:-1;
     top:0px;
     width:100%;

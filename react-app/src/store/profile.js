@@ -60,7 +60,8 @@ const initialState = { profile: null };
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_PROFILE:
-      return { profile: action.payload };
+      return { 
+        profile: action.payload };
     case REMOVE_PROFILE:
       return { profile: null };
     case GET_PROFILES:
