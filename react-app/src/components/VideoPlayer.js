@@ -14,7 +14,7 @@ import "./CSS/VideoPlayer.css";
 // movieUrl destructured from props
 const VideoPlayer = () => {
   const [videoIsActive, setVideoIsActive] = useState(true);
-  const [videoEnded, setVideoEnded] = useState(false);
+  // const [videoEnded, setVideoEnded] = useState(false);
   const dispatch = useDispatch();
 
   const togglePlay = () => {
@@ -38,9 +38,9 @@ const VideoPlayer = () => {
       }
     });
   });
-  useEffect(() => {
-    console.log("hahaha the video is over");
-  }, [videoEnded]);
+  // useEffect(() => {
+  //   console.log("hahaha the video is over");
+  // }, [videoEnded]);
   return (
     <div className="c-video">
       <video

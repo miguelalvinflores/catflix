@@ -1,15 +1,35 @@
 .video-cover {
   height: 100%;
   width: 100%;
+  z-index: 0;
+  position: relative;
 }
 .image-container {
-  /* position: absolute; */
+  position: absolute;
   height: 100%;
   width: 100%;
-  position: relative;
+  /* position: relative; */
+  z-index: 0;
 }
 .video-cover-image {
   object-fit: cover;
   height: 100%;
   width: 100%;
+  position: absolute;
+  z-index: 0;
+}
+.cover-overlay {
+  /* top: 100px; */
+  top: 0;
+  z-index: 1;
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+.footer-wrapper {
+  background-color: black;
+  height: 112px;
+}
+.cover-overlay .film-title {
+  margin: 0;
 }

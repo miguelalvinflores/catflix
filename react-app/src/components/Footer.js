@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./CSS/Footer.css";
 
-const Footer = () => {
+const Footer = ({ className }) => {
   return (
-    <div className="footer-container">
+    <div className={`footer-container ${className}`}>
       <div className="mdb-credit-container">
         {/* <p className="mdb-credit"> */}
         All movie information is sourced through themoviedb.org's API

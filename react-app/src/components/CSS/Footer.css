@@ -2,9 +2,9 @@
 .footer-container {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   box-sizing: content-box;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0);
   z-index: 100;
-  bottom: 0;
+  /* bottom: 0; */
   position: absolute;
   width: 100%;
   display: grid;
