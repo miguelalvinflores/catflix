@@ -2,7 +2,7 @@ import requests
 # import json
 import random
 import os
-from app.models import db, Movie, Genre, movieGenres
+from app.models import db, Movie, Genre
 from app.seeds import movie_url
 
 
@@ -16,12 +16,13 @@ def get_movie_data(pagenum):
     movies = res.json()
     for movie in movies["results"]:
         rand_url = movie_url.movie_list[random.randint(0, 14)]
-        if movie["poster_path"] and movie["overview"] and movie["genre_ids"]:
+        if movie["poster_path"] and movie["overview"] and movie["genre_ids"] and movie['backdrop_path']:
             movie_seed = Movie(
                 title=movie["original_title"],
                 image="https://image.tmdb.org/t/p/original/"+movie["poster_path"],
                 description=movie["overview"],
-                url=rand_url
+                url=rand_url,
+                backdrop='https://www.themoviedb.org/t/p/original'+movie['backdrop_path']
                 )
             for genre_id in movie["genre_ids"]:
                 genre = Genre.query.filter_by(mdb_id=genre_id).first()
