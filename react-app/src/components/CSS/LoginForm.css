@@ -49,9 +49,9 @@ select {
 .form-label {
   color: white;
 }
-.hero-card-img {
+.hero-card-img-login {
   z-index: -2;
-  height: 100% vh;
+  height: 100%;
   position: absolute;
   top: 0;
   /* max-height: fit-content; */
