@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
@@ -12,6 +12,7 @@ import Browse from "./components/Browse";
 import Watch from "./components/Watch";
 import ManageProfiles from "./components/ManageProfiles";
 import { authenticate } from "./store/session";
+import * as profileActions from "./store/profile"
 import "./index.css";
 
 function App() {
@@ -22,12 +23,21 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
+      const profile = localStorage.getItem('chosenProfile');
+      console.log(JSON.parse(profile))
+      if (profile) {
+        await dispatch(profileActions.selectProfile(JSON.parse(profile)))
+      }
       setLoaded(true);
     })();
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;
+  }
+  let loggedIn = false;
+  if (user) {
+    loggedIn = true;
   }
 
   return (
@@ -45,10 +55,10 @@ function App() {
             <SignUpForm />
           </Route>
           <Route path="/browse" exact={true}>
-            <Browse />
+            {loggedIn ? <Browse /> : <Redirect to='/' />}
           </Route>
           <Route path="/manage_profiles" exact={true}>
-            <ManageProfiles />
+            {loggedIn ? <ManageProfiles /> : <Redirect to='/' /> }
           </Route>
           <ProtectedRoute path="/users" exact={true}>
             <UsersList />

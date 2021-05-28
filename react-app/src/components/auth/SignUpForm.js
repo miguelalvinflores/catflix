@@ -48,7 +48,6 @@ const SignUpForm = () => {
     let premiumRadio = document.querySelector('.premium-radio-container')
 
     setMembership(e.target.value);
-    console.log(e.target.value)
     if (e.target.value === "1") {
       deluxeRadio.classList.remove('checked')
       premiumRadio.classList.remove('checked')

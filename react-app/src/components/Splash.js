@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { checkEmail } from "../store/session";
 import "./CSS/Splash.css";
 
 const Splash = () => {
+    const user = useSelector((state) => state.session.user);
     const [email, setEmail] = useState("");
     const [errorArr, setErrorArr] = useState([]);
     const [isActive, setIsActive] = useState(false);
@@ -52,6 +53,10 @@ const Splash = () => {
     let emailCheckErrors = errorArr.map((err) => {
         return <li key={err}>{err}</li>;
     });
+
+    if (user) {
+        history.push('/browse')
+    }
 
     return (
         <div className="story-cards">
