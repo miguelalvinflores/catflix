@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import Footer from './Footer'
 import SelectProfile from "./SelectProfile"
 import BrowseVids from './BrowseVids'
 const Browse = () => {
@@ -10,7 +10,12 @@ const Browse = () => {
     if (profile) {
       //   render browse
       console.log("I went to if")
-      return <BrowseVids />
+      return (
+        <div className='mainView'>
+          <BrowseVids />
+          <Footer />
+        </div>
+      )
     } else {
       // modal force them pick profile
       console.log("I went to else")
