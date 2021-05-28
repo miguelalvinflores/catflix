@@ -1,5 +1,14 @@
 const GET_MOVIES = 'movie/GET_MOVIES'
 const GET_MOVIES_BY_GENRE ='movie/GET_MOVIES_BY_GENRE'
+const THIS_MOVIE = 'movie/THIS_MOVIE'
+
+const thisMovie = (movie) => {
+    return {
+        type: THIS_MOVIE,
+        payload: movie
+    }
+}
+
 const getMovies = (allMovies) => {
     return {
         type: GET_MOVIES,
@@ -15,11 +24,7 @@ const getMoviesbyGenre = (genre) => {
 }
 
 export const retrieveMovies = () => async (dispatch) => {
-    console.log('in retrieveMovies before fetch')
-
     let res = await fetch(`/api/movies`)
-
-    console.log('in retrieveMovies after fetch')
 
     if (res.ok) {
         const allMovies = await res.json();
@@ -33,15 +38,15 @@ export const retrieveMovies = () => async (dispatch) => {
     return res;
 };
 
+export const chooseMovie = (movie) => async (dispatch) => {
+    dispatch(thisMovie(movie));
+}
+
 export const retrieveMoviesByGenreId = (genreId) => async (dispatch) => {
-    console.log('genreId', genreId)
-    console.log('in retrieveMoviesByGenre before fetch')
     let res = await fetch(`/api/movies/genre/${genreId}`)
-    console.log('in retrieveMoviesByGenre after fetch')
-    console.log('res =', res)
+
     if (res.ok) {
         const genre = await res.json();
-
         dispatch(getMoviesbyGenre(genre));
     }
 }
@@ -49,6 +54,11 @@ export const retrieveMoviesByGenreId = (genreId) => async (dispatch) => {
 const initialState = { movie: null };
 export default function reducer(state = initialState, action) {
     switch(action.type) {
+        case THIS_MOVIE:
+            return {
+                ...state,
+                movie: action.payload
+            }
         case GET_MOVIES:
             return {
                 ...state,

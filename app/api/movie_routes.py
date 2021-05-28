@@ -1,5 +1,6 @@
 from flask import Blueprint
 from app.models import Movie, Genre
+# import random
 
 movie_routes = Blueprint('movie', __name__)
 
@@ -26,15 +27,12 @@ def get_movies():
 
 @movie_routes.route('/genre/<int:genreId>')
 def get_movies_by_genreId(genreId):
-    print('in api/movies/genre/id')
-    print("="*10)
-    genre = Genre.query.filter(Genre.id == genreId)
-    # movies = Movie.query.join(Movie.genres).filter(Genre.type == genre.type)
-    # movies = Movie.query.filter(Movie.genres.id == genre.id)
-    print("GENRE glkjdfoghdjgoi", genre)
-    movies = Movie.query.filter(Movie.genres.any(genreId == genre.id)).all()
-    print(movies, 'in api/movies/genre/id after querying')
-
-    genremovie = {'genres': [movie.to_dict() for movie in movies]}
-    print(genremovie)
+    genre = Genre.query.filter(Genre.id == genreId).first()
+    movies = Movie.query.join(Movie.genres).filter(Genre.type == genre.type)
+    genremovie = {genre.type: [movie.to_dict() for movie in movies]}
     return genremovie
+
+
+# @movie_routes.route('random')
+# def get_random_movie():
+#     movies = Movie.query.gi

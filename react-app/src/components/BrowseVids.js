@@ -4,6 +4,7 @@ import { Redirect, useHistory } from 'react-router';
 
 import * as movieActions from '../store/movie';
 
+
 function BrowseVids() {
     const dispatch = useDispatch()
     const history = useHistory();
@@ -12,15 +13,13 @@ function BrowseVids() {
 
 
     useEffect(() => {
-        console.log('in useEffect')
         if (userProfiles) {
-            console.log('in useEffect if statement')
             dispatch(movieActions.retrieveMovies())
-            dispatch(movieActions.retrieveMoviesByGenreId(2))
+
         }
     }, [dispatch, sessionUser, userProfiles]);
-
-    const movies = useSelector((state) => state.session.movies)
+    const movies = useSelector((state) => state.session.allMovies)
+    console.log(movies)
 
     return (
         <div className='mainView'>
