@@ -1,0 +1,32 @@
+.profile-container {
+    width: 300px;
+    height: 200px;
+    position: absolute;
+    right: 50px;
+    top: 55px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    /* justify-content: center; */
+}
+
+.profile-btn {
+    position: absolute;
+    box-sizing: border-box;
+    align-items: center;
+    border-radius: 5px;
+    height: 40px;
+    width: 40px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 30px;
+    top: -40px;
+    cursor: pointer;
+}
+
+.profile-dropdown {
+    position: absolute;
+    top: 5px;
+    background-color: black;
+}

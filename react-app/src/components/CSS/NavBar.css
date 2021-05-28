@@ -1,10 +1,16 @@
 nav {
   position: relative;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 2;
+  /* background-color: black; */
 }
+
+.logged-in{
+  background-color: black;
+}
+
 .logo-container {
   margin-top: 10px;
   margin-left: 5%;
