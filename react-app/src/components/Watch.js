@@ -1,14 +1,33 @@
 import React, { useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import VideoPlayer from "./VideoPlayer";
+import VideoCover from "./VideoCover";
+import Footer from "./Footer";
+import "./CSS/Watch.css";
 
-// grab movieId from useParams make api call to back end for movie Object
-// pass movie.url into video component as prop
+const Watch = () => {
+  const [showMovieCover, setShowMovieCover] = useState(true);
+  const { movieId } = useParams();
+  // const movie = useSelector(state=>state.movies[movieId])
+  const videoEnded = useSelector((state) => state.video.end);
 
-return (
-  <>
-    {/* video component */}
-    {/* carousel: top picks for you */}
-    {/* detail component */}
-  </>
-);
+  // define movieCover here. useEffect listens to play button on movieCover
+  // clicking play button renders VideoPlayer instead w/ autoplay
+  // movieCover playbutton onClick sets showMovieCover(false) && videoEnded(false)
+  return (
+    <>
+      <div className="video-container">
+        {/* pass in video url */}
+        {/* <VideoCover movie={movie} /> */}
+        {/* <VideoPlayer movieUrl={ movie.url} /> */}
+        {showMovieCover || videoEnded ? <VideoCover /> : <VideoPlayer />}
+        {/* <VideoPlayer /> */}
+      </div>
+      {/* carousel: top picks for you */}
+      {/* detail component */}
+      {/* <Footer /> */}
+    </>
+  );
+};
+export default Watch;
