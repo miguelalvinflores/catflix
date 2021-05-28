@@ -19,10 +19,10 @@ def seed():
     seed_icons()
     seed_memberships()
     seed_users()
-    # seed_genres()
-    # seed_movies()
+    seed_genres()
+    seed_movies()
     seed_profiles()
-    # seed_likes()
+    seed_likes()
     #COMMENT
     # Add other seed functions here
 
