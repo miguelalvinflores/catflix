@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import ProfileButton from './ProfileButton'
 import './CSS/NavBar.css'
@@ -8,16 +8,25 @@ import './CSS/NavBar.css'
 const NavBar = () => {
   const sessionUser = useSelector( state => state.session.user);
   const profile = useSelector((state) => state.profile.profile);
+  const location = useLocation()
+
+  useEffect(() => {
+    let navBar = document.querySelector('nav')
+    if (location.pathname === '/sign-up' || sessionUser) {
+      navBar.classList.add('logged-in')
+    } else {
+      navBar.classList.remove('logged-in')
+    }
+  })
 
   let sessionLinks;
   if (sessionUser) {
     if (profile) {
       sessionLinks = (
         <>
-          <li>Placeholder for nav links when signed in</li>
-          <li>
+          <div>
             <ProfileButton user = {sessionUser} />
-          </li>
+          </div>
   
         </>
   

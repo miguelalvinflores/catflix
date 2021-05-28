@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 import LogoutButton from './auth/LogoutButton';
 
 import ProfileTile from "./ProfileTile"
 import "./CSS/ProfileButton.css"
 
 const ProfileButton = ({ user }) => {
-    const location = useLocation()
+    const profile = useSelector((state) => state.profile.profile);
     const[showMenu, setshowMenu] = useState(false);
 
     const openMenu = () => {
         if (showMenu) return;
         setshowMenu(true);
-        console.log("FROM NAV", location)
     };
 
-    useEffect(() => {
+    const closeMenu = () => {
         if(!showMenu) return;
-
-        const closeMenu = () => {
-            setshowMenu(false);
-        };
+        setshowMenu(false);
+    };
+    useEffect(() => {
+        if (!showMenu) return;
+        // setshowMenu(false);
 
         document.addEventListener('click', closeMenu);
 
@@ -32,14 +31,12 @@ const ProfileButton = ({ user }) => {
     
 
     return (
-        <div className= 'profile-container'>
-            <button className='profile-btn' onClick={openMenu}>
-                Account
-            </button>
+        <div className='profile-container' onMouseLeave={closeMenu}>
+            <div className='profile-btn' style={{ backgroundImage: `url(${profile[1].image_url})` }} onMouseEnter={openMenu} ></div>
             {showMenu && (
-                <ul className='profile-dropdown'>
-                    <li>Placeholder for profiles here</li>
+                <ul className='profile-dropdown' >
                     <ProfileTile where="Navbar" />
+                    <h1>Manage Profile</h1>
                 </ul>
             )}
         </div>

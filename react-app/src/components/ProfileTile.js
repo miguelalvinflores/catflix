@@ -10,7 +10,7 @@ function ProfileTile(props) {
     const history = useHistory();
     const sessionUser = useSelector((state) => state.session.user);
     const userProfiles = useSelector((state) => state.profile.allProfiles);
-    const profile = useSelector((state) => state.profile.profile);
+    const currentProfile = useSelector((state) => state.profile.profile);
     // const [errors, setErrors] = useState([]);
 
 
@@ -30,16 +30,23 @@ function ProfileTile(props) {
     console.log("PROPS LOCATION:", props.where)
 
     useEffect(() => {
-        if (!profile) {
-            let tileContainer = document.querySelectorAll('.nav-tile')
-            let tileName = document.querySelectorAll('.profile-tile__name')
+        if (!currentProfile) {
+            let fullTileContainer = document.querySelectorAll('.full-nav-tile__container')
+            let tileContainer = document.querySelectorAll('.nav-tile__container')
+            let tileName = document.querySelectorAll('.nav-tile__name')
             
-            // if (props.where === "Navbar") {
-                tileContainer.forEach(tile => tile.classList.add('profile-tile__container'))
-                // tileContainer.forEach(tile => tile.classList.remove('profile-tile__container'))
-                // tileContainer.classList.add('nav-tile')
-                // tileName.classList.add('nav-tile')
-            // }
+                fullTileContainer.forEach(fullTile => {
+                    fullTile.classList.add('full-tile__container')
+                    fullTile.classList.remove('full-nav-tile__container')
+                })
+                tileContainer.forEach(tile => {
+                    tile.classList.add('profile-tile__container')
+                    tile.classList.remove('nav-tile__container')
+                })
+                tileName.forEach(tileName => {
+                    tileName.classList.add('profile-tile__name')
+                    tileName.classList.remove('nav-tile__name')
+                })
         }
         
     })
@@ -50,12 +57,18 @@ function ProfileTile(props) {
         return (
             <>
                 {profileList?.map(profile => {
-                    return (
-                        <div key={profile[0].id} className='nav-tile' style={{ backgroundImage: `url(${profile[1].image_url})` }} onClick={handleClick(profile)} >
-                            {/* <span className="profile-tile__name">{profile[0].name}</span> */}
-                        </div>
-                    )
+                    if (!currentProfile || profile[0].id !== currentProfile[0].id) {
+                        return (
+                            <div key={profile[0].id} className='full-nav-tile__container' onClick={handleClick(profile)}>
+                                <div className='nav-tile__container' style={{ backgroundImage: `url(${profile[1].image_url})` }} >
+                                </div>
+                                <div className="nav-tile__name">{profile[0].name}</div>
+                            </div>
+                        )
+                        
+                    }
                 })}
+
 
             </>
 
