@@ -45,8 +45,8 @@ const VideoPlayer = () => {
     <div className="c-video">
       <video
         className="video"
-        // change that url later
-        src="http://d23jaqdaucwmr3.cloudfront.net/1.mp4"
+        // change that url later: DON'T FORGET TO ADD https://
+        src="https://d23jaqdaucwmr3.cloudfront.net/1.mp4"
         autoplay="true"
         muted
         // controls

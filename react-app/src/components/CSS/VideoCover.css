@@ -25,6 +25,9 @@
   position: relative;
   height: 100%;
   width: 100%;
+  box-sizing: border-box;
+  padding-left: 7%;
+  padding-top: 5%;
 }
 .footer-wrapper {
   background-color: black;
@@ -32,4 +35,52 @@
 }
 .cover-overlay .film-title {
   margin: 0;
+}
+.cover-overlay .tabs {
+  bottom: 0;
+}
+.controls-container .play-button,
+.controls-container .bookmark-button {
+  height: 45px;
+  width: 175px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 30px;
+  align-items: center;
+}
+.controls-container .like-button.active {
+  color: green;
+}
+
+.controls-container .dislike-button.active {
+  color: red;
+}
+.controls-container {
+  display: flex;
+}
+.controls-container button {
+  margin-right: 10px;
+}
+.controls-container .like-button,
+.controls-container .dislike-button {
+  background: none;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+.cover-overlay .tabs {
+  bottom: 1px;
+  position: absolute;
+  display: flex;
+  left: 5%;
+  font-size: 25px;
+  /* width: 50%; */
+  font-family: Arial;
+}
+.tabs .overview-tab {
+  text-decoration: underline;
+}
+.tabs span {
+  margin-left: 28px;
+  cursor: pointer;
 }
