@@ -1,13 +1,15 @@
 .video-cover {
-  position: relative;
   height: 100%;
   width: 100%;
 }
 .image-container {
-  position: absolute;
-  object-fit: cover;
+  /* position: absolute; */
+  height: 100%;
+  width: 100%;
+  position: relative;
 }
-.image-container image {
+.video-cover-image {
   object-fit: cover;
-  height: fit-content;
+  height: 100%;
+  width: 100%;
 }

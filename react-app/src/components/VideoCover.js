@@ -14,7 +14,10 @@ const VideoCover = ({ movie }) => {
         <img
           src="https://www.themoviedb.org/t/p/original/7IrQ5vwmTHppBCf51HRFzSd7xMi.jpg"
           alt="cats"
+          className="video-cover-image"
         />
+      </div>
+      <div className="cover-overlay">
         <h1 className="film-title">Film Title</h1>
         <p className="film-description">Film description</p>
         <div className="controls-container">
