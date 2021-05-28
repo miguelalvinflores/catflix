@@ -16,7 +16,7 @@ const Footer = () => {
             <li>
               <div className="github-bio">
                 <a href="https://github.com/miguelalvinflores">
-                  <i class="fab fa-github fa-3x"></i>
+                  <i className="fab fa-github fa-3x"></i>
                 </a>
                 Miguel Flores
               </div>
@@ -24,7 +24,7 @@ const Footer = () => {
             <li>
               <div className="github-bio">
                 <a href="https://github.com/huang-alvin">
-                  <i class="fab fa-github fa-3x"></i>
+                  <i className="fab fa-github fa-3x"></i>
                 </a>
                 Alvin Huang
               </div>
@@ -32,7 +32,7 @@ const Footer = () => {
             <li>
               <div className="github-bio">
                 <a href="https://github.com/fportin">
-                  <i class="fab fa-github fa-3x"></i>
+                  <i className="fab fa-github fa-3x"></i>
                 </a>
                 Franco Portin
               </div>

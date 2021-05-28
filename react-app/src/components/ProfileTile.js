@@ -17,7 +17,7 @@ function ProfileTile() {
         if (sessionUser) {
             dispatch(profileActions.retrieveProfiles(sessionUser.id))
         }
-    }, [sessionUser]);
+    }, [ dispatch, sessionUser]);
 
     const handleClick = profile => (e) => {
         e.preventDefault();
@@ -25,7 +25,7 @@ function ProfileTile() {
         // history.push('/test')
     }
 
-    
+
     if (userProfiles) {
         const profileList = userProfiles.profiles
 

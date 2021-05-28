@@ -3,6 +3,7 @@ from app.models import Profile, db, Icon
 
 profile_routes = Blueprint('profile', __name__)
 
+
 @profile_routes.route('/', methods=['POST'])
 def get_user_profiles():
     data = request.json
@@ -19,10 +20,9 @@ def get_user_profiles():
             "id": profile[1].id,
             "image_url": profile[1].image_url
         }))
-    res = { "profiles": profiles_lst}
+    res = {"profiles": profiles_lst}
 
     return res
-
 
 
 # @profile_routes.route('/<int:id>')
