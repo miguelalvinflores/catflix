@@ -13,3 +13,11 @@ class Like(db.Model):
     profileId = db.Column(db.Integer, db.ForeignKey('profiles.id'))
     movieId = db.Column(db.Integer, db.ForeignKey('movies.id'))
     upvoteDownvote = db.Column(db.Boolean, nullable=False)
+
+    def to_dict(self):
+        return{
+            "id": self.id,
+            "profileId": self.profileId,
+            "movieId": self.movieId,
+            "upvoteDownvote": self.upvoteDownvote
+        }

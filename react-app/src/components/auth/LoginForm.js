@@ -51,7 +51,7 @@ const LoginForm = () => {
       <div className="form-wrapper">
         <div className="overlay"></div>
         <img
-          className="hero-card-img login"
+          className="hero-card-img-login"
           src="images/Splash-background.png"
           alt="Example Movie title panel"
         />

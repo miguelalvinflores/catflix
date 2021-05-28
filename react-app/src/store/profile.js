@@ -31,7 +31,7 @@ const getProfiles = (allProfiles) => {
 }
 
 export const selectProfile = (profile) => async (dispatch) => {
-  
+
   dispatch(setProfile(profile));
 };
 
@@ -50,7 +50,7 @@ export const retrieveProfiles = (userId) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json();
     console.log("From Thunk", data)
-    
+
     dispatch(getProfiles(data));
   }
   return res;
@@ -60,11 +60,13 @@ const initialState = { profile: null };
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_PROFILE:
-      return { 
+      return {
         ...state,
         profile: action.payload };
     case REMOVE_PROFILE:
-      return { profile: null };
+      return {
+        ...state,
+        profile: null };
     case GET_PROFILES:
       return {
         ...state,

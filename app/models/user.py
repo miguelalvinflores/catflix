@@ -2,6 +2,7 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
 
@@ -23,7 +24,6 @@ class User(db.Model, UserMixin):
   @password.setter
   def password(self, password):
     self.hashed_password = generate_password_hash(password)
-
 
   def check_password(self, password):
     return check_password_hash(self.password, password)
