@@ -1,0 +1,13 @@
+.search-page_container {
+    box-sizing: border-box;
+    height: 100vh;
+    display: flex;
+    /* width: 100vw; */
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    border: 1px solid red;
+    padding: 3%;
+    gap: 1%;
+    background-color: black;
+}

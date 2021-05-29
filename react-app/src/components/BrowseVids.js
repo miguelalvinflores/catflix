@@ -29,7 +29,7 @@ function BrowseVids() {
 
                     </div>
                     <div className='billboard-meta'>
-
+                    
                     </div>
                 </div>
                 <div className='lolomoRow title_card'>

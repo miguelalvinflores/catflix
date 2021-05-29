@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from app.models import Movie, Genre
 # import random
 
@@ -36,3 +36,18 @@ def get_movies_by_genreId(genreId):
 # @movie_routes.route('random')
 # def get_random_movie():
 #     movies = Movie.query.gi
+
+@movie_routes.route('/search', methods=['POST'])
+def search_movies():
+    data = request.json
+    term = data['searchTerm']
+    
+    genre = Genre.query.filter(Genre.type == term.title()).first()
+    if genre:
+        movies = Movie.query.join(Movie.genres).filter((Genre.type == genre.type) | Movie.title.ilike(f'%{term}%') | Movie.description.ilike(f'%{term}%')).all()
+    else:
+        movies = Movie.query.filter(Movie.title.ilike(f'%{term}%') | Movie.description.ilike(f'%{term}%')).all()
+        
+    matches = {'matches': [movie.to_dict() for movie in movies]}
+    return matches
+    
