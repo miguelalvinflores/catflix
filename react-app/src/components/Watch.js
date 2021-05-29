@@ -38,22 +38,39 @@ const Watch = () => {
     console.log(profileBookmarks);
   };
 
+  // Refactor later
   const likeButtonHandler = () => {
     if (profileHasLike) {
-      profileLikes[movieId];
-      // if true then delete that like & remove active class from like button
-      // else update the like instance to true
+      if (profileLikes[movieId]) {
+        dispatch(profileActions.deleteLike(movieId, profileId));
+        let activeLike = document.querySelector(".like-button");
+        activeLike.classList.remove("active");
+      } else {
+        let activeLike = document.querySelector(".dislike-button");
+        activeLike.classList.remove("active");
+        let inActiveLike = document.querySelector(".like-button");
+        inActiveLike.classList.add("active");
+        dispatch(profileActions.updateLike(movieId, true, profileId));
+      }
     } else {
-      // create like w/ true val
+      dispatch(profileActions.addLike(movieId, true));
     }
   };
   const dislikeButtonHandler = () => {
     if (profileHasLike) {
-      // check val of like
-      // if false then delete like
-      // and remove active class from dislike button
+      if (!profileLikes[movieId]) {
+        dispatch(profileActions.deleteLike(movieId, profileId));
+        let activeLike = document.querySelector(".dislike-button");
+        activeLike.classList.remove("active");
+      } else {
+        let activeLike = document.querySelector(".like-button");
+        activeLike.classList.remove("active");
+        let inActiveLike = document.querySelector(".dislike-button");
+        inActiveLike.classList.add("active");
+        dispatch(profileActions.updateLike(movieId, false, profileId));
+      }
     } else {
-      // create like w/ false val
+      dispatch(profileActions.addLike(movieId, false));
     }
   };
   const playBtnHandler = () => {
@@ -83,11 +100,11 @@ const Watch = () => {
               {profileHasBookmark ? <BsBookmarkFill /> : <BsBookmarkPlus />}
               My List
             </button>
-            <button className="like-button">
+            <button className="like-button" onClick={likeButtonHandler}>
               <AiFillLike size="45px" />
               {/* <AiOutlineLike /> */}
             </button>
-            <button className="dislike-button ">
+            <button className="dislike-button" onClick={dislikeButtonHandler}>
               <AiFillDislike size="45px" />
             </button>
           </div>

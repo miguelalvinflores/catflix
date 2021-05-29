@@ -20,12 +20,12 @@ const updateOnelike = (movieId, upvoteDownvote) = ({
   payload: {movieId, upvoteDownvote}
 })
 
-const deleteOnelike = (movieId, upvoteDownvote) = ({
+const deleteOnelike = (movieId) = ({
   type: DELETE_LIKE,
   payload: movieId
 })
 
-export const addLike = (movieId, upvoteDownvote) => async(dispatch)=> {
+export const addLike = (movieId, upvoteDownvote, profileId) => async(dispatch)=> {
   const res = await fetch(`/api/movies/${movieId}/likes/${profileId}`,{
   method: 'POST',
   headers:{
@@ -38,7 +38,7 @@ export const addLike = (movieId, upvoteDownvote) => async(dispatch)=> {
   }
 }
 
-export const updateLike = (movieId, upvoteDownvote) => async(dispatch)=> {
+export const updateLike = (movieId, upvoteDownvote, profileId) => async(dispatch)=> {
   const res = await fetch(`/api/movies/${movieId}/likes/${profileId}`,{
   method: 'PATCH',
   headers:{
@@ -50,12 +50,12 @@ export const updateLike = (movieId, upvoteDownvote) => async(dispatch)=> {
     dispatch(updateOnelike(movieId, upvoteDownvote))
   }
 }
-export const deleteLike = (movieId, upvoteDownvote) => async(dispatch)=> {
+export const deleteLike = (movieId, profileId) => async(dispatch)=> {
   const res = await fetch(`/api/movies/${movieId}/likes/${profileId}`,{
   method: 'DELETE',
   })
   if(res.ok){
-    dispatch(deleteOnelike(movieId, upvoteDownvote))
+    dispatch(deleteOnelike(movieId))
   }
 }
 // bookmarks
