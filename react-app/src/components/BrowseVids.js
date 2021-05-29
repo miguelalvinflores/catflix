@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-import Caroussel from './Caroussel'
+import Slider from './Slider'
 
 import * as movieActions from '../store/movie';
 import "./CSS/BrowseVids.css"
@@ -103,11 +103,18 @@ function BrowseVids() {
             </span>
             {(genres) && (
                 Object.entries(genres).map(([genre, movies]) => {
-                return (
-                    <div className='lolomoRow title_card'>
-                        <Caroussel genre={genre}/>
+                    if (objsize(genre.movies) < 5) {
+                        return (
+                            <div className='lolomoRow title_card'>
+                            </div>
+                        )}
+
+                    return (
+                        <div className='lolomoRow title_card'>
+                        <Slider genre={genre}/>
                     </div>
-                )})
+                    )
+                })
             )}
         </div>
     )
