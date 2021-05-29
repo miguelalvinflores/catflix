@@ -10,6 +10,7 @@ import User from "./components/User";
 import Splash from "./components/Splash";
 import Browse from "./components/Browse";
 import Watch from "./components/Watch";
+import SearchPage from "./components/SearchPage";
 import ManageProfiles from "./components/ManageProfiles";
 import { authenticate } from "./store/session";
 import * as profileActions from "./store/profile"
@@ -59,6 +60,9 @@ function App() {
           </Route>
           <Route path="/manage_profiles" exact={true}>
             {loggedIn ? <ManageProfiles /> : <Redirect to='/' /> }
+          </Route>
+          <Route path="/search" exact={true}>
+            {loggedIn ? <SearchPage /> : <Redirect to='/' /> }
           </Route>
           <ProtectedRoute path="/users" exact={true}>
             <UsersList />

@@ -23,20 +23,49 @@ const getMoviesbyGenre = (genre) => {
   };
 };
 
+const normalize = (movieList) => {
+    let normMovies = {}
+    for (let i = 0; i < movieList.length; i++) {
+        let movie = movieList[i]
+        normMovies[movie.id] = movie
+    }
+    return normMovies
+}
+
 export const retrieveMovies = () => async (dispatch) => {
   let res = await fetch(`/api/movies`);
 
-  if (res.ok) {
-    const allMovies = await res.json();
-    let normMovies = {};
-    for (let i = 0; i < allMovies["movies"].length; i++) {
-      let movie = allMovies.movies[i];
-      normMovies[movie.id] = movie;
+    if (res.ok) {
+        const allMovies = await res.json();
+
+        const movies = normalize(allMovies.movies)
+        dispatch(getMovies(movies));
     }
-    dispatch(getMovies(normMovies));
-  }
+   
   return res;
 };
+
+export const searchMovies = (searchTerm) => async (dispatch) => {
+    const res = await fetch(`api/movies/search`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            searchTerm
+        }),
+    })
+
+    if (res.ok) {
+        const matchingMovies = await res.json()
+        // const movies = normalize(matchingMovies.matches)
+        console.log("FROM SEARCH THUNK", matchingMovies.matches)
+        dispatch(getMovies(matchingMovies))
+    }
+
+    return res
+
+}
 
 export const chooseMovie = (movie) => async (dispatch) => {
   dispatch(thisMovie(movie));
