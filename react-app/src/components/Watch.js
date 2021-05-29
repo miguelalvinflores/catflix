@@ -28,6 +28,8 @@ const Watch = () => {
 
   const profileHasLike = profileLikes[movieId] ? true : false;
   const profileHasBookmark = profileBookmarks[movieId] ? true : false;
+  // potential solution
+  const [isBookmarked, setIsBookmarked] = useState(profileHasBookmark);
 
   const myListHandler = () => {
     if (profileHasBookmark) {
@@ -35,7 +37,8 @@ const Watch = () => {
     } else {
       dispatch(profileActions.addBookmark(profileId, movieId));
     }
-    console.log(profileBookmarks);
+    // potential solution to rerender bookmark icon
+    setIsBookmarked(!isBookmarked);
   };
 
   // Refactor later
