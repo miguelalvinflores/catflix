@@ -1,0 +1,175 @@
+.animations-container {
+    display: block;
+    z-index: 1;
+    position: relative;
+}
+
+.billboard-row {
+    user-select: none;
+    touch-action: pan-y;
+    margin-bottom: 20px;
+    background-color: #000;
+    position: relative;
+    padding-bottom: 40%;
+}
+.billboard{
+    position: absolute;
+    background-color: #000;
+    width: 100%;
+    height: 56.25vw;
+    z-index: 0;
+}
+.billboard-motion{
+    width: 100%;
+    height: fit-content;
+    object-fit: cover;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.billboard-motion > video {
+    min-width: 100%;
+
+    width: 100%;
+
+}
+
+.bill-bottom-layer {
+    z-index: 2;
+}
+
+
+.full-screen {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.bill-img-wrapper {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.bill-img {
+    position: absolute;
+    background-position: center center;
+    background-size: cover;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    opacity: 1;
+    transition: opacity .4s
+}
+.bill-playing {
+    opacity: 0;
+}
+.trailer-vignette {
+    background: linear-gradient(77deg,rgba(0,0,0,.95) 0,rgba(0,0,0,0) 90%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 26.09%;
+    bottom: 0;
+    opacity: 1;
+    transition: opacity .5s;
+    z-index: 8;
+}
+
+.hero-vignette {
+    background-image: linear-gradient(to bottom,rgba(20,20,20,0) 0,rgba(20,20,20,.15) 15%,rgba(20,20,20,.35) 29%,rgba(20,20,20,.58) 44%,#141414 68%,#141414 100%);
+    background-size: 100% 100%;
+    background-position: 0 top;
+    background-repeat: repeat-x;
+    background-color: transparent;
+    width: 100%;
+    height: 14.7vw;
+    top: auto;
+    bottom: -1px;
+    opacity: 1;
+    z-index: 8;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+.fill-container {
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.billboard-meta {
+    position: absolute;
+    top: 0;
+    bottom: 35%;
+    left: 4%;
+    width: 36%;
+    z-index: 10;
+    display: flex;
+    -webkit-box-pack: end;
+    justify-content: flex-end;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+}
+
+.title-and-text{
+    width: 100%;
+    transition: transform 1.5s cubic-bezier(.165,.84,.44,1),-webkit-transform 1.5s cubic-bezier(.165,.84,.44,1),-moz-transform 1.5s cubic-bezier(.165,.84,.44,1),-o-transform 1.5s cubic-bezier(.165,.84,.44,1);
+}
+.bill-title-wrapper{
+    transform-origin: left bottom;
+    transform: scale(1) translate3d(0px, 0px, 0px);
+    transition-duration: 1300ms;
+    transition-delay: 0ms;
+}
+.bill-title{
+    font-size: 3.0em;
+}
+
+.bill-description-wrapper {
+    /* transform: translate3d(0px, 45.6719px, 0px);
+    transition-duration: 1300ms;
+    transition-delay: 5000ms;
+    opacity: 1; */
+    transform: translate3d(0px, 0px, 0px);
+    transition-duration: 1300ms;
+    transition-delay: 0ms;
+    opacity: 1;
+
+}
+
+.bill-description-wrapper-fade {
+    opacity: 1;
+    transition-duration: 600ms;
+    transition-delay: 200ms;
+    /* opacity: 0;
+    transition-duration: 500ms;
+    transition-delay: 5000ms; */
+}
+/* .bill-description-fade-container {
+
+} */
+
+.bill-description {
+    color: #fff;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+    font-size: 1.4vw;
+    text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
+    margin-top: .1vw;
+}

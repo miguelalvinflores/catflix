@@ -27,12 +27,12 @@ const NavBar = () => {
           <div>
             <ProfileButton user = {sessionUser} />
           </div>
-  
+
         </>
-  
+
       );
     }
-    
+
   } else {
     sessionLinks = (
       <button className='btn-red authLinks'>

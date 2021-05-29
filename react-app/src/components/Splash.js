@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { checkEmail } from "../store/session";
+import Footer from './Footer'
 import "./CSS/Splash.css";
 
 const Splash = () => {
@@ -104,6 +105,9 @@ const Splash = () => {
                         <img className='-card-img' src='images/Splash-Device_Screens.png' alt="Example Movie title panel" />
                     </div>
                 </div>
+            </div>
+            <div className='splashfooter'>
+                <Footer />
             </div>
         </div>
     );
