@@ -15,6 +15,8 @@ function BrowseVids() {
     const movie = useSelector((state) => state.movies.movie)
     const genres = useSelector((state) => state.movies.genres)
 
+    const [billIsPlaying, setBillIsPlaying] = useState(true);
+
     let objsize = function(obj) {
         var size = 0,
           key;
@@ -49,6 +51,9 @@ function BrowseVids() {
         return src
     }
 
+    const onBillEnd = () => {
+        setBillIsPlaying(false)
+    }
     return (
         <div className='lolomo'>
             <span className='animations-container'>
@@ -59,14 +64,14 @@ function BrowseVids() {
                                 <video
                                 autoplay='true'
                                 muted
-                                loop
+                                onEnded={() => onBillEnd()}
                                 src={srcfunc(movie?.url)}
                                 >
                                 </video>
                             </div>
-                            <div className='bill-bottom-layer full-screen'>
+                            <div className='bill-bottom-layer full-screen '>
                                 <div className='bill-img-wrapper'>
-                                    <img className='bill-img' src={movie?.backdrop} alt='movie backdrop' />
+                                    <img className={ billIsPlaying ? 'bill-playing bill-img' :'bill-img'} src={movie?.backdrop} alt='movie backdrop' />
                                     <div class="trailer-vignette vignette-layer"></div>
                                     <div class="hero-vignette vignette-layer"></div>
                                 </div>
@@ -94,19 +99,18 @@ function BrowseVids() {
                             </div>
                         </div>
                     </div>
-                    <div className='lolomoRow title_card'>
-
-                    </div>
                 </div>
             </span>
             {(genres) && (
                 Object.entries(genres).map(([genre, movies]) => {
                 return (
-                    <Caroussel genre={genre} movies={movies}/>
+                    <div className='lolomoRow title_card'>
+                        <Caroussel genre={genre} movies={movies}/>
+                    </div>
                 )})
             )}
         </div>
     )
-
 }
+
 export default BrowseVids;

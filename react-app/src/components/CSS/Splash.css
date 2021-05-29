@@ -25,13 +25,13 @@ div.hero-card {
     top: 0;
     right: 0;
     left: 0;
-    z-index: -1;
 }
 .hero-card-img {
     width: 100%;
     height: fit-content;
     object-fit: cover;
     transform: none;
+    z-index: 0;
 }
 .concord-img-gradient {
     background: rgba(0,0,0,.4);
@@ -40,13 +40,13 @@ div.hero-card {
 
 }
 .hero-card .concord-img-gradient {
-    position: relative;
+    position: absolute;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
     height: 568px;
-    z-index: -1;
+    z-index: 0;
 }
 
 .hero-story-card-text {
