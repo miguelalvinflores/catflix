@@ -29,12 +29,12 @@ const NavBar = () => {
             <Searchbar />
             <ProfileButton user = {sessionUser} />
           </div>
-  
+
         </>
-  
+
       );
     }
-    
+
   } else {
     sessionLinks = (
       <button className='btn-red authLinks'>

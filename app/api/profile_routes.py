@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Profile, db, Icon
-
 profile_routes = Blueprint('profile', __name__)
 
 
@@ -11,11 +10,19 @@ def get_user_profiles():
     print("JOINS", profiles)
     profiles_lst = []
     for profile in profiles:
+        likes = {}
+        bookmarks = {}
+        for like in profile[0].likes:
+            likes[like.movieId]=like.upvoteDownvote
+        for movie in profile[0].bookmarks:
+            bookmarks[movie.id] = movie.id
         profiles_lst.append(({
             "id": profile[0].id,
             "name": profile[0].name,
             "iconId": profile[0].iconId,
-            "userId": profile[0].userId
+            "userId": profile[0].userId,
+            "likes" : likes,
+            "bookmarks" : bookmarks
         }, {
             "id": profile[1].id,
             "image_url": profile[1].image_url

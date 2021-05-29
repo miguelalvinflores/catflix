@@ -7,15 +7,18 @@ import "./CSS/VideoCover.css";
 // carousel of recommended movies
 // has playbutton. clicking play button renders video player & makes dispatch call to remove
 // videoEnded from store
-const VideoCover = ({ movie }) => {
+const VideoCover = () => {
   return (
     <div className="video-cover">
       <div className="image-container">
         <img
           src="https://www.themoviedb.org/t/p/original/7IrQ5vwmTHppBCf51HRFzSd7xMi.jpg"
           alt="cats"
+          className="video-cover-image"
         />
-        <h1 className="film-title">Film Title</h1>
+      </div>
+      <div className="cover-overlay">
+        <p className="film-title">Film Title</p>
         <p className="film-description">Film description</p>
         <div className="controls-container">
           <button className="play-button">Play</button>

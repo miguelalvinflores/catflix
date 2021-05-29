@@ -21,11 +21,14 @@ export const setVideoStart = () => (dispatch) => {
 
 const initialState = { end: null };
 export default function reducer(state = initialState, action) {
+  let newState = { ...state };
   switch (action.type) {
     case VIDEO_ENDED:
-      return { end: action.payload };
+      newState["end"] = action.payload;
+      return newState;
     case VIDEO_NOT_ENDED:
-      return { end: action.payload };
+      newState["end"] = action.payload;
+      return newState;
     default:
       return state;
   }

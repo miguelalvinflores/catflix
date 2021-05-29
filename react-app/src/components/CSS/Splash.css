@@ -1,185 +1,196 @@
 div {
-    display: block;
+  display: block;
 }
 img {
-    max-width:100%;
-    border: 0;
+  max-width: 100%;
+  border: 0;
 }
 .story-cards {
+  position: relative;
+  top: -80px;
 
-    position: relative;
-    top:-80px;
-
-    width:100%;
+  width: 100%;
 }
 div.hero-card {
-    position: relative;
-    color: aliceblue;
-    height: 568px;
-    width: 100%;
+  position: relative;
+  color: aliceblue;
+  height: 568px;
+  width: 100%;
 }
 .hero-card-background {
-    height: 568px;
-    width: 100%;
-    position: relative;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: -1;
+  height: 568px;
+  width: 100%;
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
 }
 .hero-card-img {
-    width: 100%;
-    height: fit-content;
-    object-fit: cover;
-    transform: none;
+  width: 100%;
+  height: fit-content;
+  object-fit: cover;
+  transform: none;
 }
 .concord-img-gradient {
-    background: rgba(0,0,0,.4);
-    background-image: linear-gradient(to top,rgba(0,0,0,.8) 0,rgba(0,0,0,0) 25%,rgba(0,0,0,.8) 65%);
-    height: auto;
-
+  background: rgba(0, 0, 0, 0.4);
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0,
+    rgba(0, 0, 0, 0) 25%,
+    rgba(0, 0, 0, 0.8) 65%
+  );
+  height: auto;
 }
 .hero-card .concord-img-gradient {
-    position: relative;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    height: 568px;
-    z-index: -1;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 568px;
+  z-index: -1;
 }
 
 .hero-story-card-text {
-    position: relative;
-    top: -568px;
-    width: 100%;
-    padding: 75px 0;
-    padding-top: 150px;
-    max-width: 950px;
-    margin: 0 auto;
-    text-align: center;
-    z-index: 1;
+  position: relative;
+  top: -568px;
+  width: 100%;
+  padding: 75px 0;
+  padding-top: 150px;
+  max-width: 950px;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 1;
 }
 
 .email-form {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .email-form-lookup {
-    text-align: center;
-    display: flex;
-    margin: 0 auto;
+  text-align: center;
+  display: flex;
+  margin: 0 auto;
 }
 
 #float-label {
-    display: flex;
-    flex-direction: column;
-    min-width: 350px;
-    position: relative;
-
+  display: flex;
+  flex-direction: column;
+  min-width: 350px;
+  position: relative;
 }
 
 #float-label input {
-    width: 100%;
-    height: 56px;
-    padding: 14px 16px 0 0px;
-    outline: 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
+  width: 100%;
+  height: 56px;
+  padding: 14px 16px 0 0px;
+  outline: 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
 }
 
 #float-label label {
-    font-size: 16px;
-    font-family: Arial, Helvetica, sans-serif;
-    padding: 0 12px;
-    color: #999;
-    pointer-events: none;
-    position: absolute;
-    transform: translate(0, 26px) scale(1);
-    transform-origin: top left;
-    transition: all 0.2s ease-out;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0 12px;
+  color: #999;
+  pointer-events: none;
+  position: absolute;
+  transform: translate(0, 26px) scale(1);
+  transform-origin: top left;
+  transition: all 0.2s ease-out;
 }
 
 #float-label:focus-within label {
-    transform: translate(0, 12px) scale(0.75);
+  transform: translate(0, 12px) scale(0.75);
 }
 
 #float-label .Active {
-    transform: translate(0, 12px) scale(0.75);
+  transform: translate(0, 12px) scale(0.75);
 }
 
 .hero-btn-red {
-    width: fit-content;
-    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
-    margin-left: 18px;
-    margin-right: 5%;
-    background-color: #e50914;
-    line-height: normal;
-    padding: 7px 17px;
-    font-weight: 400;
-    font-size: 1rem;
-    height: 72px;
-    color: aliceblue;
-    white-space: nowrap;
-    text-align: center;
+  width: fit-content;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-left: 18px;
+  margin-right: 5%;
+  background-color: #e50914;
+  line-height: normal;
+  padding: 7px 17px;
+  font-weight: 400;
+  font-size: 1rem;
+  height: 72px;
+  color: aliceblue;
+  white-space: nowrap;
+  text-align: center;
 }
 
 .card-spacer {
-    height: 4px;
-    background-color: rgba(0, 0, 0, 0.65);
+  height: 4px;
+  background-color: rgba(0, 0, 0, 0.65);
 }
 
 .story-card {
-    position: relative;
-    border-bottom: 8px solid #222;
-    padding: 50px 5%;
-    margin-bottom: 0;
-    background-color: #000000;
-    color: #fff;
+  position: relative;
+  border-bottom: 8px solid #222;
+  padding: 50px 5%;
+  margin-bottom: 0;
+  background-color: #000000;
+  color: #fff;
 }
 
 .story-card-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 1100px;
-    margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-.story-card-text{
-    padding-top: 5%;
-    padding-bottom: 5%;
-    margin: -2% 0;
-    width: 52%;
-    height: 100%;
+.story-card-text {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  margin: -2% 0;
+  width: 52%;
+  height: 100%;
 }
 
 .story-card-subtitle {
-    font-size: 1.625rem;
-    font-weight: 400;
+  font-size: 1.625rem;
+  font-weight: 400;
 }
 
-@media only screen and (min-width: 550px) and (max-width: 949px) and (orientation: portrait), only screen and (min-width: 400px) and (max-width: 549px), only screen and (min-width: 350px) and (max-width: 399px), only screen and (max-width: 349px) {
-    .hero-card .concord-img {
-        height: 100%;
-        width: auto;
-        -o-object-fit: cover;
-        object-fit: cover;
-    }
+@media only screen and (min-width: 550px) and (max-width: 949px) and (orientation: portrait),
+  only screen and (min-width: 400px) and (max-width: 549px),
+  only screen and (min-width: 350px) and (max-width: 399px),
+  only screen and (max-width: 349px) {
+  .hero-card .concord-img {
+    height: 100%;
+    width: auto;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
 }
-@media only screen and (min-width: 950px) and (max-width: 1449px), only screen and (min-width: 1450px) {
-    .email-form-lookup {
+@media only screen and (min-width: 950px) and (max-width: 1449px),
+  only screen and (min-width: 1450px) {
+  .email-form-lookup {
     display: flex;
     flex-direction: row;
     margin: 0 auto;
-    }
+  }
 }
-@media only screen and (min-width: 550px) and (max-width: 949px), only screen and (min-width: 950px) and (max-width: 1449px), only screen and (min-width: 1450px) {
-    .story-card {
-        padding: 70px 45px;
-    }
+@media only screen and (min-width: 550px) and (max-width: 949px),
+  only screen and (min-width: 950px) and (max-width: 1449px),
+  only screen and (min-width: 1450px) {
+  .story-card {
+    padding: 70px 45px;
+  }
 }
+/* #app-mount-point {
+  height: 100%;
+} */

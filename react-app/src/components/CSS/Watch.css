@@ -9,3 +9,8 @@
 .video-container:hover .control {
   transform: translateY(0);
 }
+.recommended {
+  height: 250px;
+  background-color: green;
+  font-size: 30px;
+}

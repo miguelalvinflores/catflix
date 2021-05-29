@@ -7,7 +7,7 @@ nav {
   /* background-color: black; */
 }
 
-.logged-in{
+.logged-in {
   background-color: black;
 }
 
@@ -16,6 +16,7 @@ nav {
   margin-left: 5%;
   width: 200px;
   height: 70px;
+  /* margin-bottom: 10px; */
 }
 
 .logo-container > img {
