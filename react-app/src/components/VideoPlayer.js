@@ -6,7 +6,7 @@ import { FaFastBackward, FaFastForward } from "react-icons/fa";
 import { FaPlay, FaPause } from "react-icons/fa";
 import { ImNext } from "react-icons/im";
 import { MdSubtitles } from "react-icons/md";
-import { RiFullscreenFill } from "react-icons/ri";
+import { RiFullscreenFill, RiFullscreenExitFill } from "react-icons/ri";
 import * as videoActions from "../store/video";
 import "./CSS/VideoPlayer.css";
 
@@ -15,7 +15,21 @@ import "./CSS/VideoPlayer.css";
 const VideoPlayer = () => {
   const [videoIsActive, setVideoIsActive] = useState(true);
   // const [videoEnded, setVideoEnded] = useState(false);
+  const [fullscreen, setFullscreen] = useState(false);
+  const [isMute, setIsMute] = useState(true);
   const dispatch = useDispatch();
+  const video = document.querySelector(".video");
+  const videoContainer = document.querySelector(".c-video");
+  useEffect(() => {
+    video.addEventListener("timeupdate", () => {
+      let durationPos = video.currentTime / video.duration;
+      let duration = document.querySelector(".duration");
+      duration.style.width = durationPos * 100 + "%";
+      if (video.ended) {
+        dispatch(videoActions.setVideoEnd());
+      }
+    });
+  });
 
   const togglePlay = () => {
     const video = document.querySelector(".video");
@@ -27,20 +41,24 @@ const VideoPlayer = () => {
       video.pause();
     }
   };
-  useEffect(() => {
-    const video = document.querySelector(".video");
-    video.addEventListener("timeupdate", () => {
-      let durationPos = video.currentTime / video.duration;
-      let duration = document.querySelector(".duration");
-      duration.style.width = durationPos * 100 + "%";
-      if (video.ended) {
-        dispatch(videoActions.setVideoEnd());
-      }
-    });
-  });
-  // useEffect(() => {
-  //   console.log("hahaha the video is over");
-  // }, [videoEnded]);
+
+  const toggleFullScreen = async () => {
+    if (!document.fullscreenElement) {
+      await video.requestFullscreen();
+      setFullscreen(true);
+    } else {
+      await document.exitFullscreen();
+      setFullscreen(false);
+    }
+  };
+
+  const handleFastFoward = () => {
+    video.currentTime += 5;
+  };
+
+  const handleRewind = () => {
+    video.currentTime -= 5;
+  };
   return (
     <div className="c-video">
       <video
@@ -58,14 +76,14 @@ const VideoPlayer = () => {
         <button className="control play" onClick={togglePlay}>
           {videoIsActive ? <FaPause /> : <FaPlay />}
         </button>
-        <button className="control rewind">
+        <button className="control rewind" onClick={handleRewind}>
           <FaFastBackward />
         </button>
-        <button className=" control fastfoward">
+        <button className=" control fastfoward" onClick={handleFastFoward}>
           <FaFastForward />
         </button>
         <button className=" control volume" id="volume">
-          <HiVolumeUp />
+          {isMute ? <HiVolumeOff /> : <HiVolumeUp />}
         </button>
         <input
           class="volume-slider"
@@ -85,8 +103,8 @@ const VideoPlayer = () => {
         <button className=" control subtitle">
           <MdSubtitles />
         </button>
-        <button className=" control fullscreen">
-          <RiFullscreenFill />
+        <button className=" control fullscreen" onClick={toggleFullScreen}>
+          {fullscreen ? <RiFullscreenExitFill /> : <RiFullscreenFill />}
         </button>
       </div>
     </div>
