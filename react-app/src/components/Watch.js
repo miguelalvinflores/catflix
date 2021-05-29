@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import VideoPlayer from "./VideoPlayer";
 import Footer from "./Footer";
 import * as videoActions from "../store/video";
+import * as profileActions from "../store/profile";
 import "./CSS/Watch.css";
 import "./CSS/VideoCover.css";
 // ============ REACT ICONS =====================
@@ -17,9 +18,44 @@ const Watch = () => {
   const [showMovieCover, setShowMovieCover] = useState(true);
   const { movieId } = useParams();
   // const movie = useSelector(state=>state.movies[movieId])
+  const profileId = useSelector((state) => state.profile.profile[0].id);
   const videoEnded = useSelector((state) => state.video.end);
+  const profileLikes = useSelector((state) => state.profile.profile[0].likes);
+  const profileBookmarks = useSelector(
+    (state) => state.profile.profile[0].bookmarks
+  );
   const dispatch = useDispatch();
 
+  const profileHasLike = profileLikes[movieId] ? true : false;
+  const profileHasBookmark = profileBookmarks[movieId] ? true : false;
+
+  const myListHandler = () => {
+    if (profileHasBookmark) {
+      dispatch(profileActions.deleteBookmark(profileId, movieId));
+    } else {
+      dispatch(profileActions.addBookmark(profileId, movieId));
+    }
+    console.log(profileBookmarks);
+  };
+
+  const likeButtonHandler = () => {
+    if (profileHasLike) {
+      profileLikes[movieId];
+      // if true then delete that like & remove active class from like button
+      // else update the like instance to true
+    } else {
+      // create like w/ true val
+    }
+  };
+  const dislikeButtonHandler = () => {
+    if (profileHasLike) {
+      // check val of like
+      // if false then delete like
+      // and remove active class from dislike button
+    } else {
+      // create like w/ false val
+    }
+  };
   const playBtnHandler = () => {
     setShowMovieCover(false);
     dispatch(videoActions.setVideoStart());
@@ -43,8 +79,8 @@ const Watch = () => {
               {/* <FaPlay /> */}
               Play
             </button>
-            <button className="bookmark-button">
-              <BsBookmarkPlus />
+            <button className="bookmark-button" onClick={myListHandler}>
+              {profileHasBookmark ? <BsBookmarkFill /> : <BsBookmarkPlus />}
               My List
             </button>
             <button className="like-button">

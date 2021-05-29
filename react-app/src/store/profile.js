@@ -3,7 +3,72 @@ const REMOVE_PROFILE = "profile/REMOVE_PROFILE";
 const DELETE_PROFILE = "profile/DELETE_PROFILE";
 const ADD_PROFILE = "profile/ADD_PROFILE";
 const GET_PROFILES = "profile/GET_PROFILES";
+const ADD_BOOKMARK = "profile/ADD_BOOKMARK";
+const DELETE_BOOKMARK = "profile/DELETE_BOOKMARK";
+const ADD_LIKE = "profile/ADD_LIKE";
+const UPDATE_LIKE="profile/UPDATE_LIKE";
+const DELETE_LIKE="profile/UPDATE/LIKE";
 
+// likes
+const addOnelike = (movieId, upvoteDownvote) = ({
+  type: ADD_LIKE,
+  payload: {movieId, upvoteDownvote}
+})
+
+const updateOnelike = (movieId, upvoteDownvote) = ({
+  type: UPDATE_LIKE,
+  payload: {movieId, upvoteDownvote}
+})
+
+const deleteOnelike = (movieId, upvoteDownvote) = ({
+  type: DELETE_LIKE,
+  payload: movieId
+})
+
+export const addLike = (movieId, upvoteDownvote) => async(dispatch)=> {
+  const res = await fetch(`/api/movies/${movieId}/likes/${profileId}`,{
+  method: 'POST',
+  headers:{
+    "Content-Type":"application/json",
+  },
+  body: JSON.stringify({upvoteDownvote})
+  })
+  if(res.ok){
+    dispatch(addOnelike(movieId, upvoteDownvote))
+  }
+}
+
+export const updateLike = (movieId, upvoteDownvote) => async(dispatch)=> {
+  const res = await fetch(`/api/movies/${movieId}/likes/${profileId}`,{
+  method: 'PATCH',
+  headers:{
+    "Content-Type":"application/json",
+  },
+  body: JSON.stringify({upvoteDownvote})
+  })
+  if(res.ok){
+    dispatch(updateOnelike(movieId, upvoteDownvote))
+  }
+}
+export const deleteLike = (movieId, upvoteDownvote) => async(dispatch)=> {
+  const res = await fetch(`/api/movies/${movieId}/likes/${profileId}`,{
+  method: 'DELETE',
+  })
+  if(res.ok){
+    dispatch(deleteOnelike(movieId, upvoteDownvote))
+  }
+}
+// bookmarks
+const addOneBookmark = (movieId) => ({
+  type: ADD_BOOKMARK,
+  payload: movieId,
+});
+
+const deleteOneBookmark = (movieId) => ({
+  type: DELETE_BOOKMARK,
+  payload: movieId,
+});
+// profiles
 const setProfile = (profile) => ({
   type: SET_PROFILE,
   payload: profile,
@@ -28,6 +93,25 @@ const getProfiles = (allProfiles) => {
     type: GET_PROFILES,
     payload: allProfiles,
   };
+};
+
+export const addBookmark = (profileId, movieId) => async (dispatch) => {
+  const res = await fetch(`/api/movies/${movieId}/bookmarks/${profileId}`, {
+    method: "POST",
+  });
+
+  if (res.ok) {
+    dispatch(addOneBookmark(movieId));
+  }
+};
+
+export const deleteBookmark = (profileId, movieId) => async (dispatch) => {
+  const res = await fetch(`/api/movies/${movieId}/bookmarks/${profileId}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    dispatch(deleteOneBookmark(movieId));
+  }
 };
 
 export const selectProfile = (profile) => async (dispatch) => {
@@ -57,6 +141,7 @@ export const retrieveProfiles = (userId) => async (dispatch) => {
 
 const initialState = { profile: null };
 export default function reducer(state = initialState, action) {
+  let newState = { ...state };
   switch (action.type) {
     case SET_PROFILE:
       return {
@@ -73,6 +158,21 @@ export default function reducer(state = initialState, action) {
         ...state,
         allProfiles: action.payload,
       };
+    case ADD_BOOKMARK:
+      newState.profile[0].bookmarks[action.payload] = action.payload;
+      return newState;
+    case DELETE_BOOKMARK:
+      delete newState.profile[0].bookmarks[action.payload];
+      return newState;
+    case ADD_LIKE:
+      newState.profile[0].likes[action.payload.movieId] = action.payload.upvoteDownvote
+      return newState
+    case UPDATE_LIKE:
+      newState.profile[0].likes[action.payload.movieId] = action.payload.upvoteDownvote
+      return newState
+    case DELETE_LIKE:
+      delete newState.profile[0].likes[action.payload]
+      return newState
     default:
       return state;
   }
