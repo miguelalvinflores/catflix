@@ -51,7 +51,7 @@ export const retrieveMoviesByGenreId = (genreId) => async (dispatch) => {
     }
 }
 
-const initialState = { movie: {url: "", title: '', description: ''}, allMovies: {}, genres: {} };
+const initialState = { movie: {url: "", title: '', description: ''}, allMovies: {} };
 export default function reducer(state = initialState, action) {
     switch(action.type) {
         case THIS_MOVIE:

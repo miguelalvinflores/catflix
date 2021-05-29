@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
+import Caroussel from './Caroussel'
+
 import * as movieActions from '../store/movie';
 import "./CSS/BrowseVids.css"
 
@@ -11,8 +13,16 @@ function BrowseVids() {
     const userProfiles = useSelector((state) => state.profile);
     const allMovies = useSelector(state => state.movies.allMovies)
     const movie = useSelector((state) => state.movies.movie)
+    const genres = useSelector((state) => state.movies.genres)
 
-    console.log(movie)
+    let objsize = function(obj) {
+        var size = 0,
+          key;
+        for (key in obj) {
+          if (obj.hasOwnProperty(key)) size++;
+        }
+        return size;
+    };
 
     useEffect(() => {
         if (userProfiles) {
@@ -23,18 +33,14 @@ function BrowseVids() {
 
     useEffect(() => {
 
-        let objsize = function(obj) {
-            var size = 0,
-              key;
-            for (key in obj) {
-              if (obj.hasOwnProperty(key)) size++;
-            }
-            return size;
-        };
+
 
         if(allMovies) {
             const movie = allMovies[Math.floor(Math.random()*(objsize(allMovies)))]
             dispatch(movieActions.chooseMovie(movie))
+            for (let i = 1; i < 20; i++ ) {
+                dispatch(movieActions.retrieveMoviesByGenreId(i))
+            }
         }
     }, [dispatch, allMovies])
 
@@ -93,7 +99,12 @@ function BrowseVids() {
                     </div>
                 </div>
             </span>
-            {/* {for (let i = 0; i < )} */}
+            {(genres) && (
+                Object.entries(genres).map(([genre, movies]) => {
+                return (
+                    <Caroussel genre={genre} movies={movies} />
+                )})
+            )}
         </div>
     )
 
