@@ -26,30 +26,29 @@ const addProfile = (data) => ({
 const getProfiles = (allProfiles) => {
   return {
     type: GET_PROFILES,
-    payload: allProfiles
-  }
-}
+    payload: allProfiles,
+  };
+};
 
 export const selectProfile = (profile) => async (dispatch) => {
-
   dispatch(setProfile(profile));
 };
 
 export const retrieveProfiles = (userId) => async (dispatch) => {
-  console.log('thunk fired!')
+  // console.log('thunk fired!')
   const res = await fetch(`/api/profiles/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      userId
+      userId,
     }),
   });
   // const data = await res.json()
   if (res.ok) {
     const data = await res.json();
-    console.log("From Thunk", data)
+    // console.log("From Thunk", data)
 
     dispatch(getProfiles(data));
   }
@@ -62,16 +61,18 @@ export default function reducer(state = initialState, action) {
     case SET_PROFILE:
       return {
         ...state,
-        profile: action.payload };
+        profile: action.payload,
+      };
     case REMOVE_PROFILE:
       return {
         ...state,
-        profile: null };
+        profile: null,
+      };
     case GET_PROFILES:
       return {
         ...state,
-        allProfiles: action.payload
-      }
+        allProfiles: action.payload,
+      };
     default:
       return state;
   }
