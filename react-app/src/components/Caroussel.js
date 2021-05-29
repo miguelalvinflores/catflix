@@ -1,4 +1,5 @@
 import React from 'react';
+import Carousel from "react-elastic-carousel";
 
 function Caroussel(genre) {
     const movies = genre.movies
@@ -8,7 +9,7 @@ function Caroussel(genre) {
         <div className='lolomoRow'>
             <h3 className='rowHeader'>{genre.genre}</h3>
             <div className='rowContainer'>
-                {movies.map((movie) => {
+                {movies?.map((movie) => {
                     <div className=''> </div>
                 })}
 

@@ -91,7 +91,7 @@ function BrowseVids() {
                                         </div>
                                         <div className='billboard-links'>
                                             <button className='billboard-btn'>
-                                                <NavLink to='/watch' className='watchbill' style={{ textDecoration: 'none' }} />
+                                                {movie? <NavLink to={`/watch/${movie?.id}`} className='watchbill' style={{ textDecoration: 'none' }} />: null}
                                             </button>
                                         </div>
                                     </div>
@@ -105,7 +105,7 @@ function BrowseVids() {
                 Object.entries(genres).map(([genre, movies]) => {
                 return (
                     <div className='lolomoRow title_card'>
-                        <Caroussel genre={genre} movies={movies}/>
+                        <Caroussel genre={genre}/>
                     </div>
                 )})
             )}
