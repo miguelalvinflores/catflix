@@ -14,7 +14,7 @@ import "./CSS/VideoPlayer.css";
 // movieUrl destructured from props
 const VideoPlayer = () => {
   const [videoIsActive, setVideoIsActive] = useState(true);
-  const [videoEnded, setVideoEnded] = useState(false);
+  // const [videoEnded, setVideoEnded] = useState(false);
   const dispatch = useDispatch();
 
   const togglePlay = () => {
@@ -38,15 +38,15 @@ const VideoPlayer = () => {
       }
     });
   });
-  useEffect(() => {
-    console.log("hahaha the video is over");
-  }, [videoEnded]);
+  // useEffect(() => {
+  //   console.log("hahaha the video is over");
+  // }, [videoEnded]);
   return (
     <div className="c-video">
       <video
         className="video"
-        // change that url later
-        src="http://d23jaqdaucwmr3.cloudfront.net/1.mp4"
+        // change that url later: DON'T FORGET TO ADD https://
+        src="https://d23jaqdaucwmr3.cloudfront.net/1.mp4"
         autoplay="true"
         muted
         // controls
