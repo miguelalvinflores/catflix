@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Caroussel(genre, movies) {
-    console.log(genre)
-    console.log(genre.movies)
+function Caroussel(genre) {
+    const movies = genre.movies
+
     return (
         <div>
 

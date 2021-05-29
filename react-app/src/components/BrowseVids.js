@@ -102,7 +102,7 @@ function BrowseVids() {
             {(genres) && (
                 Object.entries(genres).map(([genre, movies]) => {
                 return (
-                    <Caroussel genre={genre} movies={movies} />
+                    <Caroussel genre={genre} movies={movies}/>
                 )})
             )}
         </div>
