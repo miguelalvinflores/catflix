@@ -28,23 +28,14 @@ function BrowseVids() {
 
     useEffect(() => {
         if (userProfiles) {
-
-            dispatch(movieActions.retrieveMovies())
+            dispatch(movieActions.chooseMovie())
+            dispatch(movieActions.retrieveMoviesByGenreId(4))
+            dispatch(movieActions.retrieveMoviesByGenreId(6))
+            dispatch(movieActions.retrieveMoviesByGenreId(9))
+            dispatch(movieActions.retrieveMoviesByGenreId(15))
+            dispatch(movieActions.retrieveMoviesByGenreId(8))
         }
     }, [dispatch, sessionUser, userProfiles]);
-
-    useEffect(() => {
-
-
-
-        if(allMovies) {
-            const movie = allMovies[Math.floor(Math.random()*(objsize(allMovies)))]
-            dispatch(movieActions.chooseMovie(movie))
-            for (let i = 1; i < 20; i++ ) {
-                dispatch(movieActions.retrieveMoviesByGenreId(i))
-            }
-        }
-    }, [dispatch, allMovies])
 
     let srcfunc = function(str) {
         let src = "https://"+str
