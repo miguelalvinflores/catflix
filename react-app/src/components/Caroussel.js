@@ -1,17 +1,26 @@
 import React from 'react';
-import Carousel from "react-elastic-carousel";
+
+import './CSS/Caroussel.css'
+import Slider from './NetflixSlider'
 
 function Caroussel(genre) {
     const movies = genre.movies
     console.log("GENRE", genre)
 
+    // let srcfunc = function(str) {
+    //     let src = "https://"+str
+    //     return src
+    // }
+
     return (
         <div className='lolomoRow'>
             <h3 className='rowHeader'>{genre.genre}</h3>
             <div className='rowContainer'>
-                {movies?.map((movie) => {
-                    <div className=''> </div>
-                })}
+            <Slider>
+                {movies.map(movie => (
+                    <Slider.Item movie={movie} key={movie.id}>item1</Slider.Item>
+                ))}
+             </Slider>
 
             </div>
         </div>

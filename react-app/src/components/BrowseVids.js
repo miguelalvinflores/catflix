@@ -11,7 +11,6 @@ function BrowseVids() {
     const dispatch = useDispatch()
     const sessionUser = useSelector((state) => state.sessionUser);
     const userProfiles = useSelector((state) => state.profile);
-    const allMovies = useSelector(state => state.movies.allMovies)
     const movie = useSelector((state) => state.movies.movie)
     const genres = useSelector((state) => state.movies.genres)
 
@@ -28,22 +27,14 @@ function BrowseVids() {
 
     useEffect(() => {
         if (userProfiles) {
-
-            dispatch(movieActions.retrieveMovies())
+            dispatch(movieActions.chooseMovie())
+            dispatch(movieActions.retrieveMoviesByGenreId(4))
+            dispatch(movieActions.retrieveMoviesByGenreId(6))
+            dispatch(movieActions.retrieveMoviesByGenreId(9))
+            dispatch(movieActions.retrieveMoviesByGenreId(15))
+            dispatch(movieActions.retrieveMoviesByGenreId(8))
         }
     }, [dispatch, sessionUser, userProfiles]);
-
-    useEffect(() => {
-
-
-        if(allMovies) {
-            const movie = allMovies[Math.floor(Math.random()*(objsize(allMovies)))]
-            dispatch(movieActions.chooseMovie(movie))
-            for (let i = 1; i < 20; i++ ) {
-                dispatch(movieActions.retrieveMoviesByGenreId(i))
-            }
-        }
-    }, [dispatch, allMovies])
 
     let srcfunc = function(str) {
         let src = "https://"+str
@@ -60,17 +51,17 @@ function BrowseVids() {
                     <div className='billboard-presentation-tracking'>
                         <div className='billboard'>
                             <div className='billboard-motion'>
-                                <video
+                                {/* <video
                                 autoplay='true'
                                 muted
                                 onEnded={() => onBillEnd()}
                                 src={srcfunc(movie?.url)}
                                 >
-                                </video>
+                                </video> */}
                             </div>
                             <div className='bill-bottom-layer full-screen '>
                                 <div className='bill-img-wrapper'>
-                                    <img className={ billIsPlaying ? 'bill-playing bill-img' :'bill-img'} src={movie?.backdrop} alt='movie backdrop' />
+                                    <img className={ billIsPlaying ? 'bill-playing bill-img' :'bill-img'} src={movie?.backdrop} alt={`"${movie?.title}" backdrop`} />
                                     <div class="trailer-vignette vignette-layer"></div>
                                     <div class="hero-vignette vignette-layer"></div>
                                 </div>

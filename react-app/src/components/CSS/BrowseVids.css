@@ -173,3 +173,8 @@
     text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
     margin-top: .1vw;
 }
+
+.lolomoRow {
+    position: relative;
+    z-index: 3;
+}
