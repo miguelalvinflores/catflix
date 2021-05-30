@@ -36,7 +36,6 @@ function BrowseVids() {
     useEffect(() => {
 
 
-
         if(allMovies) {
             const movie = allMovies[Math.floor(Math.random()*(objsize(allMovies)))]
             dispatch(movieActions.chooseMovie(movie))

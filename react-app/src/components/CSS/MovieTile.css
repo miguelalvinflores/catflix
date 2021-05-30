@@ -1,0 +1,19 @@
+.full-movie-tile__container {
+    box-sizing: border-box;
+    height: 250px;
+    width: 167px;
+    cursor:progress;
+    margin-bottom: 2%;
+    /* border: 1px solid yellow; */
+    overflow: hidden;
+    
+}
+
+.movie-tile__container {
+    height: 250px;
+    width: 167px;
+    border-radius: 6px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
