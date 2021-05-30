@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.models import Movie, Genre, Profile, db, Like
-# import random
+import random
 
 movie_routes = Blueprint('movie', __name__)
 
@@ -11,11 +11,11 @@ def handleLikes(movieId, profileId):
         like = Like.query.filter_by(Like.profileId==profileId, Like.movieId==movieId).first()
         db.session.delete(like)
     elif request.method == 'POST':
-        data = response.get_json()
+        data = request.get_json()
         like = Like(profileId=profileId, movieId=movieId, upvoteDownvote=data["upvoteDownvote"])
         db.session.add(like)
     else:
-        data = response.get_json()
+        data = request.get_json()
         like = Like.query.filter_by(Like.profileId==profileId, Like.movieId==movieId).first()
         like.upvoteDownvote = data["upvoteDownvote"]
     db.session.commit()

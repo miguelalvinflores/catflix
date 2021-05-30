@@ -52,7 +52,9 @@ const Watch = () => {
         dispatch(profileActions.updateLike(movieId, true, profileId));
       }
     } else {
-      dispatch(profileActions.addLike(movieId, true));
+      dispatch(profileActions.addLike(movieId, true, profileId));
+      let inActiveLike = document.querySelector(".like-button");
+      inActiveLike.classList.add("active");
     }
   };
   const dislikeButtonHandler = () => {
@@ -69,7 +71,7 @@ const Watch = () => {
         dispatch(profileActions.updateLike(movieId, false, profileId));
       }
     } else {
-      dispatch(profileActions.addLike(movieId, false));
+      dispatch(profileActions.addLike(movieId, false, profileId));
     }
   };
 
