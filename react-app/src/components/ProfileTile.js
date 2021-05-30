@@ -27,6 +27,11 @@ function ProfileTile(props) {
         // history.push('/test')
     }
 
+    const handleClickManagement = profile => (e) => {
+        e.preventDefault();
+        console.log("TESTING MANAGE")
+    }
+
     console.log("PROPS LOCATION:", props.where)
 
     useEffect(() => {

@@ -120,6 +120,10 @@ export const selectProfile = (profile) => async (dispatch) => {
   dispatch(setProfile(profile));
 };
 
+export const logoutProfile = () => async (dispatch) => {
+  dispatch(removeProfile());
+};
+
 export const retrieveProfiles = (userId) => async (dispatch) => {
   const res = await fetch(`/api/profiles/`, {
     method: "POST",
