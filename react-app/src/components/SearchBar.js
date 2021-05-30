@@ -18,7 +18,7 @@ function Searchbar() {
       history.push("/search");
     } else {
       dispatch(movieActions.retrieveMovies());
-      history.push("/browse");
+    //   history.push("/browse");
     }
   }, [searchTerm, dispatch]);
 

@@ -5,22 +5,30 @@ import random
 movie_routes = Blueprint('movie', __name__)
 
 
-
-@movie_routes.route('/<int:movieId>/likes/<int:profileId>', methods=['DELETE', 'POST','PATCH'])
+@movie_routes.route(
+    '/<int:movieId>/likes/<int:profileId>', methods=['DELETE', 'POST', 'PATCH']
+)
 def handleLikes(movieId, profileId):
     if request.method == 'DELETE':
-        like = Like.query.filter_by(Like.profileId==profileId, Like.movieId==movieId).first()
+        like = Like.query.filter_by(
+            Like.profileId == profileId, Like.movieId == movieId).first()
         db.session.delete(like)
     elif request.method == 'POST':
         data = request.get_json()
-        like = Like(profileId=profileId, movieId=movieId, upvoteDownvote=data["upvoteDownvote"])
+        like = Like(
+            profileId=profileId,
+            movieId=movieId,
+            upvoteDownvote=data["upvoteDownvote"]
+        )
         db.session.add(like)
     else:
         data = request.get_json()
-        like = Like.query.filter_by(Like.profileId==profileId, Like.movieId==movieId).first()
+        like = Like.query.filter_by(
+            Like.profileId == profileId,
+            Like.movieId == movieId).first()
         like.upvoteDownvote = data["upvoteDownvote"]
     db.session.commit()
-    return {"success":"success"}
+    return {"success": "success"}
 
 
 @movie_routes.route('/allMovies')
@@ -56,17 +64,27 @@ def search_movies():
 
     genre = Genre.query.filter(Genre.type == term.title()).first()
     if genre:
-        movies = Movie.query.join(Movie.genres).filter((Genre.type == genre.type) | Movie.title.ilike(f'%{term}%') | Movie.description.ilike(f'%{term}%')).all()
+        movies = Movie.query.join(Movie.genres).filter(
+            (Genre.type == genre.type) |
+            Movie.title.ilike(f'%{term}%') |
+            Movie.description.ilike(f'%{term}%')
+        ).all()
     else:
-        movies = Movie.query.filter(Movie.title.ilike(f'%{term}%') | Movie.description.ilike(f'%{term}%')).all()
+        movies = Movie.query.filter(
+            Movie.title.ilike(f'%{term}%') |
+            Movie.description.ilike(f'%{term}%')).all()
 
     matches = {'matches': [movie.to_dict() for movie in movies]}
     return matches
 
-
-    # pro-move: check again if movie is in profile.bookmarks and store in variable use as
+    # pro-move: check again if movie is in profile.bookmarks
+    # and store in variable use as
     # conditional to double check before performing CRUD
-@movie_routes.route('/<int:movieId>/bookmarks/<int:profileId>', methods=['POST','DELETE'])
+
+
+@movie_routes.route(
+    '/<int:movieId>/bookmarks/<int:profileId>', methods=['POST', 'DELETE']
+)
 def handle_bookmark(movieId, profileId):
     profile = Profile.query.get(profileId)
     movie = Movie.query.get(movieId)
