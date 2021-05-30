@@ -1,12 +1,16 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 import IconCross from "./../Icons/IconCross";
 import IconPlay from "./../Icons/IconPlay";
 
 import "./Content.css";
 
-const Content = ({ movie, onClose }) => (
+const Content = ({ movie, onClose }) => {
+  const location = useLocation()
+  const pathname = location.pathname
+  console.log(pathname)
+  return (
   <div className="content">
     <div className="content__background">
       <div className="content__background__shadow" />
@@ -21,7 +25,7 @@ const Content = ({ movie, onClose }) => (
         <div className="content__description">{movie.description}</div>
         {movie ? (
           <NavLink
-            to={`/watch/${movie?.id}`}
+            to={`/${movie?.id}`}
             className="watchbill"
             style={{ textDecoration: "none" }}
           >
@@ -41,6 +45,8 @@ const Content = ({ movie, onClose }) => (
       </button>
     </div>
   </div>
-);
+
+  )
+};
 
 export default Content;

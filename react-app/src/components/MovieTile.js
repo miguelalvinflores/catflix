@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 
 import * as profileActions from "../store/profile";
 import "./CSS/MovieTile.css";
@@ -17,8 +17,8 @@ function MovieTile() {
 
   const handleClick = (movie) => (e) => {
     e.preventDefault();
-    localStorage.setItem("chosenMovie", JSON.stringify(movie));
-    // history.push('/test')
+    // localStorage.setItem("chosenMovie", JSON.stringify(movie));
+   
   };
 
   if (movieMatches) {
@@ -29,10 +29,11 @@ function MovieTile() {
         {movieMatches?.map((movie) => {
           console.log(movie);
           return (
-            <div
+            <NavLink
               key={movie.id}
               className="full-movie-tile__container"
-              onClick={handleClick(movie)}
+              // onClick={handleClick(movie)}
+              to={`/watch/${movie.id}`}
             >
               <div
                 className="movie-tile__container"
@@ -41,7 +42,7 @@ function MovieTile() {
                 {/* {movie.title} */}
               </div>
               {/* <div className="movie-tile__name">{movie.title}</div> */}
-            </div>
+            </NavLink>
           );
         })}
       </>

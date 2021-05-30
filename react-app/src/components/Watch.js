@@ -111,42 +111,46 @@ const Watch = () => {
     }
   });
   const VideoCover = () => {
-    return (
-      <div className="video-cover">
-        <div className="image-container">
-          <img src={movie.backdrop} alt="cats" className="video-cover-image" />
-          <div class="trailer-vignette vignette-layer"></div>
-        </div>
-        <div className="cover-overlay">
-          <p className="film-title">{movie.title}</p>
-          <p className="film-description">{movie.description}</p>
-          <div className="controls-container">
-            <button className="play-button" onClick={playBtnHandler}>
-              {/* <FaPlay /> */}
-              Play
-            </button>
-            <button className="bookmark-button" onClick={myListHandler}>
-              {isBookmarked ? <BsBookmarkFill /> : <BsBookmarkPlus />}
-              My List
-            </button>
-            <button className="like-button" onClick={likeButtonHandler}>
-              <AiFillLike size="45px" />
-              {/* <AiOutlineLike /> */}
-            </button>
-            <button className="dislike-button" onClick={dislikeButtonHandler}>
-              <AiFillDislike size="45px" />
-            </button>
+    if (movie) {
+      return (
+        <div className="video-cover">
+          <div className="image-container">
+            <img src={movie.backdrop} alt="cats" className="video-cover-image" />
+            <div class="trailer-vignette vignette-layer"></div>
           </div>
-          {/* <div className="tabs">
-            <span className="overview-tab">Overview</span>
-            <span className="episodes-tab">Episodes</span>
-            <span className="trailers-tab">Trailers</span>
-            <span className="more-tab">More Like This</span>
-            <span className="details-tab">Details</span>
-          </div> */}
+          <div className="cover-overlay">
+            <p className="film-title">{movie.title}</p>
+            <p className="film-description">{movie.description}</p>
+            <div className="controls-container">
+              <button className="play-button" onClick={playBtnHandler}>
+                {/* <FaPlay /> */}
+                Play
+              </button>
+              <button className="bookmark-button" onClick={myListHandler}>
+                {isBookmarked ? <BsBookmarkFill /> : <BsBookmarkPlus />}
+                My List
+              </button>
+              <button className="like-button" onClick={likeButtonHandler}>
+                <AiFillLike size="45px" />
+                {/* <AiOutlineLike /> */}
+              </button>
+              <button className="dislike-button" onClick={dislikeButtonHandler}>
+                <AiFillDislike size="45px" />
+              </button>
+            </div>
+            {/* <div className="tabs">
+              <span className="overview-tab">Overview</span>
+              <span className="episodes-tab">Episodes</span>
+              <span className="trailers-tab">Trailers</span>
+              <span className="more-tab">More Like This</span>
+              <span className="details-tab">Details</span>
+            </div> */}
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
+
+    return <></>
   };
 
   return (
