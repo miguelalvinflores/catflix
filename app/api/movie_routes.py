@@ -10,7 +10,7 @@ movie_routes = Blueprint('movie', __name__)
 )
 def handleLikes(movieId, profileId):
     if request.method == 'DELETE':
-        like = Like.query.filter_by(
+        like = Like.query.filter(
             Like.profileId == profileId, Like.movieId == movieId).first()
         db.session.delete(like)
     elif request.method == 'POST':
@@ -23,7 +23,7 @@ def handleLikes(movieId, profileId):
         db.session.add(like)
     else:
         data = request.get_json()
-        like = Like.query.filter_by(
+        like = Like.query.filter(
             Like.profileId == profileId,
             Like.movieId == movieId).first()
         like.upvoteDownvote = data["upvoteDownvote"]

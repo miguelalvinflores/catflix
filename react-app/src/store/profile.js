@@ -7,7 +7,7 @@ const ADD_BOOKMARK = "profile/ADD_BOOKMARK";
 const DELETE_BOOKMARK = "profile/DELETE_BOOKMARK";
 const ADD_LIKE = "profile/ADD_LIKE";
 const UPDATE_LIKE = "profile/UPDATE_LIKE";
-const DELETE_LIKE = "profile/UPDATE/LIKE";
+const DELETE_LIKE = "profile/DELETE_LIKE";
 
 // likes
 const addOnelike = (movieId, upvoteDownvote) => ({

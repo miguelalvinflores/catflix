@@ -66,3 +66,9 @@ input[type="range"]::-webkit-slider-thumb {
   height: 100%;
   background-color: orangered;
 }
+.right-controls {
+  justify-content: space-around;
+}
+.control.title {
+  width: 300px;
+}

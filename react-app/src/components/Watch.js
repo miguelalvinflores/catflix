@@ -17,33 +17,32 @@ import { AiFillLike, AiFillDislike } from "react-icons/ai";
 const Watch = () => {
   const [showMovieCover, setShowMovieCover] = useState(true);
   const { movieId } = useParams();
-  // const movie = useSelector(state=>state.movies[movieId])
+  const profileLikes = useSelector((state) => state.profile.profile[0].likes);
+  const movie = useSelector((state) => state.movies.allMovies[movieId]);
   const profileId = useSelector((state) => state.profile.profile[0].id);
   const videoEnded = useSelector((state) => state.video.end);
-  const profileLikes = useSelector((state) => state.profile.profile[0].likes);
   const profileBookmarks = useSelector(
     (state) => state.profile.profile[0].bookmarks
   );
   const dispatch = useDispatch();
 
-  const profileHasLike = profileLikes[movieId] ? true : false;
-  const profileHasBookmark = profileBookmarks[movieId] ? true : false;
-  // potential solution
+  let profileHasLike = profileLikes.hasOwnProperty(movieId) ? true : false;
+  let profileHasBookmark = profileBookmarks[movieId] ? true : false;
   const [isBookmarked, setIsBookmarked] = useState(profileHasBookmark);
 
   const myListHandler = () => {
-    if (profileHasBookmark) {
+    if (profileBookmarks[movieId]) {
       dispatch(profileActions.deleteBookmark(profileId, movieId));
     } else {
       dispatch(profileActions.addBookmark(profileId, movieId));
     }
-    // potential solution to rerender bookmark icon
+
     setIsBookmarked(!isBookmarked);
   };
 
   // Refactor later
   const likeButtonHandler = () => {
-    if (profileHasLike) {
+    if (profileLikes.hasOwnProperty(movieId)) {
       if (profileLikes[movieId]) {
         dispatch(profileActions.deleteLike(movieId, profileId));
         let activeLike = document.querySelector(".like-button");
@@ -62,7 +61,7 @@ const Watch = () => {
     }
   };
   const dislikeButtonHandler = () => {
-    if (profileHasLike) {
+    if (profileLikes.hasOwnProperty(movieId)) {
       if (!profileLikes[movieId]) {
         dispatch(profileActions.deleteLike(movieId, profileId));
         let activeLike = document.querySelector(".dislike-button");
@@ -76,6 +75,8 @@ const Watch = () => {
       }
     } else {
       dispatch(profileActions.addLike(movieId, false, profileId));
+      let inActiveLike = document.querySelector(".dislike-button");
+      inActiveLike.classList.add("active");
     }
   };
 
@@ -84,6 +85,17 @@ const Watch = () => {
     dispatch(videoActions.setVideoStart());
   };
 
+  useEffect(() => {
+    if (profileHasLike) {
+      if (profileLikes[movieId]) {
+        let thumbsUp = document.querySelector(".like-button");
+        if (thumbsUp) thumbsUp.classList.add("active");
+      } else {
+        let thumbsDown = document.querySelector(".dislike-button");
+        if (thumbsDown) thumbsDown.classList.add("active");
+      }
+    }
+  });
   const VideoCover = () => {
     return (
       <div className="video-cover">
@@ -95,15 +107,15 @@ const Watch = () => {
           />
         </div>
         <div className="cover-overlay">
-          <p className="film-title">Film Title</p>
-          <p className="film-description">Film description</p>
+          <p className="film-title">{movie.title}</p>
+          <p className="film-description">{movie.description}</p>
           <div className="controls-container">
             <button className="play-button" onClick={playBtnHandler}>
               {/* <FaPlay /> */}
               Play
             </button>
             <button className="bookmark-button" onClick={myListHandler}>
-              {profileHasBookmark ? <BsBookmarkFill /> : <BsBookmarkPlus />}
+              {isBookmarked ? <BsBookmarkFill /> : <BsBookmarkPlus />}
               My List
             </button>
             <button className="like-button" onClick={likeButtonHandler}>
@@ -132,10 +144,13 @@ const Watch = () => {
         {/* pass in video url */}
         {/* <VideoCover movie={movie} /> */}
         {/* <VideoPlayer movieUrl={ movie.url} /> */}
-        {showMovieCover || videoEnded ? <VideoCover /> : <VideoPlayer />}
+        {showMovieCover || videoEnded ? (
+          <VideoCover />
+        ) : (
+          <VideoPlayer movie={movie} />
+        )}
       </div>
       {/* carousel: top picks for you */}
-      {/* detail component */}
       <div className="recommended">slider/carousel recommended movies</div>
       <div className="footer-wrapper">
         <Footer />

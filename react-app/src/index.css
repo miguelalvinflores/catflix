@@ -1,16 +1,15 @@
 /* TODO Add site wide styles */
 
-
-body, html {
-    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
-    /* background-color: #f3f3f3; */
-    color: aliceblue;
-    font-size: 16px;
-    direction: ltr;
-    margin: 0;
-    padding: 0;
-    background: #141414;
-
+body,
+html {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* background-color: #f3f3f3; */
+  color: aliceblue;
+  font-size: 16px;
+  direction: ltr;
+  margin: 0;
+  padding: 0;
+  /* background: #141414; */
 }
 
 div {
@@ -18,12 +17,11 @@ div {
 }
 
 #root {
-    width:100%;
-    z-index: -1;
-    background-color: rgba(0, 0, 0, 0.65);
-    height: fit-content;
-    color:aliceblue
-
+  width: 100%;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.65);
+  height: fit-content;
+  color: aliceblue;
 }
 
 .authLinks {

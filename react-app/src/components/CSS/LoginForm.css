@@ -52,6 +52,7 @@ select {
 .hero-card-img-login {
   z-index: -2;
   height: 100%;
+  width: 100%;
   position: absolute;
   top: 0;
   /* max-height: fit-content; */
@@ -100,4 +101,7 @@ body {
 }
 .login-footer-wrapper {
   bottom: 0;
+}
+#app-mount-point {
+  height: 100vh;
 }
