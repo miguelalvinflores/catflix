@@ -17,10 +17,10 @@ import { AiFillLike, AiFillDislike } from "react-icons/ai";
 const Watch = () => {
   const [showMovieCover, setShowMovieCover] = useState(true);
   const { movieId } = useParams();
+  const profileLikes = useSelector((state) => state.profile.profile[0].likes);
   // const movie = useSelector(state=>state.movies[movieId]) // PASS IN MOVIE_URL TO VIDEOPLAYER
   const profileId = useSelector((state) => state.profile.profile[0].id);
   const videoEnded = useSelector((state) => state.video.end);
-  const profileLikes = useSelector((state) => state.profile.profile[0].likes);
   const profileBookmarks = useSelector(
     (state) => state.profile.profile[0].bookmarks
   );
@@ -28,35 +28,26 @@ const Watch = () => {
 
   let profileHasLike = profileLikes.hasOwnProperty(movieId) ? true : false;
   let profileHasBookmark = profileBookmarks[movieId] ? true : false;
-  // potential solution
   const [isBookmarked, setIsBookmarked] = useState(profileHasBookmark);
 
   const myListHandler = () => {
-    if (profileHasBookmark) {
+    if (profileBookmarks[movieId]) {
       dispatch(profileActions.deleteBookmark(profileId, movieId));
     } else {
       dispatch(profileActions.addBookmark(profileId, movieId));
     }
-    // potential solution to rerender bookmark icon
+
     setIsBookmarked(!isBookmarked);
   };
 
   // Refactor later
   const likeButtonHandler = () => {
-    console.log(profileLikes.hasOwnProperty(movieId));
-    console.log(profileLikes, "======");
-    console.log(profileLikes[movieId], "===, movieId", movieId);
-    console.log(profileHasLike, "Profile has like");
-    // it thinks that the profile has the like even after its been deleted. the state is not picking up the changes
     if (profileLikes.hasOwnProperty(movieId)) {
-      console.log("inisde like handler");
       if (profileLikes[movieId]) {
-        console.log("delete please");
         dispatch(profileActions.deleteLike(movieId, profileId));
         let activeLike = document.querySelector(".like-button");
         activeLike.classList.remove("active");
       } else {
-        console.log("inside update ");
         let activeLike = document.querySelector(".dislike-button");
         activeLike.classList.remove("active");
         let inActiveLike = document.querySelector(".like-button");
@@ -64,7 +55,6 @@ const Watch = () => {
         dispatch(profileActions.updateLike(movieId, true, profileId));
       }
     } else {
-      console.log("prfielhas like is showing as false");
       dispatch(profileActions.addLike(movieId, true, profileId));
       let inActiveLike = document.querySelector(".like-button");
       inActiveLike.classList.add("active");
@@ -125,7 +115,7 @@ const Watch = () => {
               Play
             </button>
             <button className="bookmark-button" onClick={myListHandler}>
-              {profileHasBookmark ? <BsBookmarkFill /> : <BsBookmarkPlus />}
+              {isBookmarked ? <BsBookmarkFill /> : <BsBookmarkPlus />}
               My List
             </button>
             <button className="like-button" onClick={likeButtonHandler}>
@@ -157,7 +147,6 @@ const Watch = () => {
         {showMovieCover || videoEnded ? <VideoCover /> : <VideoPlayer />}
       </div>
       {/* carousel: top picks for you */}
-      {/* detail component */}
       <div className="recommended">slider/carousel recommended movies</div>
       <div className="footer-wrapper">
         <Footer />

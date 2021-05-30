@@ -12,13 +12,9 @@ def handleLikes(movieId, profileId):
     if request.method == 'DELETE':
         like = Like.query.filter(
             Like.profileId == profileId, Like.movieId == movieId).first()
-        print("does this like exist?", like)
         db.session.delete(like)
     elif request.method == 'POST':
-        print("before the data print"*20)
         data = request.get_json()
-        # data = request.args("upvoteDownvote")
-        print(data, "="*30)
         like = Like(
             profileId=profileId,
             movieId=movieId,
@@ -27,14 +23,10 @@ def handleLikes(movieId, profileId):
         db.session.add(like)
     else:
         data = request.get_json()
-        # data = request.args("upvoteDownvote")
-        print(data, "="*30)
         like = Like.query.filter(
             Like.profileId == profileId,
             Like.movieId == movieId).first()
         like.upvoteDownvote = data["upvoteDownvote"]
-        print(like.upvoteDownvote,"check if updating")
-        db.session.commit()
     db.session.commit()
     return {"success": "success"}
 
