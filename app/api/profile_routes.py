@@ -7,7 +7,6 @@ profile_routes = Blueprint('profile', __name__)
 def get_user_profiles():
     data = request.json
     profiles = db.session.query(Profile, Icon).join(Icon).filter(Profile.userId == data['userId']).all()
-    print("JOINS", profiles)
     profiles_lst = []
     for profile in profiles:
         likes = {}

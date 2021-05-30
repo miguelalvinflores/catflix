@@ -14,9 +14,7 @@ import "./CSS/VideoPlayer.css";
 // movieUrl destructured from props
 const VideoPlayer = () => {
   const [videoIsActive, setVideoIsActive] = useState(true);
-  // const [videoEnded, setVideoEnded] = useState(false);
-  const [fullscreen, setFullscreen] = useState(false);
-  const [isMute, setIsMute] = useState(true);
+  const [isFullScreen, setIsFullScreen] = useState(false);
   const dispatch = useDispatch();
   const video = document.querySelector(".video");
   const videoContainer = document.querySelector(".c-video");
@@ -41,23 +39,43 @@ const VideoPlayer = () => {
       video.pause();
     }
   };
-
-  const toggleFullScreen = async () => {
-    if (!document.fullscreenElement) {
-      await video.requestFullscreen();
-      setFullscreen(true);
-    } else {
-      await document.exitFullscreen();
-      setFullscreen(false);
-    }
-  };
-
-  const handleFastFoward = () => {
-    video.currentTime += 5;
+  useEffect(() => {
+    const video = document.querySelector(".video");
+    video.addEventListener("timeupdate", () => {
+      let durationPos = video.currentTime / video.duration;
+      let duration = document.querySelector(".duration");
+      duration.style.width = durationPos * 100 + "%";
+      if (video.ended) {
+        dispatch(videoActions.setVideoEnd());
+      }
+    });
+  });
+  const videoEnd = () => {
+    dispatch(videoActions.setVideoEnd());
   };
 
   const handleRewind = () => {
-    video.currentTime -= 5;
+    const video = document.querySelector(".video");
+    if (!video.currentTime) {
+      video.currentTime -= 5;
+    }
+  };
+  const handleFastFoward = () => {
+    const video = document.querySelector(".video");
+    if (video.duration - video.currentTime > 5) {
+      video.currentTime += 5;
+    }
+  };
+
+  const handleFullScreen = () => {
+    const video = document.querySelector(".video");
+    if (!isFullScreen) {
+      video.requestFullscreen();
+      setIsFullScreen(true);
+    } else {
+      // video.exitFullscreen();
+      setIsFullScreen(false);
+    }
   };
   return (
     <div className="c-video">
@@ -67,6 +85,7 @@ const VideoPlayer = () => {
         src="https://d23jaqdaucwmr3.cloudfront.net/1.mp4"
         autoplay="true"
         muted
+        onEnded={videoEnd}
         // controls
       ></video>
       <div className="video-control-container">
@@ -74,16 +93,16 @@ const VideoPlayer = () => {
           <div className="duration"></div>
         </div>
         <button className="control play" onClick={togglePlay}>
-          {videoIsActive ? <FaPause /> : <FaPlay />}
+          {videoIsActive ? <FaPause size="20px" /> : <FaPlay size="20px" />}
         </button>
         <button className="control rewind" onClick={handleRewind}>
-          <FaFastBackward />
+          <FaFastBackward size="20px" />
         </button>
         <button className=" control fastfoward" onClick={handleFastFoward}>
-          <FaFastForward />
+          <FaFastForward size="20px" />
         </button>
         <button className=" control volume" id="volume">
-          {isMute ? <HiVolumeOff /> : <HiVolumeUp />}
+          <HiVolumeUp size="25px" />
         </button>
         <input
           class="volume-slider"
@@ -95,16 +114,16 @@ const VideoPlayer = () => {
         ></input>
         <span className="control title">movie title</span>
         <button className=" control help">
-          <FiHelpCircle />
+          <FiHelpCircle size="25px" />
         </button>
         <button className=" control next">
-          <ImNext />
+          <ImNext size="25px" />
         </button>
         <button className=" control subtitle">
-          <MdSubtitles />
+          <MdSubtitles size="25px" />
         </button>
-        <button className=" control fullscreen" onClick={toggleFullScreen}>
-          {fullscreen ? <RiFullscreenExitFill /> : <RiFullscreenFill />}
+        <button className=" control fullscreen" onClick={handleFullScreen}>
+          <RiFullscreenFill size="25px" />
         </button>
       </div>
     </div>

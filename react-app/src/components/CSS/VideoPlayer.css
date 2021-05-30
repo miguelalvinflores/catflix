@@ -23,7 +23,8 @@
   position: absolute;
   bottom: 2px;
   background-color: rgba(0, 0, 0, 0.65);
-  display: flex-wrap;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   transform: translateY(100%);
