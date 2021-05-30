@@ -29,6 +29,13 @@ const LoginForm = () => {
     }
   };
 
+  const demoLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login("demo@aa.io", "password"));
+    if (data.errors) {
+      setErrors(data.errors);
+    }
+  };
   const handleTextChange = (text, cb) => {
     if (text !== "") {
       cb(true);
@@ -103,6 +110,9 @@ const LoginForm = () => {
                 <div></div>
                 <button type="submit" className="sign-in-button">
                   Sign In
+                </button>
+                <button className="sign-in-button" onClick={demoLogin}>
+                  Demo Login
                 </button>
                 <div className="form-other-details">
                   <p>
