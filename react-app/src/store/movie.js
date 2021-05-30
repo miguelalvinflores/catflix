@@ -24,23 +24,23 @@ const getMoviesbyGenre = (genre) => {
 };
 
 const normalize = (movieList) => {
-    let normMovies = {}
-    for (let i = 0; i < movieList.length; i++) {
-        let movie = movieList[i]
-        normMovies[movie.id] = movie
-    }
-    return normMovies
-}
+  let normMovies = {};
+  for (let i = 0; i < movieList.length; i++) {
+    let movie = movieList[i];
+    normMovies[movie.id] = movie;
+  }
+  return normMovies;
+};
 
 export const retrieveMovies = () => async (dispatch) => {
-    let res = await fetch(`/api/allMovies`)
+  let res = await fetch(`/api/movies/allMovies`);
 
-    if (res.ok) {
-        const allMovies = await res.json();
+  if (res.ok) {
+    const allMovies = await res.json();
 
-        const movies = normalize(allMovies.movies)
-        dispatch(getMovies(movies));
-    }
+    const movies = normalize(allMovies.movies);
+    dispatch(getMovies(movies));
+  }
 
   return res;
 };
@@ -52,29 +52,28 @@ export const searchMovies = (searchTerm) => async (dispatch) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      searchTerm
+      searchTerm,
     }),
-  })
+  });
 
   if (res.ok) {
-    const matchingMovies = await res.json()
+    const matchingMovies = await res.json();
     // const movies = normalize(matchingMovies.matches)
-    console.log("FROM SEARCH THUNK", matchingMovies.matches)
-    dispatch(getMovies(matchingMovies))
+    console.log("FROM SEARCH THUNK", matchingMovies.matches);
+    dispatch(getMovies(matchingMovies));
   }
 
-  return res
-
-}
+  return res;
+};
 
 export const chooseMovie = () => async (dispatch) => {
-    let res = await fetch('/api/movie')
+  let res = await fetch("/api/movies/movie");
 
-    if (res.ok) {
-        const movie = await res.json();
-        dispatch(thisMovie(movie));
-    }
-}
+  if (res.ok) {
+    const movie = await res.json();
+    dispatch(thisMovie(movie));
+  }
+};
 
 export const retrieveMoviesByGenreId = (genreId) => async (dispatch) => {
   let res = await fetch(`/api/movies/genre/${genreId}`);
@@ -85,7 +84,10 @@ export const retrieveMoviesByGenreId = (genreId) => async (dispatch) => {
   }
 };
 
-const initialState = { movie: {url: "", title: '', description: ''}, allMovies: {} };
+const initialState = {
+  movie: { url: "", title: "", description: "" },
+  allMovies: {},
+};
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case THIS_MOVIE:
