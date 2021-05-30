@@ -37,7 +37,7 @@ function MovieTile() {
                 {movieMatches?.map(movie => {
                     console.log(movie)
                     return (
-                        <div key={movie.id} className='full-tile__container' onClick={handleClick(movie)}>
+                        <div key={movie.id} className='full-movie-tile__container' onClick={handleClick(movie)}>
                             <div className='movie-tile__container' style={{ backgroundImage: `url(${movie.image})` }} >
                                 {/* {movie.title} */}
                             </div>

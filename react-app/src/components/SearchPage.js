@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom"
 
 import MovieTile from "./MovieTile"
 import "./CSS/SearchPage.css"
@@ -11,26 +12,22 @@ const SearchPage = () => {
     if (user) {
         if (profile) {
             //   render search
-            console.log("I went to if")
             return (
-                <div className="search-page_container">
-                    <MovieTile />
+                <div className="full-search-page__container">
+                    <div className="search-page__container">
+                        <MovieTile />
+                    </div>
                 </div>
             )
            
         } else {
             // redirect to /browse to either sign in or choose profile.
-            console.log("I went to else")
+            return <Redirect to='/browse' />
             
         }
     }
 
-    console.log("Did not enter")
-    return <h1>hi!</h1>;
-    // <navbar>
-    //     <search component />
-    //     <tabs/>
-    //  </navbar>
+    return <></>;
 };
 
 
