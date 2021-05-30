@@ -25,7 +25,7 @@ const Content = ({ movie, onClose }) => {
         <div className="content__description">{movie.description}</div>
         {movie ? (
           <NavLink
-            to={`/${movie?.id}`}
+            to={`/watch/${movie?.id}`}
             className="watchbill"
             style={{ textDecoration: "none" }}
           >

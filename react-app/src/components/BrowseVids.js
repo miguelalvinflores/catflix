@@ -55,12 +55,12 @@ function BrowseVids() {
             <div className="billboard">
               <div className="billboard-motion">
                 {/* <video
-                                autoplay='true'
-                                muted
-                                onEnded={() => onBillEnd()}
-                                src={srcfunc(movie?.url)}
-                                >
-                                </video> */}
+                  autoplay='true'
+                  muted
+                  onEnded={() => onBillEnd()}
+                  src={srcfunc(movie?.url)}
+                  >
+                  </video> */}
               </div>
               <div className="bill-bottom-layer full-screen ">
                 <div className="bill-img-wrapper">
