@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import VideoPlayer from "./VideoPlayer";
 import Footer from "./Footer";
 import * as videoActions from "../store/video";
+import * as profileActions from "../store/profile";
 import "./CSS/Watch.css";
 import "./CSS/VideoCover.css";
 // ============ REACT ICONS =====================
@@ -17,8 +18,60 @@ const Watch = () => {
   const [showMovieCover, setShowMovieCover] = useState(true);
   const { movieId } = useParams();
   // const movie = useSelector(state=>state.movies[movieId])
+  const profileId = useSelector((state) => state.profile.profile[0].id);
   const videoEnded = useSelector((state) => state.video.end);
+  const profileLikes = useSelector((state) => state.profile.profile[0].likes);
+  const profileBookmarks = useSelector(
+    (state) => state.profile.profile[0].bookmarks
+  );
   const dispatch = useDispatch();
+
+  const profileHasLike = profileLikes[movieId] ? true : false;
+  const profileHasBookmark = profileBookmarks[movieId] ? true : false;
+
+  const myListHandler = () => {
+    if (profileHasBookmark) {
+      dispatch(profileActions.deleteBookmark(profileId, movieId));
+    } else {
+      dispatch(profileActions.addBookmark(profileId, movieId));
+    }
+    // console.log(profileBookmarks);
+  };
+
+  const likeButtonHandler = () => {
+    if (profileHasLike) {
+      if (profileLikes[movieId]) {
+        dispatch(profileActions.deleteLike(movieId, profileId));
+        let activeLike = document.querySelector(".like-button");
+        activeLike.classList.remove("active");
+      } else {
+        let activeLike = document.querySelector(".dislike-button");
+        activeLike.classList.remove("active");
+        let inActiveLike = document.querySelector(".like-button");
+        inActiveLike.classList.add("active");
+        dispatch(profileActions.updateLike(movieId, true, profileId));
+      }
+    } else {
+      dispatch(profileActions.addLike(movieId, true));
+    }
+  };
+  const dislikeButtonHandler = () => {
+    if (profileHasLike) {
+      if (!profileLikes[movieId]) {
+        dispatch(profileActions.deleteLike(movieId, profileId));
+        let activeLike = document.querySelector(".dislike-button");
+        activeLike.classList.remove("active");
+      } else {
+        let activeLike = document.querySelector(".like-button");
+        activeLike.classList.remove("active");
+        let inActiveLike = document.querySelector(".dislike-button");
+        inActiveLike.classList.add("active");
+        dispatch(profileActions.updateLike(movieId, false, profileId));
+      }
+    } else {
+      dispatch(profileActions.addLike(movieId, false));
+    }
+  };
 
   const playBtnHandler = () => {
     setShowMovieCover(false);
@@ -43,15 +96,15 @@ const Watch = () => {
               {/* <FaPlay /> */}
               Play
             </button>
-            <button className="bookmark-button">
-              <BsBookmarkPlus />
+            <button className="bookmark-button" onClick={myListHandler}>
+              {profileHasBookmark ? <BsBookmarkFill /> : <BsBookmarkPlus />}
               My List
             </button>
-            <button className="like-button">
+            <button className="like-button" onClick={likeButtonHandler}>
               <AiFillLike size="45px" />
               {/* <AiOutlineLike /> */}
             </button>
-            <button className="dislike-button ">
+            <button className="dislike-button" onClick={dislikeButtonHandler}>
               <AiFillDislike size="45px" />
             </button>
           </div>
