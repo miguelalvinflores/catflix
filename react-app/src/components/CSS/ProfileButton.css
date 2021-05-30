@@ -30,3 +30,19 @@
     top: 5px;
     background-color: black;
 }
+
+hr {
+    border-color: #808080;
+}
+
+
+
+.profile-signout-btn {
+    font-weight: bold;
+}
+
+.profile-manage-btn:hover,
+.profile-signout-btn:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

@@ -1,6 +1,10 @@
+.rowHeader {
+    margin: 0 0;
+}
 .rowContainer {
     display: flex;
-    padding: 0 55px;
+    padding: 0px 55px;
+    flex-direction: column;
 }
 
 .item {

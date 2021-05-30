@@ -1,5 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
+import { NavLink } from "react-router-dom";
+
 import SliderContext from './context'
 import ShowDetailsButton from './ShowDetailsButton'
 import Mark from './Mark'
@@ -18,6 +20,16 @@ const Item = ({ movie }) => (
           })}
         >
           <img src={movie.backdrop} alt="" />
+          <NavLink
+            to={`watch/${movie?.id}`}
+            className='watchmovie'
+            style={{ textDecoration: 'none' }}
+          >
+            <button className='watch-page-button'>
+              <span></span>
+            </button>
+          </NavLink>
+
           <ShowDetailsButton onClick={() => onSelectSlide(movie)} />
           {isActive && <Mark />}
         </div>
