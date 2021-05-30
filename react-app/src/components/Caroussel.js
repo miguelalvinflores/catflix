@@ -17,11 +17,14 @@ function Caroussel(genre) {
       <h3 className="rowHeader">{genre.genre}</h3>
       <div className="rowContainer">
         <Slider>
-          {movies?.map((movie) => (
-            <Slider.Item movie={movie} key={movie.id}>
-              item1
-            </Slider.Item>
-          ))}
+          {(movies) && movies.map((movie) => {
+            console.log("ROW MOVIES", movies)
+            return (
+              <Slider.Item movie={movie} key={movie.id}>
+                item1
+              </Slider.Item>
+            )
+          })}
         </Slider>
       </div>
     </div>
