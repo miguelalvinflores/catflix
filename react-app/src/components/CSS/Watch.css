@@ -10,7 +10,13 @@
   transform: translateY(0);
 }
 .recommended {
-  height: 250px;
-  background-color: green;
+  background-color: rgba(0, 0, 0, 0.95);
+}
+.recommended-header {
+  display: flex;
+  align-items: center;
   font-size: 30px;
+  padding-top: 10px;
+  justify-content: flex-start;
+  padding-left: 15px;
 }

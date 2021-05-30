@@ -71,4 +71,6 @@ input[type="range"]::-webkit-slider-thumb {
 }
 .control.title {
   width: 300px;
+  display: flex;
+  align-items: center;
 }

@@ -67,6 +67,7 @@
   outline: none;
   box-shadow: none;
   border: none;
+  color: white;
 }
 .cover-overlay .tabs {
   bottom: 1px;

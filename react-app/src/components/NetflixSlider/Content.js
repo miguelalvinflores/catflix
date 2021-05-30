@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import { NavLink } from "react-router-dom";
 
-import IconCross from './../Icons/IconCross';
-import IconPlay from './../Icons/IconPlay';
+import IconCross from "./../Icons/IconCross";
+import IconPlay from "./../Icons/IconPlay";
 
-import './Content.css';
+import "./Content.css";
 
 const Content = ({ movie, onClose }) => (
   <div className="content">
@@ -12,15 +12,13 @@ const Content = ({ movie, onClose }) => (
       <div className="content__background__shadow" />
       <div
         className="content__background__image"
-        style={{ 'background-image': `url(${movie.backdrop})` }}
+        style={{ backgroundImage: `url(${movie.backdrop})` }}
       />
     </div>
     <div className="content__area">
       <div className="content__area__container">
         <div className="content__title">{movie.title}</div>
-        <div className="content__description">
-          {movie.description}
-        </div>
+        <div className="content__description">{movie.description}</div>
         {movie ? (
           <NavLink
             to={`/watch/${movie?.id}`}
@@ -28,8 +26,8 @@ const Content = ({ movie, onClose }) => (
             style={{ textDecoration: "none" }}
           >
             <button className="billboard-btn">
-              <span className='play-ltr'>
-                <div className='play-icon'>
+              <span className="play-ltr">
+                <div className="play-icon">
                   <IconPlay />
                 </div>
                 Play

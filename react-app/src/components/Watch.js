@@ -4,15 +4,18 @@ import { Redirect, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 // =========================================
 import VideoPlayer from "./VideoPlayer";
+import Slider from "./NetflixSlider";
 import Footer from "./Footer";
 import * as videoActions from "../store/video";
 import * as profileActions from "../store/profile";
+import * as movieActions from "../store/movie";
 import "./CSS/Watch.css";
 import "./CSS/VideoCover.css";
 // ============ REACT ICONS =====================
 import { FaPlay } from "react-icons/fa";
 import { BsBookmarkPlus, BsBookmarkFill } from "react-icons/bs";
 import { AiFillLike, AiFillDislike } from "react-icons/ai";
+// =======================
 
 const Watch = () => {
   const [showMovieCover, setShowMovieCover] = useState(true);
@@ -23,6 +26,17 @@ const Watch = () => {
   const videoEnded = useSelector((state) => state.video.end);
   const profileBookmarks = useSelector(
     (state) => state.profile.profile[0].bookmarks
+  );
+  const genres = [
+    "Comedy",
+    "Fantasy",
+    "Science Fiction",
+    "Documentary",
+    "Family",
+  ];
+
+  const genreMovies = useSelector(
+    (state) => state.movies?.genres[genres[Math.floor(Math.random() * 6)]]
   );
   const dispatch = useDispatch();
 
@@ -100,11 +114,8 @@ const Watch = () => {
     return (
       <div className="video-cover">
         <div className="image-container">
-          <img
-            src="https://www.themoviedb.org/t/p/original/7IrQ5vwmTHppBCf51HRFzSd7xMi.jpg"
-            alt="cats"
-            className="video-cover-image"
-          />
+          <img src={movie.backdrop} alt="cats" className="video-cover-image" />
+          <div class="trailer-vignette vignette-layer"></div>
         </div>
         <div className="cover-overlay">
           <p className="film-title">{movie.title}</p>
@@ -126,13 +137,13 @@ const Watch = () => {
               <AiFillDislike size="45px" />
             </button>
           </div>
-          <div className="tabs">
+          {/* <div className="tabs">
             <span className="overview-tab">Overview</span>
             <span className="episodes-tab">Episodes</span>
             <span className="trailers-tab">Trailers</span>
             <span className="more-tab">More Like This</span>
             <span className="details-tab">Details</span>
-          </div>
+          </div> */}
         </div>
       </div>
     );
@@ -151,7 +162,20 @@ const Watch = () => {
         )}
       </div>
       {/* carousel: top picks for you */}
-      <div className="recommended">slider/carousel recommended movies</div>
+      <div className="recommended">
+        <div className="recommended-header">Recommended</div>
+        <Slider>
+          {genreMovies &&
+            genreMovies.map((movie) => {
+              // console.log("ROW MOVIES", movies);
+              return (
+                <Slider.Item movie={movie} key={movie.id}>
+                  item1
+                </Slider.Item>
+              );
+            })}
+        </Slider>
+      </div>
       <div className="footer-wrapper">
         <Footer />
       </div>
