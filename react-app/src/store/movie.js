@@ -1,27 +1,27 @@
-const GET_MOVIES = 'movie/GET_MOVIES'
-const GET_MOVIES_BY_GENRE ='movie/GET_MOVIES_BY_GENRE'
-const THIS_MOVIE = 'movie/THIS_MOVIE'
+const GET_MOVIES = "movie/GET_MOVIES";
+const GET_MOVIES_BY_GENRE = "movie/GET_MOVIES_BY_GENRE";
+const THIS_MOVIE = "movie/THIS_MOVIE";
 
 const thisMovie = (movie) => {
-    return {
-        type: THIS_MOVIE,
-        payload: movie
-    }
-}
+  return {
+    type: THIS_MOVIE,
+    payload: movie,
+  };
+};
 
 const getMovies = (allMovies) => {
-    return {
-        type: GET_MOVIES,
-        payload: allMovies
-    }
-}
+  return {
+    type: GET_MOVIES,
+    payload: allMovies,
+  };
+};
 
 const getMoviesbyGenre = (genre) => {
-    return {
-        type:GET_MOVIES_BY_GENRE,
-        payload: genre
-    }
-}
+  return {
+    type: GET_MOVIES_BY_GENRE,
+    payload: genre,
+  };
+};
 
 const normalize = (movieList) => {
     let normMovies = {}
@@ -33,7 +33,7 @@ const normalize = (movieList) => {
 }
 
 export const retrieveMovies = () => async (dispatch) => {
-    let res = await fetch(`/api/movies`)
+  let res = await fetch(`/api/movies`);
 
     if (res.ok) {
         const allMovies = await res.json();
@@ -41,7 +41,9 @@ export const retrieveMovies = () => async (dispatch) => {
         const movies = normalize(allMovies.movies)
         dispatch(getMovies(movies));
     }
-    return res;
+    dispatch(getMovies(normMovies));
+  }
+  return res;
 };
 
 export const searchMovies = (searchTerm) => async (dispatch) => {
@@ -67,37 +69,37 @@ export const searchMovies = (searchTerm) => async (dispatch) => {
 }
 
 export const chooseMovie = (movie) => async (dispatch) => {
-    dispatch(thisMovie(movie));
-}
+  dispatch(thisMovie(movie));
+};
 
 export const retrieveMoviesByGenreId = (genreId) => async (dispatch) => {
-    let res = await fetch(`/api/movies/genre/${genreId}`)
+  let res = await fetch(`/api/movies/genre/${genreId}`);
 
-    if (res.ok) {
-        const genre = await res.json();
-        dispatch(getMoviesbyGenre(genre));
-    }
-}
+  if (res.ok) {
+    const genre = await res.json();
+    dispatch(getMoviesbyGenre(genre));
+  }
+};
 
-const initialState = { movie: null };
+const initialState = { movie: {url: "", title: '', description: ''}, allMovies: {} };
 export default function reducer(state = initialState, action) {
-    switch(action.type) {
-        case THIS_MOVIE:
-            return {
-                ...state,
-                movie: action.payload
-            }
-        case GET_MOVIES:
-            return {
-                ...state,
-                allMovies: action.payload
-            }
-        case GET_MOVIES_BY_GENRE:
-            return {
-                ...state,
-                genres: {...state.genres, ...action.payload}
-            }
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case THIS_MOVIE:
+      return {
+        ...state,
+        movie: action.payload,
+      };
+    case GET_MOVIES:
+      return {
+        ...state,
+        allMovies: action.payload,
+      };
+    case GET_MOVIES_BY_GENRE:
+      return {
+        ...state,
+        genres: { ...state.genres, ...action.payload },
+      };
+    default:
+      return state;
+  }
 }
