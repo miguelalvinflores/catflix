@@ -45,6 +45,28 @@ export const retrieveMovies = () => async (dispatch) => {
   return res;
 };
 
+export const searchMovies = (searchTerm) => async (dispatch) => {
+  const res = await fetch(`api/movies/search`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      searchTerm
+    }),
+  })
+
+  if (res.ok) {
+    const matchingMovies = await res.json()
+    // const movies = normalize(matchingMovies.matches)
+    console.log("FROM SEARCH THUNK", matchingMovies.matches)
+    dispatch(getMovies(matchingMovies))
+  }
+
+  return res
+
+}
+
 export const chooseMovie = () => async (dispatch) => {
     let res = await fetch('/api/movie')
 
