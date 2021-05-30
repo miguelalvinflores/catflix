@@ -109,9 +109,10 @@ function BrowseVids() {
       </span>
       {genres &&
         Object.entries(genres).map(([genre, movies]) => {
+          console.log("MOVIES", movies)
           return (
             <div className="lolomoRow title_card">
-              <Caroussel genre={genre} />
+              <Caroussel genre={genre} movies={movies} />
             </div>
           );
         })}
