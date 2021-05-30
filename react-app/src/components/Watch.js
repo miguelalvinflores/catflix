@@ -147,7 +147,7 @@ const Watch = () => {
         {showMovieCover || videoEnded ? (
           <VideoCover />
         ) : (
-          <VideoPlayer movieUrl={movie.url} />
+          <VideoPlayer movie={movie} />
         )}
       </div>
       {/* carousel: top picks for you */}

@@ -12,7 +12,7 @@ import "./CSS/VideoPlayer.css";
 
 // const VideoPlayer = ({movieUrl}) => {
 // movieUrl destructured from props
-const VideoPlayer = ({ movieUrl }) => {
+const VideoPlayer = ({ movie }) => {
   const [videoIsActive, setVideoIsActive] = useState(true);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const dispatch = useDispatch();
@@ -87,7 +87,7 @@ const VideoPlayer = ({ movieUrl }) => {
       <video
         className="video"
         // change that url later: DON'T FORGET TO ADD https://
-        src={`https:${movieUrl}`}
+        src={`https:${movie.url}`}
         autoplay="true"
         muted
         onEnded={videoEnd}
@@ -97,39 +97,44 @@ const VideoPlayer = ({ movieUrl }) => {
         <div className="duration-bar">
           <div className="duration"></div>
         </div>
-        <button className="control play" onClick={togglePlay}>
-          {videoIsActive ? <FaPause size="20px" /> : <FaPlay size="20px" />}
-        </button>
-        <button className="control rewind" onClick={handleRewind}>
-          <FaFastBackward size="20px" />
-        </button>
-        <button className=" control fastfoward" onClick={handleFastFoward}>
-          <FaFastForward size="20px" />
-        </button>
-        <button className=" control volume" id="volume">
-          <HiVolumeUp size="25px" />
-        </button>
-        <input
-          class="volume-slider"
-          value="1"
-          type="range"
-          max="1"
-          min="0"
-          step="0.01"
-        ></input>
-        <span className="control title">movie title</span>
-        <button className=" control help">
-          <FiHelpCircle size="25px" />
-        </button>
-        <button className=" control next">
-          <ImNext size="25px" />
-        </button>
-        <button className=" control subtitle">
-          <MdSubtitles size="25px" />
-        </button>
-        <button className=" control fullscreen" onClick={handleFullScreen}>
-          <RiFullscreenFill size="25px" />
-        </button>
+        <div className="left-controls">
+          <button className="control play" onClick={togglePlay}>
+            {videoIsActive ? <FaPause size="20px" /> : <FaPlay size="20px" />}
+          </button>
+          <button className="control rewind" onClick={handleRewind}>
+            <FaFastBackward size="20px" />
+          </button>
+          <button className=" control fastfoward" onClick={handleFastFoward}>
+            <FaFastForward size="20px" />
+          </button>
+          <button className=" control volume" id="volume">
+            <HiVolumeUp size="25px" />
+          </button>
+          <input
+            class="volume-slider"
+            value="1"
+            type="range"
+            max="1"
+            min="0"
+            step="0.01"
+          ></input>
+        </div>
+        <span className="control title">{movie.title}</span>
+
+        <div className="right-controls">
+          <button className=" control help">
+            <FiHelpCircle size="25px" />
+          </button>
+          <button className=" control next">
+            <ImNext size="25px" />
+          </button>
+          <button className=" control subtitle">
+            <MdSubtitles size="25px" />
+          </button>
+          <button className=" control fullscreen" onClick={handleFullScreen}>
+            <RiFullscreenFill size="25px" />
+          </button>
+        </div>
       </div>
     </div>
   );
