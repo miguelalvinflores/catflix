@@ -19,6 +19,7 @@ const VideoPlayer = () => {
   const video = document.querySelector(".video");
   const videoContainer = document.querySelector(".c-video");
   useEffect(() => {
+    const video = document.querySelector(".video");
     video.addEventListener("timeupdate", () => {
       let durationPos = video.currentTime / video.duration;
       let duration = document.querySelector(".duration");
