@@ -12,7 +12,7 @@ import "./CSS/VideoPlayer.css";
 
 // const VideoPlayer = ({movieUrl}) => {
 // movieUrl destructured from props
-const VideoPlayer = () => {
+const VideoPlayer = ({ movieUrl }) => {
   const [videoIsActive, setVideoIsActive] = useState(true);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const dispatch = useDispatch();
@@ -23,7 +23,9 @@ const VideoPlayer = () => {
     video.addEventListener("timeupdate", () => {
       let durationPos = video.currentTime / video.duration;
       let duration = document.querySelector(".duration");
-      duration.style.width = durationPos * 100 + "%";
+      if (duration) {
+        duration.style.width = durationPos * 100 + "%";
+      }
       if (video.ended) {
         dispatch(videoActions.setVideoEnd());
       }
@@ -85,7 +87,7 @@ const VideoPlayer = () => {
       <video
         className="video"
         // change that url later: DON'T FORGET TO ADD https://
-        src="https://d23jaqdaucwmr3.cloudfront.net/1.mp4"
+        src={`https:${movieUrl}`}
         autoplay="true"
         muted
         onEnded={videoEnd}

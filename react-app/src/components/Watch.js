@@ -18,7 +18,7 @@ const Watch = () => {
   const [showMovieCover, setShowMovieCover] = useState(true);
   const { movieId } = useParams();
   const profileLikes = useSelector((state) => state.profile.profile[0].likes);
-  // const movie = useSelector(state=>state.movies[movieId]) // PASS IN MOVIE_URL TO VIDEOPLAYER
+  const movie = useSelector((state) => state.movies.allMovies[movieId]);
   const profileId = useSelector((state) => state.profile.profile[0].id);
   const videoEnded = useSelector((state) => state.video.end);
   const profileBookmarks = useSelector(
@@ -89,10 +89,10 @@ const Watch = () => {
     if (profileHasLike) {
       if (profileLikes[movieId]) {
         let thumbsUp = document.querySelector(".like-button");
-        thumbsUp.classList.add("active");
+        if (thumbsUp) thumbsUp.classList.add("active");
       } else {
         let thumbsDown = document.querySelector(".dislike-button");
-        thumbsDown.classList.add("active");
+        if (thumbsDown) thumbsDown.classList.add("active");
       }
     }
   });
@@ -107,8 +107,8 @@ const Watch = () => {
           />
         </div>
         <div className="cover-overlay">
-          <p className="film-title">Film Title</p>
-          <p className="film-description">Film description</p>
+          <p className="film-title">{movie.title}</p>
+          <p className="film-description">{movie.description}</p>
           <div className="controls-container">
             <button className="play-button" onClick={playBtnHandler}>
               {/* <FaPlay /> */}
@@ -144,7 +144,11 @@ const Watch = () => {
         {/* pass in video url */}
         {/* <VideoCover movie={movie} /> */}
         {/* <VideoPlayer movieUrl={ movie.url} /> */}
-        {showMovieCover || videoEnded ? <VideoCover /> : <VideoPlayer />}
+        {showMovieCover || videoEnded ? (
+          <VideoCover />
+        ) : (
+          <VideoPlayer movieUrl={movie.url} />
+        )}
       </div>
       {/* carousel: top picks for you */}
       <div className="recommended">slider/carousel recommended movies</div>
