@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Profile, db, Icon
-
 profile_routes = Blueprint('profile', __name__)
 
 

@@ -5,8 +5,7 @@ COPY react-app/. .
 
 # You have to set this because it should be set during build time.
 # <Your REACT_APP_BASE_URL here>
-ENV REACT_APP_BASE_URL=postgresql://catflix_app_dev:password@localhost/catflix_app
-
+ENV REACT_APP_BASE_URL=https://catflix-aa.herokuapp.com
 # Build our React App
 RUN npm install
 RUN npm run build

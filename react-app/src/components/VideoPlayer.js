@@ -16,6 +16,18 @@ const VideoPlayer = () => {
   const [videoIsActive, setVideoIsActive] = useState(true);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const dispatch = useDispatch();
+  const video = document.querySelector(".video");
+  const videoContainer = document.querySelector(".c-video");
+  useEffect(() => {
+    video.addEventListener("timeupdate", () => {
+      let durationPos = video.currentTime / video.duration;
+      let duration = document.querySelector(".duration");
+      duration.style.width = durationPos * 100 + "%";
+      if (video.ended) {
+        dispatch(videoActions.setVideoEnd());
+      }
+    });
+  });
 
   const togglePlay = () => {
     const video = document.querySelector(".video");

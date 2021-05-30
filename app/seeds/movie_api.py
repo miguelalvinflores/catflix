@@ -11,7 +11,7 @@ key = os.environ.get("MOVIE_DB_API_KEY")
 
 def get_movie_data(pagenum):
     res = requests.get(
-            f'https://api.themoviedb.org/3/search/movie?api_key={key}&query="cat"&include_adult=false&page={pagenum}'
+            f'https://api.themoviedb.org/3/search/movie?api_key={key}&query="+cat+"&include_adult=false&page={pagenum}'
         )
     movies = res.json()
     for movie in movies["results"]:

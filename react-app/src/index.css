@@ -9,6 +9,7 @@ body, html {
     direction: ltr;
     margin: 0;
     padding: 0;
+    background: #141414;
 
 }
 
@@ -20,7 +21,7 @@ div {
     width:100%;
     z-index: -1;
     background-color: rgba(0, 0, 0, 0.65);
-    height: max-content;
+    height: fit-content;
     color:aliceblue
 
 }

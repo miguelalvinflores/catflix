@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import ProfileButton from './ProfileButton'
+import Searchbar from './SearchBar'
 import './CSS/NavBar.css'
 
 const NavBar = () => {
@@ -25,14 +26,15 @@ const NavBar = () => {
       sessionLinks = (
         <>
           <div>
+            <Searchbar />
             <ProfileButton user = {sessionUser} />
           </div>
-  
+
         </>
-  
+
       );
     }
-    
+
   } else {
     sessionLinks = (
       <button className='btn-red authLinks'>
