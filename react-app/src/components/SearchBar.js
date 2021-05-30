@@ -8,7 +8,7 @@ function Searchbar() {
     const dispatch = useDispatch()
     const location = useLocation()
     const history = useHistory()
-    const allMovie = useSelector((state) => state.movie.allMovies);
+    // const allMovie = useSelector((state) => state.movie?.allMovies);
     const [searchTerm, setSearchTerm] = useState("")
     // const [searchActive, setSearchActive] = useState(false)
 
