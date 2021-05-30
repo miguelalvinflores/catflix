@@ -8,4 +8,24 @@
   height: 100%;
   width: 100%;
   vertical-align: top;
+  border-radius: 4px;
+}
+.watch-page-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 300ms ease 100ms;
+  background: transparent;
+  border: 0;
+  outline: none;
+  width: 100%;
+}
+.watch-page-button span {
+  display: block;
+  height: 6vw;
+  width: 14px;
+  margin: 0 auto;
+  color: white;
 }

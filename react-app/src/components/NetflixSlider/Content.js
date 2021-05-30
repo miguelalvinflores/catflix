@@ -1,5 +1,9 @@
 import React from 'react';
+import { NavLink } from "react-router-dom";
+
 import IconCross from './../Icons/IconCross';
+import IconPlay from './../Icons/IconPlay';
+
 import './Content.css';
 
 const Content = ({ movie, onClose }) => (
@@ -17,6 +21,22 @@ const Content = ({ movie, onClose }) => (
         <div className="content__description">
           {movie.description}
         </div>
+        {movie ? (
+          <NavLink
+            to={`/watch/${movie?.id}`}
+            className="watchbill"
+            style={{ textDecoration: "none" }}
+          >
+            <button className="billboard-btn">
+              <span className='play-ltr'>
+                <div className='play-icon'>
+                  <IconPlay />
+                </div>
+                Play
+              </span>
+            </button>
+          </NavLink>
+        ) : null}
       </div>
       <button className="content__close" onClick={onClose}>
         <IconCross />

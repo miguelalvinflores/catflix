@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import Caroussel from "./Caroussel";
+import IconPlay from './Icons/IconPlay';
 
 import * as movieActions from "../store/movie";
 import "./CSS/BrowseVids.css";
@@ -90,15 +91,22 @@ function BrowseVids() {
                       </div>
                     </div>
                     <div className="billboard-links">
-                      <button className="billboard-btn">
-                        {movie ? (
-                          <NavLink
-                            to={`/watch/${movie?.id}`}
-                            className="watchbill"
-                            style={{ textDecoration: "none" }}
-                          />
-                        ) : null}
-                      </button>
+                    {movie ? (
+                      <NavLink
+                        to={`/watch/${movie?.id}`}
+                        className="watchbill"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <button className="billboard-btn">
+                          <span className='play-ltr'>
+                            <div className='play-icon'>
+                              <IconPlay />
+                            </div>
+                            Play
+                          </span>
+                        </button>
+                      </NavLink>
+                    ) : null}
                     </div>
                   </div>
                 </div>
@@ -111,9 +119,7 @@ function BrowseVids() {
         Object.entries(genres).map(([genre, movies]) => {
           console.log("MOVIES", movies)
           return (
-            <div className="lolomoRow title_card">
               <Caroussel genre={genre} movies={movies} />
-            </div>
           );
         })}
     </div>

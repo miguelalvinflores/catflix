@@ -37,7 +37,47 @@
     width: 100%;
 
 }
+.billboard-btn {
+    -webkit-box-align: center;
+    align-items: center;
+    appearance: none;
+    border: 0px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    opacity: 1;
+    padding: 0.8rem;
+    position: relative;
+    user-select: none;
+    will-change: background-color, color;
+    word-break: break-word;
+    white-space: nowrap;
+    width: 10em;
 
+}
+.billboard-btn:hover {
+    background-color: #e4e4e4c9;
+}
+
+.play-ltr {
+    font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 1.6rem;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: block;
+    font-size: 1.6rem;
+    font-weight: bold;
+    line-height: 2.4rem;
+    display: flex;
+}
+
+.play-icon {
+    height: 2.4rem;
+    width: 2.4rem;
+}
 .bill-bottom-layer {
     z-index: 2;
 }
