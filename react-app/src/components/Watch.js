@@ -17,7 +17,7 @@ import { AiFillLike, AiFillDislike } from "react-icons/ai";
 const Watch = () => {
   const [showMovieCover, setShowMovieCover] = useState(true);
   const { movieId } = useParams();
-  // const movie = useSelector(state=>state.movies[movieId])
+  // const movie = useSelector(state=>state.movies[movieId]) // PASS IN MOVIE_URL TO VIDEOPLAYER
   const profileId = useSelector((state) => state.profile.profile[0].id);
   const videoEnded = useSelector((state) => state.video.end);
   const profileLikes = useSelector((state) => state.profile.profile[0].likes);
@@ -26,8 +26,8 @@ const Watch = () => {
   );
   const dispatch = useDispatch();
 
-  const profileHasLike = profileLikes[movieId] ? true : false;
-  const profileHasBookmark = profileBookmarks[movieId] ? true : false;
+  let profileHasLike = profileLikes.hasOwnProperty(movieId) ? true : false;
+  let profileHasBookmark = profileBookmarks[movieId] ? true : false;
   // potential solution
   const [isBookmarked, setIsBookmarked] = useState(profileHasBookmark);
 
@@ -43,12 +43,20 @@ const Watch = () => {
 
   // Refactor later
   const likeButtonHandler = () => {
-    if (profileHasLike) {
+    console.log(profileLikes.hasOwnProperty(movieId));
+    console.log(profileLikes, "======");
+    console.log(profileLikes[movieId], "===, movieId", movieId);
+    console.log(profileHasLike, "Profile has like");
+    // it thinks that the profile has the like even after its been deleted. the state is not picking up the changes
+    if (profileLikes.hasOwnProperty(movieId)) {
+      console.log("inisde like handler");
       if (profileLikes[movieId]) {
+        console.log("delete please");
         dispatch(profileActions.deleteLike(movieId, profileId));
         let activeLike = document.querySelector(".like-button");
         activeLike.classList.remove("active");
       } else {
+        console.log("inside update ");
         let activeLike = document.querySelector(".dislike-button");
         activeLike.classList.remove("active");
         let inActiveLike = document.querySelector(".like-button");
@@ -56,13 +64,14 @@ const Watch = () => {
         dispatch(profileActions.updateLike(movieId, true, profileId));
       }
     } else {
+      console.log("prfielhas like is showing as false");
       dispatch(profileActions.addLike(movieId, true, profileId));
       let inActiveLike = document.querySelector(".like-button");
       inActiveLike.classList.add("active");
     }
   };
   const dislikeButtonHandler = () => {
-    if (profileHasLike) {
+    if (profileLikes.hasOwnProperty(movieId)) {
       if (!profileLikes[movieId]) {
         dispatch(profileActions.deleteLike(movieId, profileId));
         let activeLike = document.querySelector(".dislike-button");
@@ -76,6 +85,8 @@ const Watch = () => {
       }
     } else {
       dispatch(profileActions.addLike(movieId, false, profileId));
+      let inActiveLike = document.querySelector(".dislike-button");
+      inActiveLike.classList.add("active");
     }
   };
 
@@ -84,6 +95,17 @@ const Watch = () => {
     dispatch(videoActions.setVideoStart());
   };
 
+  useEffect(() => {
+    if (profileHasLike) {
+      if (profileLikes[movieId]) {
+        let thumbsUp = document.querySelector(".like-button");
+        thumbsUp.classList.add("active");
+      } else {
+        let thumbsDown = document.querySelector(".dislike-button");
+        thumbsDown.classList.add("active");
+      }
+    }
+  });
   const VideoCover = () => {
     return (
       <div className="video-cover">
