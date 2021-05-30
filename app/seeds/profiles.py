@@ -15,9 +15,9 @@ def seed_profiles():
         userId=1
     )
     #COMMENT
-    # for movie_PK in range(1,10):
-    #     movie = Movie.query.get(movie_PK)
-    #     demo.bookmarks.append(movie)
+    for movie_PK in range(1,10):
+        movie = Movie.query.get(movie_PK)
+        demo.bookmarks.append(movie)
 
     db.session.add(demo)
 

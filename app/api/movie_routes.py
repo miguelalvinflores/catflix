@@ -1,17 +1,19 @@
-from flask import Blueprint
-from app.models import Movie, Genre
+from flask import Blueprint, request
+from app.models import db, Movie, Genre, Profile
 import random
 
 movie_routes = Blueprint('movie', __name__)
 
 
-# @movie_routes.route('/<int:movieId>/likes/<int:profileId>', methods=['POST', 'DELETE'])
-# def handleLikes(movieId, profileId):
+# @movie_routes.route(
+# '/<int:movieId>/likes/<int:profileId>', methods=['POST', 'DELETE'])
+#   def handleLikes(movieId, profileId):
 #     if request.method == 'DELETE':
 #         print('cat')
 #     else:
 #         upvoteDownvote = response.get_json()
-#         like = Like(profileId=profileId, movieId=movieId, upvoteDownvote=upvoteDownvote)
+#         like = Like(
+#   profileId=profileId, movieId=movieId, upvoteDownvote=upvoteDownvote)
 #         db.session.add(like)
 #         db.commit()
 #         return
@@ -40,3 +42,34 @@ def get_movies_by_genreId(genreId):
 # @movie_routes.route('random')
 # def get_random_movie():
 #     movies = Movie.query.gi
+
+@movie_routes.route('/search', methods=['POST'])
+def search_movies():
+    data = request.json
+    term = data['searchTerm']
+
+    genre = Genre.query.filter(Genre.type == term.title()).first()
+    if genre:
+        movies = Movie.query.join(
+            Movie.genres).filter((Genre.type == genre.type) | Movie.title.ilike(f'%{term}%') | Movie.description.ilike(f'%{term}%')).all()
+    else:
+        movies = Movie.query.filter(Movie.title.ilike(f'%{term}%') | Movie.description.ilike(f'%{term}%')).all()
+
+    matches = {'matches': [movie.to_dict() for movie in movies]}
+    return matches
+
+    # pro-move: check again if movie is in profile.bookmarks and store in variable use as
+    # conditional to double check before performing CRUD
+
+
+@movie_routes.route(
+    '/<int:movieId>/bookmarks/<int:profileId>', methods=['POST', 'DELETE'])
+def handle_bookmark(movieId, profileId):
+    profile = Profile.query.get(profileId)
+    movie = Movie.query.get(movieId)
+    if request.method == 'POST':
+        profile.bookmarks.append(movie)
+    else:
+        profile.bookmarks.remove(movie)
+    db.session.commit()
+    return {"success": "success"}

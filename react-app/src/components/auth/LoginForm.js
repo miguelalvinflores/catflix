@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useLocation } from "react-router-dom";
 import { login } from "../../store/session";
+import styled from "styled-components";
 import Footer from "../Footer.js";
 import "../CSS/LoginForm.css";
 
 const LoginForm = () => {
+  const LoginFooter = styled(Footer)`
+    bottom: 0;
+  `;
   const location = useLocation();
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState(
@@ -119,7 +123,8 @@ const LoginForm = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <LoginFooter />
+      {/* <div className="login-footer-wrapper"><Footer /></div> */}
     </>
   );
 };
