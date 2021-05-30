@@ -33,7 +33,7 @@ const normalize = (movieList) => {
 }
 
 export const retrieveMovies = () => async (dispatch) => {
-  let res = await fetch(`/api/movies`);
+    let res = await fetch(`/api/allMovies`)
 
     if (res.ok) {
         const allMovies = await res.json();
@@ -41,35 +41,18 @@ export const retrieveMovies = () => async (dispatch) => {
         const movies = normalize(allMovies.movies)
         dispatch(getMovies(movies));
     }
-   
+
   return res;
 };
 
-export const searchMovies = (searchTerm) => async (dispatch) => {
-    const res = await fetch(`api/movies/search`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            searchTerm
-        }),
-    })
+export const chooseMovie = () => async (dispatch) => {
+    let res = await fetch('/api/movie')
 
     if (res.ok) {
-        const matchingMovies = await res.json()
-        // const movies = normalize(matchingMovies.matches)
-        console.log("FROM SEARCH THUNK", matchingMovies.matches)
-        dispatch(getMovies(matchingMovies))
+        const movie = await res.json();
+        dispatch(thisMovie(movie));
     }
-
-    return res
-
 }
-
-export const chooseMovie = (movie) => async (dispatch) => {
-  dispatch(thisMovie(movie));
-};
 
 export const retrieveMoviesByGenreId = (genreId) => async (dispatch) => {
   let res = await fetch(`/api/movies/genre/${genreId}`);
