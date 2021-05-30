@@ -41,7 +41,7 @@ const LoginForm = () => {
     handleTextChange(e.target.value, setPasswordIsActive);
     setPassword(e.target.value);
   };
-  
+
   if (user) {
     return <Redirect to="/browse" />;
   }
@@ -102,7 +102,7 @@ const LoginForm = () => {
                 </button>
                 <div className="form-other-details">
                   <p>
-                    New to Netflix?{" "}
+                    New to Catflix?{" "}
                     <a className="sign-up-link" href="/sign-up">
                       {" "}
                       Sign up now

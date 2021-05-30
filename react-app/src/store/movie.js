@@ -24,7 +24,7 @@ const getMoviesbyGenre = (genre) => {
 }
 
 export const retrieveMovies = () => async (dispatch) => {
-    let res = await fetch(`/api/movies`)
+    let res = await fetch(`/api/allMovies`)
 
     if (res.ok) {
         const allMovies = await res.json();
@@ -38,8 +38,13 @@ export const retrieveMovies = () => async (dispatch) => {
     return res;
 };
 
-export const chooseMovie = (movie) => async (dispatch) => {
-    dispatch(thisMovie(movie));
+export const chooseMovie = () => async (dispatch) => {
+    let res = await fetch('/api/movie')
+
+    if (res.ok) {
+        const movie = await res.json();
+        dispatch(thisMovie(movie));
+    }
 }
 
 export const retrieveMoviesByGenreId = (genreId) => async (dispatch) => {

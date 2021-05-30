@@ -61,17 +61,17 @@ function BrowseVids() {
                     <div className='billboard-presentation-tracking'>
                         <div className='billboard'>
                             <div className='billboard-motion'>
-                                <video
+                                {/* <video
                                 autoplay='true'
                                 muted
                                 onEnded={() => onBillEnd()}
                                 src={srcfunc(movie?.url)}
                                 >
-                                </video>
+                                </video> */}
                             </div>
                             <div className='bill-bottom-layer full-screen '>
                                 <div className='bill-img-wrapper'>
-                                    <img className={ billIsPlaying ? 'bill-playing bill-img' :'bill-img'} src={movie?.backdrop} alt='movie backdrop' />
+                                    <img className={ billIsPlaying ? 'bill-playing bill-img' :'bill-img'} src={movie?.backdrop} alt={`"${movie?.title}" backdrop`} />
                                     <div class="trailer-vignette vignette-layer"></div>
                                     <div class="hero-vignette vignette-layer"></div>
                                 </div>
