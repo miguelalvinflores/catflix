@@ -45,7 +45,9 @@ const VideoPlayer = () => {
     video.addEventListener("timeupdate", () => {
       let durationPos = video.currentTime / video.duration;
       let duration = document.querySelector(".duration");
-      duration.style.width = durationPos * 100 + "%";
+      if (duration) {
+        duration.style.width = durationPos * 100 + "%";
+      }
       if (video.ended) {
         dispatch(videoActions.setVideoEnd());
       }
