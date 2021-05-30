@@ -3,21 +3,21 @@
     padding: 0 55px;
 }
 
-.rowItem {
+.item {
     background: black;
     flex: 0 0 19.7%;
     text-align: center;
     margin: 0 2px;
     transition: transform 300ms ease 100ms;
 }
-.rowContainer:hover .rowItem {
+.slider__container:hover .item {
     transform: translateX(-25%);
 }
 
-.rowItem:hover ~ .rowItem {
+.item:hover ~ .item {
     transform: translateX(25%);
  }
 
-.rowItem:hover {
+.item:hover {
     transform: scale(1.5) !important;
 }
