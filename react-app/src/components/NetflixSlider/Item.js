@@ -21,7 +21,7 @@ const Item = ({ movie }) => (
         >
           <img src={movie.backdrop} alt="" />
           <NavLink
-            to={`watch/${movie?.id}`}
+            to={`/watch/${movie?.id}`}
             className='watchmovie'
             style={{ textDecoration: 'none' }}
           >

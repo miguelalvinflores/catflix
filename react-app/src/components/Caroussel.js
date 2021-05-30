@@ -18,7 +18,7 @@ function Caroussel(genre) {
       <div className="rowContainer">
         <Slider>
           {(movies) && movies.map((movie) => {
-            console.log("ROW MOVIES", movies)
+            // console.log("ROW MOVIES", movies)
             return (
               <Slider.Item movie={movie} key={movie.id}>
                 item1

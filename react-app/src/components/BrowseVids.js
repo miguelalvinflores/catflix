@@ -93,7 +93,7 @@ function BrowseVids() {
                     <div className="billboard-links">
                     {movie ? (
                       <NavLink
-                        to={`/watch/${movie?.id}`}
+                        to={`watch/${movie?.id}`}
                         className="watchbill"
                         style={{ textDecoration: "none" }}
                       >

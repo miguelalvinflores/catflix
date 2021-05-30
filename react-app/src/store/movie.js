@@ -98,7 +98,7 @@ export default function reducer(state = initialState, action) {
     case GET_MOVIES:
       return {
         ...state,
-        allMovies: action.payload,
+        allMovies: { ...state.allMovies, ...action.payload},
       };
     case GET_MOVIES_BY_GENRE:
       return {

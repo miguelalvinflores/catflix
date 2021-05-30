@@ -19,7 +19,7 @@ div {
 #root {
   width: 100%;
   z-index: -1;
-  background-color: rgba(0, 0, 0, 0.65);
+  /* background-color: rgba(0, 0, 0, 0.65); */
   height: fit-content;
   color: aliceblue;
 }
