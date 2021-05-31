@@ -27,7 +27,7 @@ function BrowseVids() {
   };
 
   useEffect(() => {
-    console.log("Browse");
+    // console.log("Browse");
     if (userProfiles) {
       dispatch(movieActions.retrieveMovies());
       dispatch(movieActions.chooseMovie());
@@ -71,8 +71,8 @@ function BrowseVids() {
                     src={movie?.backdrop}
                     alt={`"${movie?.title}" backdrop`}
                   />
-                  <div class="trailer-vignette vignette-layer"></div>
-                  <div class="hero-vignette vignette-layer"></div>
+                  <div className="trailer-vignette vignette-layer"></div>
+                  <div className="hero-vignette vignette-layer"></div>
                 </div>
               </div>
               <div className="fill-container">
@@ -117,7 +117,7 @@ function BrowseVids() {
       </span>
       {genres &&
         Object.entries(genres).map(([genre, movies]) => {
-          console.log("MOVIES", movies)
+          // console.log("MOVIES", movies)
           return (
               <Caroussel genre={genre} movies={movies} />
           );

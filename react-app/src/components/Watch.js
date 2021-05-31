@@ -116,7 +116,7 @@ const Watch = () => {
         <div className="video-cover">
           <div className="image-container">
             <img src={movie.backdrop} alt="cats" className="video-cover-image" />
-            <div class="trailer-vignette vignette-layer"></div>
+            <div className="trailer-vignette vignette-layer"></div>
           </div>
           <div className="cover-overlay">
             <p className="film-title">{movie.title}</p>

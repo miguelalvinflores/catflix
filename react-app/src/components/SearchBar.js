@@ -3,6 +3,7 @@ import { useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as movieActions from "../store/movie";
+import "./CSS/SearchBar.css"
 
 function Searchbar() {
   const dispatch = useDispatch();
@@ -10,18 +11,27 @@ function Searchbar() {
   const history = useHistory();
   const allMovie = useSelector((state) => state.movie?.allMovies);
   const [searchTerm, setSearchTerm] = useState("");
+  const [searchActive, setSearchActive] = useState(false);
   // const [searchActive, setSearchActive] = useState(false)
 
   useEffect(() => {
-    if (searchTerm) {
-      dispatch(movieActions.searchMovies(searchTerm));
-      history.push("/search");
-    } else {
-      dispatch(movieActions.retrieveMovies());
-    //   history.push("/browse");
+    if (searchActive) {
+      if (searchTerm) {
+        dispatch(movieActions.searchMovies(searchTerm));
+        history.push("/search");
+      } else {
+        // dispatch(movieActions.retrieveMovies());
+        history.push("/browse");
+      }
     }
   }, [searchTerm, dispatch]);
-
+  
+  const handleClickOut = (e) => {
+      e.preventDefault()
+      if (!searchTerm) {
+        setSearchActive(false)
+      }
+  }
   // useEffect(() => {
   //     const data = localStorage.getItem('currentSearchTerm');
   //     if (data) {
@@ -42,10 +52,6 @@ function Searchbar() {
 
   // }
 
-  // const handleClick = (e) => {
-  //     e.preventDefault()
-  //     activateSearch()
-  // }
 
   // const handleEnterKey = e => {
   //     if (e.key === 'Enter') {
@@ -79,13 +85,18 @@ function Searchbar() {
 
   return (
     <div className="search-bar__container">
+      {searchActive ? 
       <input
         className="search-bar"
         placeholder="Title, description, genres"
         type="text"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-      />
+        onBlur={handleClickOut}
+        autoFocus
+      /> :
+      <img className="search-icon" src="images/search-icon.png" onClick={(e) => setSearchActive(true)}/>
+      }
     </div>
   );
 }

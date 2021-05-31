@@ -111,7 +111,7 @@ const VideoPlayer = ({ movie }) => {
             <HiVolumeUp size="25px" />
           </button>
           <input
-            class="volume-slider"
+            className="volume-slider"
             value="1"
             type="range"
             max="1"

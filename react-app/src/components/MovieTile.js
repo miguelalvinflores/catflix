@@ -27,7 +27,6 @@ function MovieTile() {
     return (
       <>
         {movieMatches?.map((movie) => {
-          console.log(movie);
           return (
             <NavLink
               key={movie.id}

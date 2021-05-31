@@ -1,0 +1,10 @@
+.search-bar__container {
+    position: absolute;
+    right: 200px;
+    top: 25px;
+}
+
+.search-icon {
+    height: 50px;
+    width: 50px;
+}
