@@ -5,7 +5,7 @@ import Slider from "./NetflixSlider";
 
 function Caroussel(genre) {
   const movies = genre.movies;
-  console.log("GENRE", genre);
+  // console.log("GENRE", genre);
 
   // let srcfunc = function(str) {
   //     let src = "https://"+str

@@ -27,7 +27,7 @@ function BrowseVids() {
   };
 
   useEffect(() => {
-    console.log("Browse");
+    // console.log("Browse");
     if (userProfiles) {
       dispatch(movieActions.retrieveMovies());
       dispatch(movieActions.chooseMovie());
@@ -117,7 +117,7 @@ function BrowseVids() {
       </span>
       {genres &&
         Object.entries(genres).map(([genre, movies]) => {
-          console.log("MOVIES", movies)
+          // console.log("MOVIES", movies)
           return (
               <Caroussel genre={genre} movies={movies} />
           );

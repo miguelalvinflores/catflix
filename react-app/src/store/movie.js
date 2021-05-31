@@ -59,7 +59,6 @@ export const searchMovies = (searchTerm) => async (dispatch) => {
   if (res.ok) {
     const matchingMovies = await res.json();
     // const movies = normalize(matchingMovies.matches)
-    console.log("FROM SEARCH THUNK", matchingMovies.matches);
     dispatch(getMovies(matchingMovies));
   }
 
