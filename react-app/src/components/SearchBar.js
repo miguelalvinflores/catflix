@@ -7,7 +7,6 @@ import "./CSS/SearchBar.css"
 
 function Searchbar() {
   const dispatch = useDispatch();
-  const location = useLocation();
   const history = useHistory();
   const allMovie = useSelector((state) => state.movie?.allMovies);
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,6 +20,8 @@ function Searchbar() {
       } else {
         history.push("/browse");
       }
+    } else {
+      history.push("/browse")
     }
 
   }, [searchTerm, dispatch]);
