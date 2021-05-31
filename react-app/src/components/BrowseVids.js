@@ -71,8 +71,8 @@ function BrowseVids() {
                     src={movie?.backdrop}
                     alt={`"${movie?.title}" backdrop`}
                   />
-                  <div className="trailer-vignette vignette-layer"></div>
-                  <div className="hero-vignette vignette-layer"></div>
+                  <div class="trailer-vignette vignette-layer"></div>
+                  <div class="hero-vignette vignette-layer"></div>
                 </div>
               </div>
               <div className="fill-container">

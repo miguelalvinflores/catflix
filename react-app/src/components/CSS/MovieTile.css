@@ -2,7 +2,7 @@
     box-sizing: border-box;
     height: 250px;
     width: 167px;
-    cursor:progress;
+    cursor: pointer;
     margin-bottom: 2%;
     /* border: 1px solid yellow; */
     overflow: hidden;

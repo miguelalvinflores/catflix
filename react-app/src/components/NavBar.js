@@ -26,6 +26,7 @@ const NavBar = () => {
       sessionLinks = (
         <>
           <div>
+            <NavLink to='/browse' className='home-nav'>Home</NavLink>
             <Searchbar />
             <ProfileButton user = {sessionUser} />
           </div>

@@ -5,7 +5,7 @@ nav {
   width: 100%;
   z-index: 2;
   /* background-color: black; */
-  border: 1px solid green;
+  /* border: 1px solid green; */
 }
 
 .logged-in {
@@ -47,4 +47,13 @@ nav {
 
 .login-nav {
   color: aliceblue;
+}
+
+.home-nav {
+  position: absolute;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  left: 350px;
+  top: 30px;
 }
