@@ -201,7 +201,7 @@
     transition-delay: 5000ms; */
 }
 .bill-description-fade-container {
-    --scrollbarBG: #000000;
+    --scrollbarBG: transparent;
     --thumbBG: #fff ;
 }
 
