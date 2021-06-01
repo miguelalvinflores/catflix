@@ -1,14 +1,14 @@
 .profile-container {
-    width: 300px;
-    height: 200px;
+    width: 75px;
+    height: 75px;
     position: absolute;
     right: 50px;
-    top: 61px;
+    top: 10px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    /* justify-content: center; */
+    cursor: pointer;
 }
 
 .profile-btn {
@@ -21,18 +21,37 @@
     background-size: contain;
     background-repeat: no-repeat;
     margin-right: 30px;
-    top: -40px;
+    top: 12px;
     cursor: pointer;
+}
+
+.triangle-dropdown {
+    position: absolute;
+    height: 10px;
+    width: 16px;
+    top: 63px;
+    right: 40px;
 }
 
 .profile-dropdown {
     position: absolute;
-    top: 5px;
     background-color: black;
+    width: 200px;
+    height: 300px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 10px;
+    top: 58px;
+    border: 1px solid rgba(191, 191, 191, 0.2);
 }
 
 hr {
     border-color: #808080;
+    width: 195px;
+    margin-left: -10px;
 }
 
 

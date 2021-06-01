@@ -18,7 +18,7 @@
 
 .nav-tile__name {
     font-size: 15px;
-    width: 200px;
+    width: fit-content;
     color: white;
     
 }

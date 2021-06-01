@@ -33,9 +33,11 @@ const ProfileButton = ({ user }) => {
     
 
     return (
-        <div className='profile-container' onMouseLeave={closeMenu}>
-            <div className='profile-btn' style={{ backgroundImage: `url(${profile[1].image_url})` }} onMouseEnter={openMenu} ></div>
+        <div className='profile-container' onMouseEnter={openMenu} onMouseLeave={closeMenu}>
+            <div className='profile-btn' style={{ backgroundImage: `url(${profile[1].image_url})` }}  ></div>
             {showMenu && (
+                <>
+                <img className="triangle-dropdown" src="images/nav-triangle.png" />
                 <ul className='profile-dropdown' >
                     <ProfileTile where="Navbar" />
                     <div className='profile-manage-btn' onClick={(e) => {
@@ -45,6 +47,7 @@ const ProfileButton = ({ user }) => {
                     <hr/>
                     <LogoutButton />
                 </ul>
+                </>
             )}
         </div>
     )

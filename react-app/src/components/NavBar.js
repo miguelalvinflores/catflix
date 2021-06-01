@@ -26,9 +26,12 @@ const NavBar = () => {
       sessionLinks = (
         <>
           <div>
-            <NavLink to='/browse' className='home-nav'>Home</NavLink>
+            <a href='/browse' className='home-nav'>Home</a>
             <Searchbar />
-            <ProfileButton user = {sessionUser} />
+            <div className="nav-profile-btn__container" >
+              <ProfileButton user = {sessionUser} /> 
+              <img className="triangle-icon" src="images/nav-triangle.png" />
+            </div>
           </div>
 
         </>
@@ -46,9 +49,9 @@ const NavBar = () => {
 
   return (
     <nav>
-      <NavLink className='logo-container' to="/" exact={true} activeClassName="active">
+      <a className='logo-container' href='/' exact="true" activeclassname="active">
         <img src="https://fontmeme.com/permalink/210524/34096974b6eb42471ca7fafc9afb884e.png" alt="Catflix banner" border="0" />
-      </NavLink>
+      </a>
       {sessionLinks}
     </nav>
   );

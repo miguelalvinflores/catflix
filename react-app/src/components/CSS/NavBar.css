@@ -57,3 +57,18 @@ nav {
   left: 350px;
   top: 30px;
 }
+
+.triangle-icon {
+  position: absolute;
+  height: 7px;
+  width: 12px;
+  transform: rotate(-180deg);
+  top: 40px;
+  right: 55px;
+  transition: all ease-in 0.25s;
+  z-index: -1;
+}
+
+.nav-profile-btn__container:hover > .triangle-icon {
+  transform: rotate(0deg);
+}

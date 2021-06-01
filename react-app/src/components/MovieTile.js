@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 
-import * as profileActions from "../store/profile";
 import "./CSS/MovieTile.css";
 
 function MovieTile() {
@@ -11,15 +10,14 @@ function MovieTile() {
   const sessionUser = useSelector((state) => state.session.user);
   const movieMatches = useSelector((state) => state.movies.allMovies?.matches);
   const currentProfile = useSelector((state) => state.profile.profile);
-  // const [errors, setErrors] = useState([]);
 
   useEffect(() => {}, [movieMatches]);
 
-  const handleClick = (movie) => (e) => {
-    e.preventDefault();
-    // localStorage.setItem("chosenMovie", JSON.stringify(movie));
+  // const handleClick = (movie) => (e) => {
+  //   e.preventDefault();
+  //   localStorage.setItem("chosenMovie", JSON.stringify(movie));
    
-  };
+  // };
 
   if (movieMatches) {
     // console.log("MOVIE TILE", Array.isArray(movies), movies)
@@ -38,9 +36,7 @@ function MovieTile() {
                 className="movie-tile__container"
                 style={{ backgroundImage: `url(${movie.image})` }}
               >
-                {/* {movie.title} */}
               </div>
-              {/* <div className="movie-tile__name">{movie.title}</div> */}
             </NavLink>
           );
         })}

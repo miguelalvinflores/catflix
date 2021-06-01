@@ -25,7 +25,7 @@ function App() {
     (async () => {
       await dispatch(authenticate());
       const profile = localStorage.getItem('chosenProfile');
-      console.log(JSON.parse(profile))
+      // console.log(JSON.parse(profile))
       if (profile) {
         await dispatch(profileActions.selectProfile(JSON.parse(profile)))
       }
