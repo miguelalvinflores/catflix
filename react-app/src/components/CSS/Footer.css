@@ -44,4 +44,10 @@ ul.icons li {
   padding-bottom: 15px;
   font-size: 13px;
   justify-content: center;
+  height: 50px;
+  margin-left: 50px;
+}
+
+.mdb-credit {
+  margin-left: 10px;
 }
