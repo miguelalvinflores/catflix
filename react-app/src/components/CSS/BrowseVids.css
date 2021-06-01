@@ -200,9 +200,10 @@
     transition-duration: 500ms;
     transition-delay: 5000ms; */
 }
-/* .bill-description-fade-container {
-
-} */
+.bill-description-fade-container {
+    --scrollbarBG: #000000;
+    --thumbBG: #fff ;
+}
 
 .bill-description {
     color: #fff;
@@ -212,6 +213,23 @@
     font-size: 1.4vw;
     text-shadow: 2px 2px 4px rgb(0 0 0 / 45%);
     margin-top: .1vw;
+    max-height: 10em;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+.bill-description::-webkit-scrollbar {
+    width: 11px;
+}
+
+.bill-description::-webkit-scrollbar-track {
+background: var(--scrollbarBG);
+}
+
+.bill-description::-webkit-scrollbar-thumb {
+background-color: var(--thumbBG) ;
+border-radius: 6px;
+border: 3px solid var(--scrollbarBG);
 }
 
 .lolomoRow {
