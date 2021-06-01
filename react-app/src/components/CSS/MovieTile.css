@@ -4,9 +4,8 @@
     width: 167px;
     cursor: pointer;
     margin-bottom: 2%;
-    /* border: 1px solid yellow; */
     overflow: hidden;
-    
+    transition: all ease-in 0.25s;    
 }
 
 .movie-tile__container {
@@ -17,3 +16,8 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+
+.full-movie-tile__container:hover {
+    transform: scale(1.5);
+}
+

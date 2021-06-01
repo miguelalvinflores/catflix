@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory} from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import * as profileActions from "../store/profile"
 import "./CSS/ProfileTile.css"
@@ -8,6 +8,7 @@ import "./CSS/ProfileTile.css"
 function ProfileTile(props) {
     const dispatch = useDispatch();
     const history = useHistory();
+    const location = useLocation();
     const sessionUser = useSelector((state) => state.session.user);
     const userProfiles = useSelector((state) => state.profile.allProfiles);
     const currentProfile = useSelector((state) => state.profile.profile);
@@ -22,17 +23,21 @@ function ProfileTile(props) {
 
     const handleClick = profile => (e) => {
         e.preventDefault();
-        localStorage.setItem('chosenProfile', JSON.stringify(profile))
+        if (location.pathname === "/manage_profiles") {
+            alert("Redirecting you back to Select Profile page so that you could proceed with the current profiles.")
+            return history.push('/browse')
+        }
         dispatch(profileActions.selectProfile(profile))
+        localStorage.setItem('chosenProfile', JSON.stringify(profile))
         // history.push('/test')
     }
 
-    const handleClickManagement = profile => (e) => {
-        e.preventDefault();
-        console.log("TESTING MANAGE")
-    }
+    // const handleClickManagement = profile => (e) => {
+    //     e.preventDefault();
+    //     console.log("TESTING MANAGE")
+    // }
 
-    console.log("PROPS LOCATION:", props.where)
+    // console.log("PROPS LOCATION:", props.where)
 
     useEffect(() => {
         if (!currentProfile) {
@@ -58,7 +63,7 @@ function ProfileTile(props) {
     
     if (userProfiles) {
         const profileList = userProfiles.profiles
-
+       
         return (
             <>
                 {profileList?.map(profile => {
@@ -73,7 +78,6 @@ function ProfileTile(props) {
                         
                     }
                 })}
-
 
             </>
 
