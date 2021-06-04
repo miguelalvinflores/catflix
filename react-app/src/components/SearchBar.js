@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+import searchicon from '../images/searchicon.png'
 import * as movieActions from "../store/movie";
 import "./CSS/SearchBar.css"
 
@@ -25,7 +26,7 @@ function Searchbar() {
     }
 
   }, [searchTerm, dispatch]);
-  
+
   const handleClickOut = (e) => {
       e.preventDefault()
       if (!searchTerm) {
@@ -36,7 +37,7 @@ function Searchbar() {
 
   return (
     <div className="search-bar__container">
-      {searchActive ? 
+      {searchActive ?
       <input
         className="search-bar"
         placeholder="Title, description, genres"
@@ -46,7 +47,7 @@ function Searchbar() {
         onBlur={handleClickOut}
         autoFocus
       /> :
-      <img className="search-icon" src="images/search-icon.png" onClick={(e) => setSearchActive(true)}/>
+      <img className="search-icon" src={searchicon} onClick={(e) => setSearchActive(true)} alt='Search Icon'/>
       }
     </div>
   );
