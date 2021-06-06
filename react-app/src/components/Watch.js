@@ -20,12 +20,13 @@ import { AiFillLike, AiFillDislike } from "react-icons/ai";
 const Watch = () => {
   const [showMovieCover, setShowMovieCover] = useState(true);
   const { movieId } = useParams();
-  const profileLikes = useSelector((state) => state.profile.profile[0].likes);
+  // const profileExist = useSelector((state) => state.profile);
+  const profileLikes = useSelector((state) => state.profile?.profile[0].likes);
   const movie = useSelector((state) => state.movies.allMovies[movieId]);
-  const profileId = useSelector((state) => state.profile.profile[0].id);
+  const profileId = useSelector((state) => state.profile?.profile[0].id);
   const videoEnded = useSelector((state) => state.video.end);
   const profileBookmarks = useSelector(
-    (state) => state.profile.profile[0].bookmarks
+    (state) => state.profile?.profile[0].bookmarks
   );
   const genres = [
     "Comedy",
@@ -40,7 +41,7 @@ const Watch = () => {
   );
   const dispatch = useDispatch();
 
-  let profileHasLike = profileLikes.hasOwnProperty(movieId) ? true : false;
+  let profileHasLike = profileLikes?.hasOwnProperty(movieId) ? true : false;
   let profileHasBookmark = profileBookmarks[movieId] ? true : false;
   const [isBookmarked, setIsBookmarked] = useState(profileHasBookmark);
 
@@ -115,7 +116,11 @@ const Watch = () => {
       return (
         <div className="video-cover">
           <div className="image-container">
-            <img src={movie.backdrop} alt="cats" className="video-cover-image" />
+            <img
+              src={movie.backdrop}
+              alt="cats"
+              className="video-cover-image"
+            />
             <div class="trailer-vignette vignette-layer"></div>
           </div>
           <div className="cover-overlay">
@@ -150,7 +155,7 @@ const Watch = () => {
       );
     }
 
-    return <></>
+    return <></>;
   };
 
   return (

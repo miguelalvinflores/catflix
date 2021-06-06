@@ -20,7 +20,7 @@
 }
 .cover-overlay {
   /* top: 100px; */
-  top: 0;
+  top: 20%;
   z-index: 1;
   position: relative;
   height: 100%;
