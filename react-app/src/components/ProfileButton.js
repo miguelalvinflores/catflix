@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import LogoutButton from './auth/LogoutButton';
-
+import navtriangle from '../images/navtriangle.png'
 import ProfileTile from "./ProfileTile"
 import "./CSS/ProfileButton.css"
 
@@ -30,14 +30,14 @@ const ProfileButton = ({ user }) => {
     }, [showMenu]);
 
 
-    
+
 
     return (
         <div className='profile-container' onMouseEnter={openMenu} onMouseLeave={closeMenu}>
             <div className='profile-btn' style={{ backgroundImage: `url(${profile[1].image_url})` }}  ></div>
             {showMenu && (
                 <>
-                <img className="triangle-dropdown" src="images/nav-triangle.png" />
+                <img className="triangle-dropdown" src={navtriangle} alt='dropdown arrow'/>
                 <ul className='profile-dropdown' >
                     <ProfileTile where="Navbar" />
                     <div className='profile-manage-btn' onClick={(e) => {

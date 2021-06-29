@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkEmail } from "../store/session";
 import Footer from './Footer'
 import "./CSS/Splash.css";
-
+import Splashbackground from '../images/Splashbackground.png'
+import splashDeviceScreens from '../images/splashDeviceScreens.png'
 const Splash = () => {
     const user = useSelector((state) => state.session.user);
     const [email, setEmail] = useState("");
@@ -63,7 +64,7 @@ const Splash = () => {
         <div className="story-cards">
             <div className="hero-card">
                 <div className="hero-card-background">
-                    <img className='hero-card-img' src='images/Splash-background.png' alt="Example Movie title panel" />
+                    <img className='hero-card-img' src={Splashbackground} alt="Example Movie title panel" />
                     <div className="concord-img-gradient"></div>
                 </div>
                 <div className="hero-story-card-text">
@@ -102,7 +103,7 @@ const Splash = () => {
                         <h2 className='story-card-subtitle'>Stream cat clips on your phone, tablet, laptop, and any other devices with internet browser access.</h2>
                     </div>
                     <div className='story-card-img-container'>
-                        <img className='-card-img' src='images/Splash-Device_Screens.png' alt="Example Movie title panel" />
+                        <img className='-card-img' src={splashDeviceScreens} alt="Example Movie title panel" />
                     </div>
                 </div>
             </div>

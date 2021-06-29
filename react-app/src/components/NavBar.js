@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
+import navtriangle from '../images/navtriangle.png'
 import ProfileButton from './ProfileButton'
 import Searchbar from './SearchBar'
 import './CSS/NavBar.css'
@@ -29,8 +29,8 @@ const NavBar = () => {
             <a href='/browse' className='home-nav'>Home</a>
             <Searchbar />
             <div className="nav-profile-btn__container" >
-              <ProfileButton user = {sessionUser} /> 
-              <img className="triangle-icon" src="images/nav-triangle.png" />
+              <ProfileButton user = {sessionUser} />
+              <img className="triangle-icon" src={navtriangle} alt='dropdown arrow'/>
             </div>
           </div>
 

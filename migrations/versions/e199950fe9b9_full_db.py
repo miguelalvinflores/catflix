@@ -41,7 +41,7 @@ def upgrade():
     sa.Column('title', sa.String(length=255), nullable=False),
     sa.Column('image', sa.String(), nullable=False),
     sa.Column('description', sa.Text(), nullable=False),
-    sa.Column('url', sa.String(), nullable=True),
+    sa.Column('url', sa.String(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('movieGenres',
