@@ -8,6 +8,7 @@ import Slider from "./NetflixSlider";
 import Footer from "./Footer";
 import * as videoActions from "../store/video";
 import * as profileActions from "../store/profile";
+import * as movieActions from "../store/movie";
 // import * as movieActions from "../store/movie";
 import "./CSS/Watch.css";
 import "./CSS/VideoCover.css";
@@ -56,7 +57,6 @@ const Watch = () => {
     } else {
       moviePercentage.classList.add("green-rating");
     }
-    console.log(moviePercentage);
   }, [dispatch, movie, movieLikes]);
 
   //RECOMMENDED MOVIES
@@ -95,15 +95,18 @@ const Watch = () => {
         dispatch(profileActions.deleteLike(movieId, profileId));
         let activeLike = document.querySelector(".like-button");
         activeLike.classList.remove("active");
+        dispatch(movieActions.removeMovieLike(movieId, true));
       } else {
         let activeLike = document.querySelector(".dislike-button");
         activeLike.classList.remove("active");
         let inActiveLike = document.querySelector(".like-button");
         inActiveLike.classList.add("active");
         dispatch(profileActions.updateLike(movieId, true, profileId));
+        dispatch(movieActions.updateMovieLike(movieId, true));
       }
     } else {
       dispatch(profileActions.addLike(movieId, true, profileId));
+      dispatch(movieActions.addMovieLike(movieId, true));
       let inActiveLike = document.querySelector(".like-button");
       inActiveLike.classList.add("active");
     }
@@ -114,15 +117,18 @@ const Watch = () => {
         dispatch(profileActions.deleteLike(movieId, profileId));
         let activeLike = document.querySelector(".dislike-button");
         activeLike.classList.remove("active");
+        dispatch(movieActions.removeMovieLike(movieId, false));
       } else {
         let activeLike = document.querySelector(".like-button");
         activeLike.classList.remove("active");
         let inActiveLike = document.querySelector(".dislike-button");
         inActiveLike.classList.add("active");
         dispatch(profileActions.updateLike(movieId, false, profileId));
+        dispatch(movieActions.updateMovieLike(movieId, false));
       }
     } else {
       dispatch(profileActions.addLike(movieId, false, profileId));
+      dispatch(movieActions.addMovieLike(movieId, false));
       let inActiveLike = document.querySelector(".dislike-button");
       inActiveLike.classList.add("active");
     }
