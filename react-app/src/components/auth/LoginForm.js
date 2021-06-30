@@ -4,6 +4,7 @@ import { Redirect, useLocation } from "react-router-dom";
 import { login } from "../../store/session";
 import styled from "styled-components";
 import Footer from "../Footer.js";
+import Splashbackground from "../../images/Splashbackground.png";
 import "../CSS/LoginForm.css";
 
 const LoginForm = () => {
@@ -63,7 +64,7 @@ const LoginForm = () => {
         <div className="overlay"></div>
         <img
           className="hero-card-img-login"
-          src="images/Splash-background.png"
+          src={Splashbackground}
           alt="Example Movie title panel"
         />
 
@@ -125,7 +126,7 @@ const LoginForm = () => {
                   <p className="recaptcha-terms-of-use">
                     This page is protected by Google reCAPTCHA to ensure you're
                     not a bot.{" "}
-                    <span className="recaptcha-link">Learn more</span>.
+                    {/* <span className="recaptcha-link">Learn more</span>. */}
                   </p>
                 </div>
               </div>

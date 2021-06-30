@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 // =========================================
 import VideoPlayer from "./VideoPlayer";
@@ -8,7 +8,7 @@ import Slider from "./NetflixSlider";
 import Footer from "./Footer";
 import * as videoActions from "../store/video";
 import * as profileActions from "../store/profile";
-import * as movieActions from "../store/movie";
+// import * as movieActions from "../store/movie";
 import "./CSS/Watch.css";
 import "./CSS/VideoCover.css";
 // ============ REACT ICONS =====================
@@ -18,6 +18,7 @@ import { AiFillLike, AiFillDislike } from "react-icons/ai";
 // =======================
 
 const Watch = () => {
+  const dispatch = useDispatch();
   const [showMovieCover, setShowMovieCover] = useState(true);
   const { movieId } = useParams();
   // const profileExist = useSelector((state) => state.profile);
@@ -28,6 +29,37 @@ const Watch = () => {
   const profileBookmarks = useSelector(
     (state) => state.profile?.profile[0].bookmarks
   );
+  const [movieLikes, setMovieLikes] = useState(0);
+
+  // calculate like percentage
+  useEffect(() => {
+    let moviePercentageLike;
+    console.log(movie.total_votes, movie.num_upvote, `${movie.title}`);
+    if (movie.total_votes < 1) {
+      moviePercentageLike = 0;
+    } else {
+      moviePercentageLike = Math.round(
+        (movie.num_upvote / movie.total_votes) * 100
+      );
+    }
+    setMovieLikes(moviePercentageLike);
+  }, [dispatch, movie]);
+
+  // dynamic like color
+  useEffect(() => {
+    let moviePercentage = document.querySelector("#movie-like-rate");
+    moviePercentage.classList = "";
+    if (movieLikes < 40) {
+      moviePercentage.classList.add("red-rating");
+    } else if (movieLikes < 70) {
+      moviePercentage.classList.add("orange-rating");
+    } else {
+      moviePercentage.classList.add("green-rating");
+    }
+    console.log(moviePercentage);
+  }, [dispatch, movie, movieLikes]);
+
+  //RECOMMENDED MOVIES
   const genres = [
     "Comedy",
     "Fantasy",
@@ -39,12 +71,12 @@ const Watch = () => {
   const genreMovies = useSelector(
     (state) => state.movies?.genres[genres[Math.floor(Math.random() * 6)]]
   );
-  const dispatch = useDispatch();
 
   let profileHasLike = profileLikes?.hasOwnProperty(movieId) ? true : false;
   let profileHasBookmark = profileBookmarks[movieId] ? true : false;
   const [isBookmarked, setIsBookmarked] = useState(profileHasBookmark);
 
+  // BOOKMARKS
   const myListHandler = () => {
     if (profileBookmarks[movieId]) {
       dispatch(profileActions.deleteBookmark(profileId, movieId));
@@ -55,7 +87,8 @@ const Watch = () => {
     setIsBookmarked(!isBookmarked);
   };
 
-  // Refactor later
+  // LIKE/DISLIKE
+  // Refactor later (useRef instead of querySelector)
   const likeButtonHandler = () => {
     if (profileLikes.hasOwnProperty(movieId)) {
       if (profileLikes[movieId]) {
@@ -125,10 +158,14 @@ const Watch = () => {
           </div>
           <div className="cover-overlay">
             <p className="film-title">{movie.title}</p>
+            <p className="movie-likes">
+              <span id="movie-like-rate">{`${movieLikes}% `}</span>
+              approval rating
+            </p>
             <p className="film-description">{movie.description}</p>
             <div className="controls-container">
               <button className="play-button" onClick={playBtnHandler}>
-                {/* <FaPlay /> */}
+                <FaPlay />
                 Play
               </button>
               <button className="bookmark-button" onClick={myListHandler}>

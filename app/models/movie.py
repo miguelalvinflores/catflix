@@ -21,18 +21,25 @@ class Movie(db.Model):
 
     profiles = db.relationship(
         "Profile", secondary=bookmarks, back_populates="bookmarks"
-        )
+    )
     genres = db.relationship(
         "Genre", secondary=movieGenres, back_populates="movies"
-        )
+    )
     likes = db.relationship("Like", backref="movie_likes", lazy="joined")
 
     def to_dict(self):
+        num_upvote = 0
+        for like in self.likes:
+            if like.upvoteDownvote:
+                num_upvote += 1
+
         return{
             "id": self.id,
             "title": self.title,
             "image": self.image,
             "description": self.description,
             "url": self.url,
-            "backdrop": self.backdrop
+            "backdrop": self.backdrop,
+            "num_upvote": num_upvote,
+            "total_votes": len(self.likes)
         }

@@ -26,7 +26,7 @@
   height: 100%;
   width: 100%;
   box-sizing: border-box;
-  padding-left: 2%;
+  padding-left: 5%;
   padding-top: 5%;
 }
 .footer-wrapper {
@@ -41,12 +41,13 @@
 }
 .controls-container .play-button,
 .controls-container .bookmark-button {
-  height: 45px;
+  height: 50px;
   width: 175px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   font-size: 30px;
   align-items: center;
+  /* font-weight: 550; */
 }
 .controls-container .like-button.active {
   color: green;
