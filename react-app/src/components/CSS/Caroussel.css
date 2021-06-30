@@ -1,5 +1,5 @@
 .rowHeader {
-    margin: 0 0;
+    margin-left: 20px ;
 }
 .rowContainer {
     display: flex;
