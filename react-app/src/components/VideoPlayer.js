@@ -87,7 +87,7 @@ const VideoPlayer = ({ movie }) => {
       <video
         className="video"
         // change that url later: DON'T FORGET TO ADD https://
-        src={`https:${movie.url}`}
+        src={`https://${movie.url}`}
         autoplay="true"
         muted
         onEnded={videoEnd}
