@@ -1,4 +1,6 @@
 # Catflix
+![GitHub last commit](https://img.shields.io/github/last-commit/miguelalvinflores/catflix)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/miguelalvinflores/catflix)
 
 <!-- Insert Usage GIF here -->
 ![Site Demo Gif](CatflixGIF25Mb.gif)
@@ -12,7 +14,7 @@ Catflix is a website for cat lovers to borwse their favorite cat movie title sou
 # Table of contents
 
 
-- [Jazzify](#Jazzify)
+- [Catflix](#Catflix)
 - [Brief Description](#brief-introduction)
 - [Table of contents](#table-of-contents)
 - [Live Link](#live-link)
@@ -20,10 +22,6 @@ Catflix is a website for cat lovers to borwse their favorite cat movie title sou
     - [Backend](#backend)
     - [Frontend](#frontend)
 - [Footer](#footer)
-
-# Catflix
-![GitHub last commit](https://img.shields.io/github/last-commit/miguelalvinflores/catflix)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/miguelalvinflores/catflix)
 
 
 
