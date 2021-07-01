@@ -22,8 +22,7 @@ Catflix is a website for cat lovers to borwse their favorite cat movie titles so
     - [Backend](#backend)
     - [Frontend](#frontend)
     - [Hosting](#hosting)
-- [Footer](#footer)
-
+- [Features](#features)
 
 
 ## [Live Link](**https://catflix-aa.herokuapp.com/**)
@@ -43,7 +42,7 @@ Catflix is built using the following stack & libraries:
    * PostgreSQL is a relational database management system emphasizing extensibility and SQL compliance.
 3. _Python_
    * web applications can send and retrieve data from a server asynchronously without interfering with the display and behaviour of the existing page.
-4. TMDb 
+4. TMDb API
    * The Movie Database (TMDb) is a community built movie and TV database, used by over 400,000 developers. It was used to seed the movie title data for this project.
 5. AWS Framework
    * Amazon Web Services (AWS) is the world’s most comprehensive and broadly adopted cloud platform, offering over 200 fully featured services from data centers globally. It is used to store and deliver the ca snippet videos for this site.
