@@ -1,3 +1,4 @@
+![Site Demo Gif](CatflixGIF25Mb.gif)
 # Flask React Project
 
 This is the backend for the Flask React project.

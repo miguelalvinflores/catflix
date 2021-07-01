@@ -71,9 +71,11 @@ const Watch = () => {
   ];
 
   const genreMovies = useSelector(
-    (state) => state.movies?.genres[genres[Math.floor(Math.random() * 6)]]
+    (state) => state.movies?.genres[genres[Math.floor(Math.random() * 5)]]
   );
-
+  useEffect(() => {
+    console.log(genreMovies, "genremovies");
+  });
   let profileHasLike = profileLikes?.hasOwnProperty(movieId) ? true : false;
   let profileHasBookmark = profileBookmarks[movieId] ? true : false;
   const [isBookmarked, setIsBookmarked] = useState(profileHasBookmark);

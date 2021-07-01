@@ -30,8 +30,11 @@ const Item = ({ movie }) => (
             </button>
           </NavLink>
 
-          <ShowDetailsButton onClick={() => onSelectSlide(movie)} />
+          <ShowDetailsButton movie={movie} onClick={() => onSelectSlide(movie)} />
           {isActive && <Mark />}
+          <div className='item-title-container'>
+            <span>{movie.title}</span>
+          </div>
         </div>
       );
     }}
