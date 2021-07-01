@@ -5,7 +5,7 @@
 
 ## Brief Introduction
 
-Catflix is a website for cat lovers to borwse their favorite cat movie title sources from "The Movie DataBase" (TMDb) API
+Catflix is a website for cat lovers to borwse their favorite cat movie title sources from "The Movie DataBase" (TMDb) API, and watch royalty-free cat video snippets delivered using the AWS framework (S3 buckets & AWS Cloudfront).
 
 <a href="https://www.themoviedb.org/" target="_top">The Movie Database (TMDb) Website</a>
 
