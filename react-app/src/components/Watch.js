@@ -24,7 +24,12 @@ const Watch = () => {
   const { movieId } = useParams();
   // const profileExist = useSelector((state) => state.profile);
   const profileLikes = useSelector((state) => state.profile?.profile[0].likes);
-  const movie = useSelector((state) => state.movies.allMovies[movieId]);
+
+  // const movie = useSelector((state) => state.movies.allMovies[movieId]);
+  // movie state
+  const [movie, setMovie] = useState({});
+  const [totalVotes, setTotalVotes] = useState(0);
+  const [numUpvotes, setNumUpvotes] = useState(0);
 
   const profileId = useSelector((state) => state.profile?.profile[0].id);
   const videoEnded = useSelector((state) => state.video.end);
@@ -33,19 +38,26 @@ const Watch = () => {
   );
   const [movieLikes, setMovieLikes] = useState(0);
 
+  useEffect(() => {
+    const fetchMovie = async () => {
+      const movieObj = await movieActions.getMovieById(movieId);
+      setMovie(movieObj);
+      setTotalVotes(movie.total_votes);
+      setNumUpvotes(movie.num_upvote);
+    };
+    fetchMovie();
+  }, [dispatch]);
+
   // calculate like percentage
   useEffect(() => {
     let moviePercentageLike;
-    if (movie.total_votes < 1) {
+    if (totalVotes < 1) {
       moviePercentageLike = 0;
     } else {
-      moviePercentageLike = Math.round(
-        (movie.num_upvote / movie.total_votes) * 100
-      );
+      moviePercentageLike = Math.round((numUpvotes / totalVotes) * 100);
     }
-    console.log("calculator", moviePercentageLike);
     setMovieLikes(moviePercentageLike);
-  }, [movie.total_votes, movie.num_upvote, movie]);
+  }, [totalVotes, numUpvotes, movie]);
 
   // dynamic like color
   useEffect(() => {
@@ -58,8 +70,7 @@ const Watch = () => {
     } else {
       moviePercentage.classList.add("green-rating");
     }
-    console.log(moviePercentage);
-  }, [movie, movieLikes, movie.total_votes, movie.num_upvote]);
+  }, [movie, movieLikes, totalVotes, numUpvotes]);
 
   //RECOMMENDED MOVIES
   const genres = [
@@ -73,9 +84,7 @@ const Watch = () => {
   const genreMovies = useSelector(
     (state) => state.movies?.genres[genres[Math.floor(Math.random() * 5)]]
   );
-  useEffect(() => {
-    console.log(genreMovies, "genremovies");
-  });
+
   let profileHasLike = profileLikes?.hasOwnProperty(movieId) ? true : false;
   let profileHasBookmark = profileBookmarks[movieId] ? true : false;
   const [isBookmarked, setIsBookmarked] = useState(profileHasBookmark);
@@ -96,45 +105,53 @@ const Watch = () => {
   const likeButtonHandler = async () => {
     if (profileLikes.hasOwnProperty(movieId)) {
       if (profileLikes[movieId]) {
+        // REMOVE UPVOTE
         await dispatch(profileActions.deleteLike(movieId, profileId));
         let activeLike = document.querySelector(".like-button");
         activeLike.classList.remove("active");
-        await dispatch(movieActions.removeMovieLike(movieId, true));
+        setNumUpvotes(numUpvotes - 1);
+        setTotalVotes(totalVotes - 1);
       } else {
+        // UPDATE UPVOTE
         await dispatch(profileActions.updateLike(movieId, true, profileId));
         let activeLike = document.querySelector(".dislike-button");
         activeLike.classList.remove("active");
         let inActiveLike = document.querySelector(".like-button");
         inActiveLike.classList.add("active");
-        await dispatch(movieActions.updateMovieLike(movieId, true));
+        setNumUpvotes(numUpvotes + 1);
       }
     } else {
+      // ADD UPVOTE
       await dispatch(profileActions.addLike(movieId, true, profileId));
       let inActiveLike = document.querySelector(".like-button");
       inActiveLike.classList.add("active");
-      await dispatch(movieActions.addMovieLike(movieId, true));
+      setNumUpvotes(numUpvotes + 1);
+      setTotalVotes(totalVotes + 1);
     }
   };
   const dislikeButtonHandler = async () => {
     if (profileLikes.hasOwnProperty(movieId)) {
       if (!profileLikes[movieId]) {
+        // REMOVE DOWNVOTE
         await dispatch(profileActions.deleteLike(movieId, profileId));
         let activeLike = document.querySelector(".dislike-button");
         activeLike.classList.remove("active");
-        await dispatch(movieActions.removeMovieLike(movieId, false));
+        setTotalVotes(totalVotes - 1);
       } else {
+        // UPDATE DOWNVOTE
         await dispatch(profileActions.updateLike(movieId, false, profileId));
         let activeLike = document.querySelector(".like-button");
         activeLike.classList.remove("active");
         let inActiveLike = document.querySelector(".dislike-button");
         inActiveLike.classList.add("active");
-        await dispatch(movieActions.updateMovieLike(movieId, false));
+        setNumUpvotes(numUpvotes - 1);
       }
     } else {
+      //  ADD DOWNVOTE
       await dispatch(profileActions.addLike(movieId, false, profileId));
       let inActiveLike = document.querySelector(".dislike-button");
       inActiveLike.classList.add("active");
-      await dispatch(movieActions.addMovieLike(movieId, false));
+      setTotalVotes(totalVotes + 1);
     }
   };
 

@@ -36,6 +36,12 @@ export const removeMovieLike = (movieId, like) => (dispatch) => {
   dispatch(removeLike(movieId, like));
 };
 
+export const getMovieById = async (movieId) => {
+  const res = await fetch(`/api/movies/${movieId}`);
+  const movieObj = res.json();
+  return movieObj;
+};
+
 const thisMovie = (movie) => {
   return {
     type: THIS_MOVIE,
