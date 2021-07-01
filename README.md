@@ -59,28 +59,17 @@ Catflix is built using the following stack & libraries:
 1. Heroku
    * Heroku is a platform as a service that enables developers to build, run, and operate applications entirely in the cloud.
 
-<!-- ## Features -->
+## Features
 
+Please take a look at our Wiki for a full list of features, and upcoming features
 
-<!-- # Footer -->
-[(Back to top)](#table-of-contents)
-
-Leave a star in GitHub and share this guide if you found this helpful.
-
-
-
-
-
-
-
-<!-- Add the footer (.png) here -->
-
+<a href="https://github.com/miguelalvinflores/catflix/wiki" target="_top">Catflix Wiki</a>
 
 
 
 [(Back to top)](#table-of-contents)
 
-Leave a star in GitHub and share this guide if you found this helpful.
+Leave a star in GitHub and share this guide if you found this helpful or interesting.
 
 
 
