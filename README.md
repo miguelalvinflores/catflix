@@ -1,5 +1,8 @@
 # Catflix
 
+<!-- Insert Usage GIF here -->
+![Site Demo Gif](CatflixGIF25Mb.gif)
+
 ## Brief Introduction
 
 Catflix is a website for cat lovers to borwse their favorite cat movie title sources from "The Movie DataBase" (TMDb) API
@@ -28,8 +31,7 @@ Catflix is a website for cat lovers to borwse their favorite cat movie title sou
 
 <a href="https://catflix-aa.herokuapp.com/" target="_top">Catflix Website</a>
 
-<!-- Insert Usage GIF here -->
-![Site Demo Gif](CatflixGIF25Mb.gif)
+
 
 ## Technologies
 
