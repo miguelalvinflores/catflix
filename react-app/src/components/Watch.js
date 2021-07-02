@@ -8,6 +8,7 @@ import Slider from "./NetflixSlider";
 import Footer from "./Footer";
 import * as videoActions from "../store/video";
 import * as profileActions from "../store/profile";
+import * as movieActions from "../store/movie";
 // import * as movieActions from "../store/movie";
 import "./CSS/Watch.css";
 import "./CSS/VideoCover.css";
@@ -23,7 +24,13 @@ const Watch = () => {
   const { movieId } = useParams();
   // const profileExist = useSelector((state) => state.profile);
   const profileLikes = useSelector((state) => state.profile?.profile[0].likes);
-  const movie = useSelector((state) => state.movies.allMovies[movieId]);
+
+  // const movie = useSelector((state) => state.movies.allMovies[movieId]);
+  // movie state
+  const [movie, setMovie] = useState({});
+  const [totalVotes, setTotalVotes] = useState(0);
+  const [numUpvotes, setNumUpvotes] = useState(0);
+
   const profileId = useSelector((state) => state.profile?.profile[0].id);
   const videoEnded = useSelector((state) => state.video.end);
   const profileBookmarks = useSelector(
@@ -31,34 +38,23 @@ const Watch = () => {
   );
   const [movieLikes, setMovieLikes] = useState(0);
 
-  // calculate like percentage
   useEffect(() => {
-    let moviePercentageLike;
-    console.log(movie.total_votes, movie.num_upvote, `${movie.title}`);
-    if (movie.total_votes < 1) {
-      moviePercentageLike = 0;
-    } else {
-      moviePercentageLike = Math.round(
-        (movie.num_upvote / movie.total_votes) * 100
-      );
-    }
-    setMovieLikes(moviePercentageLike);
-  }, [dispatch, movie]);
+    const fetchMovie = async () => {
+      const movieObj = await movieActions.getMovieById(movieId);
+      setMovie(movieObj);
+    };
+    fetchMovie();
+  }, [movieId]);
 
-  // dynamic like color
   useEffect(() => {
-    let moviePercentage = document.querySelector("#movie-like-rate");
-    moviePercentage.classList = "";
-    if (movieLikes < 40) {
-      moviePercentage.classList.add("red-rating");
-    } else if (movieLikes < 70) {
-      moviePercentage.classList.add("orange-rating");
-    } else {
-      moviePercentage.classList.add("green-rating");
-    }
-    console.log(moviePercentage);
-  }, [dispatch, movie, movieLikes]);
+    setTotalVotes(movie.total_votes);
+    setNumUpvotes(movie.num_upvote);
+  }, [movie]);
 
+  useEffect(() => {
+    console.log(totalVotes);
+    console.log(numUpvotes);
+  }, [totalVotes, numUpvotes]);
   //RECOMMENDED MOVIES
   const genres = [
     "Comedy",
@@ -71,9 +67,7 @@ const Watch = () => {
   const genreMovies = useSelector(
     (state) => state.movies?.genres[genres[Math.floor(Math.random() * 5)]]
   );
-  useEffect(() => {
-    console.log(genreMovies, "genremovies");
-  });
+
   let profileHasLike = profileLikes?.hasOwnProperty(movieId) ? true : false;
   let profileHasBookmark = profileBookmarks[movieId] ? true : false;
   const [isBookmarked, setIsBookmarked] = useState(profileHasBookmark);
@@ -91,42 +85,57 @@ const Watch = () => {
 
   // LIKE/DISLIKE
   // Refactor later (useRef instead of querySelector)
-  const likeButtonHandler = () => {
+  const likeButtonHandler = async () => {
     if (profileLikes.hasOwnProperty(movieId)) {
       if (profileLikes[movieId]) {
-        dispatch(profileActions.deleteLike(movieId, profileId));
+        // REMOVE UPVOTE
+        await dispatch(profileActions.deleteLike(movieId, profileId));
         let activeLike = document.querySelector(".like-button");
         activeLike.classList.remove("active");
+        setNumUpvotes(numUpvotes - 1);
+        setTotalVotes(totalVotes - 1);
       } else {
+        // UPDATE UPVOTE
+        await dispatch(profileActions.updateLike(movieId, true, profileId));
         let activeLike = document.querySelector(".dislike-button");
         activeLike.classList.remove("active");
         let inActiveLike = document.querySelector(".like-button");
         inActiveLike.classList.add("active");
-        dispatch(profileActions.updateLike(movieId, true, profileId));
+        setNumUpvotes(numUpvotes + 1);
       }
     } else {
-      dispatch(profileActions.addLike(movieId, true, profileId));
+      // ADD UPVOTE
+      await dispatch(profileActions.addLike(movieId, true, profileId));
       let inActiveLike = document.querySelector(".like-button");
       inActiveLike.classList.add("active");
+      setNumUpvotes(numUpvotes + 1);
+      setTotalVotes(totalVotes + 1);
     }
   };
-  const dislikeButtonHandler = () => {
+  const dislikeButtonHandler = async () => {
     if (profileLikes.hasOwnProperty(movieId)) {
       if (!profileLikes[movieId]) {
-        dispatch(profileActions.deleteLike(movieId, profileId));
+        // REMOVE DOWNVOTE
+        await dispatch(profileActions.deleteLike(movieId, profileId));
         let activeLike = document.querySelector(".dislike-button");
         activeLike.classList.remove("active");
+        setTotalVotes(totalVotes - 1);
+        console.log(totalVotes);
       } else {
+        // UPDATE DOWNVOTE
+        await dispatch(profileActions.updateLike(movieId, false, profileId));
         let activeLike = document.querySelector(".like-button");
         activeLike.classList.remove("active");
         let inActiveLike = document.querySelector(".dislike-button");
         inActiveLike.classList.add("active");
-        dispatch(profileActions.updateLike(movieId, false, profileId));
+        setNumUpvotes(numUpvotes - 1);
       }
     } else {
-      dispatch(profileActions.addLike(movieId, false, profileId));
+      //  ADD DOWNVOTE
+      await dispatch(profileActions.addLike(movieId, false, profileId));
       let inActiveLike = document.querySelector(".dislike-button");
       inActiveLike.classList.add("active");
+      setTotalVotes(totalVotes + 1);
     }
   };
 
@@ -146,6 +155,41 @@ const Watch = () => {
       }
     }
   });
+
+  // calculate like percentage
+  useEffect(() => {
+    let moviePercentageLike;
+    if (totalVotes < 1) {
+      moviePercentageLike = 0;
+    } else {
+      moviePercentageLike = Math.round((numUpvotes / totalVotes) * 100);
+    }
+    setMovieLikes(moviePercentageLike);
+  }, [totalVotes, numUpvotes, movie]);
+
+  // SET COLOR OF APPROVAL RATING
+  let approvalColor;
+  if (movieLikes < 40) {
+    approvalColor = "red";
+  } else if (movieLikes < 70) {
+    approvalColor = "orange";
+  } else {
+    approvalColor = "green";
+  }
+
+  // dynamic like color
+  useEffect(() => {
+    let moviePercentage = document.querySelector("#movie-like-rate");
+    // moviePercentage.classList = "";
+    if (movieLikes < 40) {
+      moviePercentage.classList.add("red-rating");
+    } else if (movieLikes < 70) {
+      moviePercentage.classList.add("orange-rating");
+    } else {
+      moviePercentage.classList.add("green-rating");
+    }
+  }, [movie, movieLikes, totalVotes, numUpvotes]);
+
   const VideoCover = () => {
     if (movie) {
       return (
@@ -161,7 +205,11 @@ const Watch = () => {
           <div className="cover-overlay">
             <p className="film-title">{movie.title}</p>
             <p className="movie-likes">
-              <span id="movie-like-rate">{`${movieLikes}% `}</span>
+              <span
+                id="movie-like-rate"
+                style={{ color: approvalColor }}
+              >{`${movieLikes}% `}</span>
+              {/* <span id="movie-like-rate">{`${movieLikes}% `}</span> */}
               approval rating
             </p>
             <p className="film-description">{movie.description}</p>
@@ -182,13 +230,6 @@ const Watch = () => {
                 <AiFillDislike size="45px" />
               </button>
             </div>
-            {/* <div className="tabs">
-              <span className="overview-tab">Overview</span>
-              <span className="episodes-tab">Episodes</span>
-              <span className="trailers-tab">Trailers</span>
-              <span className="more-tab">More Like This</span>
-              <span className="details-tab">Details</span>
-            </div> */}
           </div>
         </div>
       );
@@ -200,9 +241,6 @@ const Watch = () => {
   return (
     <>
       <div className="video-container">
-        {/* pass in video url */}
-        {/* <VideoCover movie={movie} /> */}
-        {/* <VideoPlayer movieUrl={ movie.url} /> */}
         {showMovieCover || videoEnded ? (
           <VideoCover />
         ) : (

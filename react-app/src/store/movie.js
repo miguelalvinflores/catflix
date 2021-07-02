@@ -1,6 +1,46 @@
 const GET_MOVIES = "movie/GET_MOVIES";
 const GET_MOVIES_BY_GENRE = "movie/GET_MOVIES_BY_GENRE";
 const THIS_MOVIE = "movie/THIS_MOVIE";
+const ADD_LIKE = "movie/ADD_LIKE";
+const UPDATE_LIKE = "movie/UPDATE_LIKE";
+const REMOVE_LIKE = "movie/REMOVE_LIKE";
+
+// MOVIE LIKES
+// movioe like actions
+const addLike = (movieId, like) => {
+  return {
+    type: ADD_LIKE,
+    payload: { movieId, like },
+  };
+};
+const updateLike = (movieId, like) => {
+  return {
+    type: UPDATE_LIKE,
+    payload: { movieId, like },
+  };
+};
+const removeLike = (movieId, like) => {
+  return {
+    type: REMOVE_LIKE,
+    payload: { movieId, like },
+  };
+};
+// movie like thunks
+export const addMovieLike = (movieId, like) => (dispatch) => {
+  dispatch(addLike(movieId, like));
+};
+export const updateMovieLike = (movieId, like) => (dispatch) => {
+  dispatch(updateLike(movieId, like));
+};
+export const removeMovieLike = (movieId, like) => (dispatch) => {
+  dispatch(removeLike(movieId, like));
+};
+
+export const getMovieById = async (movieId) => {
+  const res = await fetch(`/api/movies/${movieId}`);
+  const movieObj = res.json();
+  return movieObj;
+};
 
 const thisMovie = (movie) => {
   return {
@@ -88,6 +128,7 @@ const initialState = {
   allMovies: {},
 };
 export default function reducer(state = initialState, action) {
+  let newState = { ...state };
   switch (action.type) {
     case THIS_MOVIE:
       return {
@@ -97,13 +138,32 @@ export default function reducer(state = initialState, action) {
     case GET_MOVIES:
       return {
         ...state,
-        allMovies: { ...state.allMovies, ...action.payload},
+        allMovies: { ...state.allMovies, ...action.payload },
       };
     case GET_MOVIES_BY_GENRE:
       return {
         ...state,
         genres: { ...state.genres, ...action.payload },
       };
+    case ADD_LIKE:
+      newState.allMovies[action.payload.movieId].total_votes += 1;
+      if (action.payload.like) {
+        newState.allMovies[action.payload.movieId].num_upvote += 1;
+      }
+      return newState;
+    case UPDATE_LIKE:
+      if (action.payload.like) {
+        newState.allMovies[action.payload.movieId].num_upvote += 1;
+      } else {
+        newState.allMovies[action.payload.movieId].num_upvote -= 1;
+      }
+      return newState;
+    case REMOVE_LIKE:
+      newState.allMovies[action.payload.movieId].total_votes -= 1;
+      if (action.payload.like) {
+        newState.allMovies[action.payload.movieId].num_upvote -= 1;
+      }
+      return newState;
     default:
       return state;
   }
