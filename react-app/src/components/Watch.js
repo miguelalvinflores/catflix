@@ -178,17 +178,17 @@ const Watch = () => {
   }
 
   // dynamic like color
-  useEffect(() => {
-    let moviePercentage = document.querySelector("#movie-like-rate");
-    // moviePercentage.classList = "";
-    if (movieLikes < 40) {
-      moviePercentage.classList.add("red-rating");
-    } else if (movieLikes < 70) {
-      moviePercentage.classList.add("orange-rating");
-    } else {
-      moviePercentage.classList.add("green-rating");
-    }
-  }, [movie, movieLikes, totalVotes, numUpvotes]);
+  // useEffect(() => {
+  //   let moviePercentage = document.querySelector("#movie-like-rate");
+  //   // moviePercentage.classList = "";
+  //   if (movieLikes < 40) {
+  //     moviePercentage.classList.add("red-rating");
+  //   } else if (movieLikes < 70) {
+  //     moviePercentage.classList.add("orange-rating");
+  //   } else {
+  //     moviePercentage.classList.add("green-rating");
+  //   }
+  // }, [movie, movieLikes, totalVotes, numUpvotes]);
 
   const VideoCover = () => {
     if (movie) {
@@ -209,7 +209,6 @@ const Watch = () => {
                 id="movie-like-rate"
                 style={{ color: approvalColor }}
               >{`${movieLikes}% `}</span>
-              {/* <span id="movie-like-rate">{`${movieLikes}% `}</span> */}
               approval rating
             </p>
             <p className="film-description">{movie.description}</p>
@@ -240,7 +239,7 @@ const Watch = () => {
 
   return (
     <>
-      <div className="video-container">
+      <div className="video-container" id="video-container">
         {showMovieCover || videoEnded ? (
           <VideoCover />
         ) : (
