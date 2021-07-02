@@ -22,10 +22,8 @@ const Watch = () => {
   const dispatch = useDispatch();
   const [showMovieCover, setShowMovieCover] = useState(true);
   const { movieId } = useParams();
-  // const profileExist = useSelector((state) => state.profile);
   const profileLikes = useSelector((state) => state.profile?.profile[0].likes);
 
-  // const movie = useSelector((state) => state.movies.allMovies[movieId]);
   // movie state
   const [movie, setMovie] = useState({});
   const [totalVotes, setTotalVotes] = useState(0);
@@ -209,7 +207,6 @@ const Watch = () => {
                 id="movie-like-rate"
                 style={{ color: approvalColor }}
               >{`${movieLikes}% `}</span>
-              {/* <span id="movie-like-rate">{`${movieLikes}% `}</span> */}
               approval rating
             </p>
             <p className="film-description">{movie.description}</p>
