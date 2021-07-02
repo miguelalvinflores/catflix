@@ -42,36 +42,19 @@ const Watch = () => {
     const fetchMovie = async () => {
       const movieObj = await movieActions.getMovieById(movieId);
       setMovie(movieObj);
-      setTotalVotes(movie.total_votes);
-      setNumUpvotes(movie.num_upvote);
     };
     fetchMovie();
-  }, [dispatch]);
+  }, [movieId]);
 
-  // calculate like percentage
   useEffect(() => {
-    let moviePercentageLike;
-    if (totalVotes < 1) {
-      moviePercentageLike = 0;
-    } else {
-      moviePercentageLike = Math.round((numUpvotes / totalVotes) * 100);
-    }
-    setMovieLikes(moviePercentageLike);
-  }, [totalVotes, numUpvotes, movie]);
+    setTotalVotes(movie.total_votes);
+    setNumUpvotes(movie.num_upvote);
+  }, [movie]);
 
-  // dynamic like color
   useEffect(() => {
-    let moviePercentage = document.querySelector("#movie-like-rate");
-    // moviePercentage.classList = "";
-    if (movieLikes < 40) {
-      moviePercentage.classList.add("red-rating");
-    } else if (movieLikes < 70) {
-      moviePercentage.classList.add("orange-rating");
-    } else {
-      moviePercentage.classList.add("green-rating");
-    }
-  }, [movie, movieLikes, totalVotes, numUpvotes]);
-
+    console.log(totalVotes);
+    console.log(numUpvotes);
+  }, [totalVotes, numUpvotes]);
   //RECOMMENDED MOVIES
   const genres = [
     "Comedy",
@@ -137,6 +120,7 @@ const Watch = () => {
         let activeLike = document.querySelector(".dislike-button");
         activeLike.classList.remove("active");
         setTotalVotes(totalVotes - 1);
+        console.log(totalVotes);
       } else {
         // UPDATE DOWNVOTE
         await dispatch(profileActions.updateLike(movieId, false, profileId));
@@ -171,6 +155,41 @@ const Watch = () => {
       }
     }
   });
+
+  // calculate like percentage
+  useEffect(() => {
+    let moviePercentageLike;
+    if (totalVotes < 1) {
+      moviePercentageLike = 0;
+    } else {
+      moviePercentageLike = Math.round((numUpvotes / totalVotes) * 100);
+    }
+    setMovieLikes(moviePercentageLike);
+  }, [totalVotes, numUpvotes, movie]);
+
+  // SET COLOR OF APPROVAL RATING
+  let approvalColor;
+  if (movieLikes < 40) {
+    approvalColor = "red";
+  } else if (movieLikes < 70) {
+    approvalColor = "orange";
+  } else {
+    approvalColor = "green";
+  }
+
+  // dynamic like color
+  useEffect(() => {
+    let moviePercentage = document.querySelector("#movie-like-rate");
+    // moviePercentage.classList = "";
+    if (movieLikes < 40) {
+      moviePercentage.classList.add("red-rating");
+    } else if (movieLikes < 70) {
+      moviePercentage.classList.add("orange-rating");
+    } else {
+      moviePercentage.classList.add("green-rating");
+    }
+  }, [movie, movieLikes, totalVotes, numUpvotes]);
+
   const VideoCover = () => {
     if (movie) {
       return (
@@ -186,7 +205,11 @@ const Watch = () => {
           <div className="cover-overlay">
             <p className="film-title">{movie.title}</p>
             <p className="movie-likes">
-              <span id="movie-like-rate">{`${movieLikes}% `}</span>
+              <span
+                id="movie-like-rate"
+                style={{ color: approvalColor }}
+              >{`${movieLikes}% `}</span>
+              {/* <span id="movie-like-rate">{`${movieLikes}% `}</span> */}
               approval rating
             </p>
             <p className="film-description">{movie.description}</p>
@@ -207,13 +230,6 @@ const Watch = () => {
                 <AiFillDislike size="45px" />
               </button>
             </div>
-            {/* <div className="tabs">
-              <span className="overview-tab">Overview</span>
-              <span className="episodes-tab">Episodes</span>
-              <span className="trailers-tab">Trailers</span>
-              <span className="more-tab">More Like This</span>
-              <span className="details-tab">Details</span>
-            </div> */}
           </div>
         </div>
       );
@@ -225,9 +241,6 @@ const Watch = () => {
   return (
     <>
       <div className="video-container">
-        {/* pass in video url */}
-        {/* <VideoCover movie={movie} /> */}
-        {/* <VideoPlayer movieUrl={ movie.url} /> */}
         {showMovieCover || videoEnded ? (
           <VideoCover />
         ) : (
