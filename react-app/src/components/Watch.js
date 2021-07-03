@@ -22,10 +22,8 @@ const Watch = () => {
   const dispatch = useDispatch();
   const [showMovieCover, setShowMovieCover] = useState(true);
   const { movieId } = useParams();
-  // const profileExist = useSelector((state) => state.profile);
   const profileLikes = useSelector((state) => state.profile?.profile[0].likes);
 
-  // const movie = useSelector((state) => state.movies.allMovies[movieId]);
   // movie state
   const [movie, setMovie] = useState({});
   const [totalVotes, setTotalVotes] = useState(0);
@@ -44,6 +42,7 @@ const Watch = () => {
       setMovie(movieObj);
     };
     fetchMovie();
+    setShowMovieCover(true);
   }, [movieId]);
 
   useEffect(() => {
@@ -51,10 +50,6 @@ const Watch = () => {
     setNumUpvotes(movie.num_upvote);
   }, [movie]);
 
-  useEffect(() => {
-    console.log(totalVotes);
-    console.log(numUpvotes);
-  }, [totalVotes, numUpvotes]);
   //RECOMMENDED MOVIES
   const genres = [
     "Comedy",
@@ -120,7 +115,6 @@ const Watch = () => {
         let activeLike = document.querySelector(".dislike-button");
         activeLike.classList.remove("active");
         setTotalVotes(totalVotes - 1);
-        console.log(totalVotes);
       } else {
         // UPDATE DOWNVOTE
         await dispatch(profileActions.updateLike(movieId, false, profileId));
@@ -174,21 +168,21 @@ const Watch = () => {
   } else if (movieLikes < 70) {
     approvalColor = "orange";
   } else {
-    approvalColor = "green";
+    approvalColor = "#50d250";
   }
 
   // dynamic like color
-  useEffect(() => {
-    let moviePercentage = document.querySelector("#movie-like-rate");
-    // moviePercentage.classList = "";
-    if (movieLikes < 40) {
-      moviePercentage.classList.add("red-rating");
-    } else if (movieLikes < 70) {
-      moviePercentage.classList.add("orange-rating");
-    } else {
-      moviePercentage.classList.add("green-rating");
-    }
-  }, [movie, movieLikes, totalVotes, numUpvotes]);
+  // useEffect(() => {
+  //   let moviePercentage = document.querySelector("#movie-like-rate");
+  //   // moviePercentage.classList = "";
+  //   if (movieLikes < 40) {
+  //     moviePercentage.classList.add("red-rating");
+  //   } else if (movieLikes < 70) {
+  //     moviePercentage.classList.add("orange-rating");
+  //   } else {
+  //     moviePercentage.classList.add("green-rating");
+  //   }
+  // }, [movie, movieLikes, totalVotes, numUpvotes]);
 
   const VideoCover = () => {
     if (movie) {
@@ -209,7 +203,6 @@ const Watch = () => {
                 id="movie-like-rate"
                 style={{ color: approvalColor }}
               >{`${movieLikes}% `}</span>
-              {/* <span id="movie-like-rate">{`${movieLikes}% `}</span> */}
               approval rating
             </p>
             <p className="film-description">{movie.description}</p>
