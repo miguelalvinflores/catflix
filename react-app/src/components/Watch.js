@@ -42,6 +42,7 @@ const Watch = () => {
       setMovie(movieObj);
     };
     fetchMovie();
+    setShowMovieCover(true);
   }, [movieId]);
 
   useEffect(() => {

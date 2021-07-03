@@ -47,33 +47,27 @@ const VideoPlayer = ({ movie }) => {
   };
 
   const handleRewind = () => {
-    // const video = document.querySelector(".video");
     if (videoRef.current.currentTime > 5) {
       videoRef.current.currentTime -= 5;
     }
   };
   const handleFastFoward = () => {
-    // const video = document.querySelector(".video");
-    // if (video.duration - video.currentTime > 5) {
     if (videoRef.current.duration - videoRef.current.currentTime > 5) {
       videoRef.current.currentTime += 5;
     }
   };
 
   const handleFullScreen = async () => {
-    console.log("hihi");
-    const video = document.querySelector(".video");
-    if (!isFullScreen) {
-      // this condition not being met taking 2 clicks for fullscreen
-      console.log("takes 2 clicks why");
-      await videoRef.current.requestFullscreen();
-      // await video.requestFullscreen();
+    let videoContainer = document.querySelector(".c-video");
+    if (!document.fullscreenElement) {
       setIsFullScreen(true);
+      await videoContainer.requestFullscreen();
     } else {
-      // video.exitFullscreen();
       setIsFullScreen(false);
+      await document.exitFullscreen();
     }
   };
+
   return (
     <div className="c-video">
       <video
@@ -92,6 +86,11 @@ const VideoPlayer = ({ movie }) => {
           <div className="left-controls">
             <button className="control play" onClick={togglePlay}>
               {videoIsActive ? <FaPause size="20px" /> : <FaPlay size="20px" />}
+              {/* {videoRef.current.paused ? (
+                <FaPlay size="20px" />
+              ) : (
+                <FaPause size="20px" />
+              )} */}
             </button>
             <button className="control rewind" onClick={handleRewind}>
               <FaFastBackward size="20px" />
@@ -124,7 +123,11 @@ const VideoPlayer = ({ movie }) => {
             <MdSubtitles size="25px" />
           </button> */}
             <button className=" control fullscreen" onClick={handleFullScreen}>
-              <RiFullscreenFill size="25px" />
+              {isFullScreen ? (
+                <RiFullscreenExitFill size="25px" />
+              ) : (
+                <RiFullscreenFill size="25px" />
+              )}
             </button>
           </div>
         </div>
