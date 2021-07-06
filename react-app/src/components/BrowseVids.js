@@ -6,12 +6,14 @@ import Caroussel from "./Caroussel";
 import IconPlay from './Icons/IconPlay';
 
 import * as movieActions from "../store/movie";
+import * as profileActions from "../store/profile"
 import "./CSS/BrowseVids.css";
 
 function BrowseVids() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.sessionUser);
-  const userProfiles = useSelector((state) => state.profile);
+  const profile = useSelector((state) => state.profile.profile);
+  const userProfiles = useSelector((state) => state.profile)
   const movie = useSelector((state) => state.movies.movie);
   const genres = useSelector((state) => state.movies.genres);
 
@@ -28,8 +30,13 @@ function BrowseVids() {
   };
 
   useEffect(() => {
+    if (profile) {
+      dispatch(profileActions.retrieveBookmarks(profile[0].id))
+    }
+  },[dispatch])
+  useEffect(() => {
     // console.log("Browse");
-    if (userProfiles) {
+    if (profile) {
       dispatch(movieActions.retrieveMovies());
       dispatch(movieActions.chooseMovie());
       dispatch(movieActions.retrieveMoviesByGenreId(4));
@@ -38,7 +45,7 @@ function BrowseVids() {
       dispatch(movieActions.retrieveMoviesByGenreId(15));
       dispatch(movieActions.retrieveMoviesByGenreId(8));
     }
-  }, [dispatch, sessionUser, userProfiles]);
+  }, [dispatch, sessionUser]);
 
   let srcfunc = function (str) {
     let src = "https://" + str;

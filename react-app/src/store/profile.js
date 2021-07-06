@@ -98,6 +98,23 @@ const getProfiles = (allProfiles) => {
   };
 };
 
+const getBookmarks = (bookmarks) => {
+  return {
+    type: GET_BOOKMARKS,
+    payload: bookmarks,
+  };
+};
+
+export const retrieveBookmarks = (profileId) => async (dispatch) => {
+  const res = await fetch(`api/profiles/${profileId}/bookmarks`)
+  console.log(res, 'API RESPONSE')
+  if (res.ok) {
+    const data = await res.json()
+    console.log(data, "DATA")
+    dispatch(getBookmarks(data))
+  }
+}
+
 export const addBookmark = (profileId, movie) => async (dispatch) => {
   const res = await fetch(`/api/movies/${movie.id}/bookmarks/${profileId}`, {
     method: "POST",
@@ -163,6 +180,17 @@ export default function reducer(state = initialState, action) {
         ...state,
         allProfiles: action.payload,
       };
+    case GET_BOOKMARKS:
+      return {
+        ...state,
+        profile:{
+          ...state.profile,
+          0: {
+            ...state.profile[0],
+            bookmarks: action.payload,
+          }
+        }
+      }
     case ADD_BOOKMARK:
       newState.profile[0].bookmarks[action.payload.id] = action.payload;
       return newState;
