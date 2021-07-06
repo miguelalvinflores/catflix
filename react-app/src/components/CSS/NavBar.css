@@ -57,7 +57,14 @@ nav {
   left: 350px;
   top: 30px;
 }
-
+.bookmark-nav {
+  position: absolute;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  left: 450px;
+  top: 30px;
+}
 .triangle-icon {
   position: absolute;
   height: 7px;

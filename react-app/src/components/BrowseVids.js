@@ -15,7 +15,8 @@ function BrowseVids() {
   const movie = useSelector((state) => state.movies.movie);
   const genres = useSelector((state) => state.movies.genres);
 
-  const [billIsPlaying, setBillIsPlaying] = useState(true);
+  const [billIsPlaying, setBillIsPlaying] = useState(false);
+  // CHANGE TO TRUE
 
   let objsize = function (obj) {
     var size = 0,
@@ -54,13 +55,14 @@ function BrowseVids() {
           <div className="billboard-presentation-tracking">
             <div className="billboard">
               <div className="billboard-motion">
-                <video
+                {/* <video
                   autoplay='true'
                   muted
                   onEnded={() => onBillEnd()}
                   src={srcfunc(movie?.url)}
                   >
-                  </video>
+                  </video> */}
+                  {/* COMMENT BACK IN */}
               </div>
               <div className="bill-bottom-layer full-screen ">
                 <div className="bill-img-wrapper">

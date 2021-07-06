@@ -81,7 +81,7 @@ const Watch = () => {
     if (profileBookmarks[movieId]) {
       dispatch(profileActions.deleteBookmark(profileId, movieId));
     } else {
-      dispatch(profileActions.addBookmark(profileId, movieId));
+      dispatch(profileActions.addBookmark(profileId, movie));
     }
 
     setIsBookmarked(!isBookmarked);

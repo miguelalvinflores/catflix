@@ -12,6 +12,7 @@ import Browse from "./components/Browse";
 import Watch from "./components/Watch";
 import SearchPage from "./components/SearchPage";
 import ManageProfiles from "./components/ManageProfiles";
+import Bookmarks from "./components/Bookmarks";
 import { authenticate } from "./store/session";
 import * as profileActions from "./store/profile"
 import "./index.css";
@@ -72,6 +73,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path="/watch/:movieId" exact={true}>
             <Watch />
+          </ProtectedRoute>
+          <ProtectedRoute path='/bookmarks' exact={true}>
+            <Bookmarks />
           </ProtectedRoute>
         </Switch>
       </BrowserRouter>

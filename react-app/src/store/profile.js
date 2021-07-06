@@ -3,6 +3,7 @@ const REMOVE_PROFILE = "profile/REMOVE_PROFILE";
 const DELETE_PROFILE = "profile/DELETE_PROFILE";
 const ADD_PROFILE = "profile/ADD_PROFILE";
 const GET_PROFILES = "profile/GET_PROFILES";
+const GET_BOOKMARKS = 'profile/GET_BOOKMARKS';
 const ADD_BOOKMARK = "profile/ADD_BOOKMARK";
 const DELETE_BOOKMARK = "profile/DELETE_BOOKMARK";
 const ADD_LIKE = "profile/ADD_LIKE";
@@ -61,9 +62,9 @@ export const deleteLike = (movieId, profileId) => async (dispatch) => {
   }
 };
 // bookmarks
-const addOneBookmark = (movieId) => ({
+const addOneBookmark = (movie) => ({
   type: ADD_BOOKMARK,
-  payload: movieId,
+  payload: movie,
 });
 
 const deleteOneBookmark = (movieId) => ({
@@ -97,13 +98,13 @@ const getProfiles = (allProfiles) => {
   };
 };
 
-export const addBookmark = (profileId, movieId) => async (dispatch) => {
-  const res = await fetch(`/api/movies/${movieId}/bookmarks/${profileId}`, {
+export const addBookmark = (profileId, movie) => async (dispatch) => {
+  const res = await fetch(`/api/movies/${movie.id}/bookmarks/${profileId}`, {
     method: "POST",
   });
 
   if (res.ok) {
-    dispatch(addOneBookmark(movieId));
+    dispatch(addOneBookmark(movie));
   }
 };
 
@@ -163,8 +164,9 @@ export default function reducer(state = initialState, action) {
         allProfiles: action.payload,
       };
     case ADD_BOOKMARK:
-      newState.profile[0].bookmarks[action.payload] = action.payload;
+      newState.profile[0].bookmarks[action.payload.id] = action.payload;
       return newState;
+
     case DELETE_BOOKMARK:
       delete newState.profile[0].bookmarks[action.payload];
       return newState;
