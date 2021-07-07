@@ -3,10 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "./Footer";
 import SelectProfile from "./SelectProfile";
 import BrowseVids from "./BrowseVids";
+import * as profileActions from "../store/profile"
 import "./CSS/Browse.css";
 const Browse = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const profile = useSelector((state) => state.profile.profile);
+//   useEffect(() => {
+//     if (profile) {
+//       dispatch(profileActions.retrieveBookmarks(profile[0].id))
+//     }
+// }, [ dispatch, profile]);
   if (user) {
     if (profile) {
       //   render browse

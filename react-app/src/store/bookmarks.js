@@ -18,9 +18,9 @@ const deleteBookmark = (movieId) => ({
   payload: movieId,
 });
 
-const addBookmark = (movieId) => ({
+const addBookmark = (movie) => ({
   type: ADD_BOOKMARKS,
-  payload: movieId,
+  payload: movie,
 });
 
 export const storeBookmarks = (bookmarks) => (dispatch) => {
@@ -49,13 +49,13 @@ export const addOneBookmark = (profileId, movieId) => async (dispatch) => {
 export const deleteOneBookmark = (profileId, movieId) => async (dispatch) => {
   const res = await fetch(`/api/movies/${movieId}/bookmarks/${profileId}`, {
     method: "DELETE",
-    // headers: {
-    //   "Content-Type": "application/json",
-    // },
-    // body: JSON.stringify({
-    //   profileId,
-    //   movieId,
-    // }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      profileId,
+      movieId,
+    }),
   });
   dispatch(deleteBookmark(movieId));
 };

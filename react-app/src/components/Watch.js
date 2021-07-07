@@ -45,6 +45,7 @@ const Watch = () => {
     setShowMovieCover(true);
   }, [movieId]);
 
+
   useEffect(() => {
     setTotalVotes(movie.total_votes);
     setNumUpvotes(movie.num_upvote);
@@ -72,7 +73,7 @@ const Watch = () => {
     if (profileBookmarks[movieId]) {
       dispatch(profileActions.deleteBookmark(profileId, movieId));
     } else {
-      dispatch(profileActions.addBookmark(profileId, movieId));
+      dispatch(profileActions.addBookmark(profileId, movie));
     }
 
     setIsBookmarked(!isBookmarked);
