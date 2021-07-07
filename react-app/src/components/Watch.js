@@ -34,7 +34,7 @@ const Watch = () => {
   // calculate like percentage
   useEffect(() => {
     let moviePercentageLike;
-    console.log(movie.total_votes, movie.num_upvote, `${movie.title}`);
+    // console.log(movie.total_votes, movie.num_upvote, `${movie.title}`);
     if (movie.total_votes < 1) {
       moviePercentageLike = 0;
     } else {

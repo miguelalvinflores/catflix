@@ -107,10 +107,10 @@ const getBookmarks = (bookmarks) => {
 
 export const retrieveBookmarks = (profileId) => async (dispatch) => {
   const res = await fetch(`api/profiles/${profileId}/bookmarks`)
-  console.log(res, 'API RESPONSE')
+  // console.log(res, 'API RESPONSE')
   if (res.ok) {
     const data = await res.json()
-    console.log(data, "DATA")
+    // console.log(data, "DATA")
     dispatch(getBookmarks(data))
   }
 }
