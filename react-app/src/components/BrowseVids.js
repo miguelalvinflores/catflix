@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 import Caroussel from "./Caroussel";
-import IconPlay from './Icons/IconPlay';
+import IconPlay from "./Icons/IconPlay";
 
 import * as movieActions from "../store/movie";
 import * as profileActions from "../store/profile"
@@ -63,13 +63,14 @@ function BrowseVids() {
             <div className="billboard">
               <div className="billboard-motion">
                 <video
-                  autoplay='true'
+                  autoplay="true"
                   muted
                   onEnded={() => onBillEnd()}
                   src={srcfunc(movie?.url)}
                   >
                   </video>
                   {/* COMMENT BACK IN */}
+
               </div>
               <div className="bill-bottom-layer full-screen ">
                 <div className="bill-img-wrapper">
@@ -100,22 +101,22 @@ function BrowseVids() {
                       </div>
                     </div>
                     <div className="billboard-links">
-                    {movie ? (
-                      <NavLink
-                        to={`watch/${movie?.id}`}
-                        className="watchbill"
-                        style={{ textDecoration: "none" }}
-                      >
-                        <button className="billboard-btn">
-                          <span className='play-ltr'>
-                            <div className='play-icon'>
-                              <IconPlay />
-                            </div>
-                            Play
-                          </span>
-                        </button>
-                      </NavLink>
-                    ) : null}
+                      {movie ? (
+                        <NavLink
+                          to={`watch/${movie?.id}`}
+                          className="watchbill"
+                          style={{ textDecoration: "none" }}
+                        >
+                          <button className="billboard-btn">
+                            <span className="play-ltr">
+                              <div className="play-icon">
+                                <IconPlay />
+                              </div>
+                              Play
+                            </span>
+                          </button>
+                        </NavLink>
+                      ) : null}
                     </div>
                   </div>
                 </div>
@@ -127,9 +128,7 @@ function BrowseVids() {
       {genres &&
         Object.entries(genres).map(([genre, movies]) => {
           // console.log("MOVIES", movies)
-          return (
-              <Caroussel genre={genre} movies={movies} />
-          );
+          return <Caroussel genre={genre} movies={movies} />;
         })}
     </div>
   );

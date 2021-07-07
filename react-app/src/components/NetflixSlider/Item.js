@@ -1,11 +1,11 @@
-import React from 'react';
-import cx from 'classnames';
+import React from "react";
+import cx from "classnames";
 import { NavLink } from "react-router-dom";
 
-import SliderContext from './context'
-import ShowDetailsButton from './ShowDetailsButton'
-import Mark from './Mark'
-import './Item.css'
+import SliderContext from "./context";
+import ShowDetailsButton from "./ShowDetailsButton";
+import Mark from "./Mark";
+import "./Item.css";
 
 const Item = ({ movie }) => (
   <SliderContext.Consumer>
@@ -15,24 +15,27 @@ const Item = ({ movie }) => (
       return (
         <div
           ref={elementRef}
-          className={cx('item', {
-            'item--open': isActive,
+          className={cx("item", {
+            "item--open": isActive,
           })}
         >
           <img src={movie.backdrop} alt="" />
           <NavLink
-            to={`/watch/${movie?.id}`}
-            className='watchmovie'
-            style={{ textDecoration: 'none' }}
+            to={`/watch/${movie?.id}#video-cover`}
+            className="watchmovie"
+            style={{ textDecoration: "none" }}
           >
-            <button className='watch-page-button'>
+            <button className="watch-page-button">
               <span></span>
             </button>
           </NavLink>
 
-          <ShowDetailsButton movie={movie} onClick={() => onSelectSlide(movie)} />
+          <ShowDetailsButton
+            movie={movie}
+            onClick={() => onSelectSlide(movie)}
+          />
           {isActive && <Mark />}
-          <div className='item-title-container'>
+          <div className="item-title-container">
             <span>{movie.title}</span>
           </div>
         </div>

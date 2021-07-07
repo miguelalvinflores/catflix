@@ -94,3 +94,9 @@ def handle_bookmark(movieId, profileId):
         profile.bookmarks.remove(movie)
     db.session.commit()
     return {"success": "success"}
+
+
+@movie_routes.route('/<int:movieId>')
+def get_movie_by_id(movieId):
+    movie = Movie.query.get(movieId)
+    return movie.to_dict()

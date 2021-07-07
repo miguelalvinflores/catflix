@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import searchicon from '../images/searchicon.png'
+import searchicon from "../images/searchicon.png";
 import * as movieActions from "../store/movie";
-import "./CSS/SearchBar.css"
+import "./CSS/SearchBar.css";
 
 function Searchbar() {
   const dispatch = useDispatch();
   const history = useHistory();
-  const allMovie = useSelector((state) => state.movie?.allMovies);
+  // const allMovie = useSelector((state) => state.movie?.allMovies);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchActive, setSearchActive] = useState(false);
   // console.log("LOCATION", location.pathname)
@@ -22,33 +22,37 @@ function Searchbar() {
         history.push("/browse");
       }
     } else {
-      history.push("/browse")
+      history.push("/browse");
     }
-
   }, [searchTerm, dispatch]);
 
   const handleClickOut = (e) => {
-      e.preventDefault()
-      if (!searchTerm) {
-        setSearchActive(false)
-      }
-  }
-
+    e.preventDefault();
+    if (!searchTerm) {
+      setSearchActive(false);
+    }
+  };
 
   return (
     <div className="search-bar__container">
-      {searchActive ?
-      <input
-        className="search-bar"
-        placeholder="Title, description, genres"
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        onBlur={handleClickOut}
-        autoFocus
-      /> :
-      <img className="search-icon" src={searchicon} onClick={(e) => setSearchActive(true)} alt='Search Icon'/>
-      }
+      {searchActive ? (
+        <input
+          className="search-bar"
+          placeholder="Title, description, genres"
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          onBlur={handleClickOut}
+          autoFocus
+        />
+      ) : (
+        <img
+          className="search-icon"
+          src={searchicon}
+          onClick={(e) => setSearchActive(true)}
+          alt="Search Icon"
+        />
+      )}
     </div>
   );
 }

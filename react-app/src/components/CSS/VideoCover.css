@@ -50,7 +50,7 @@
   /* font-weight: 550; */
 }
 .controls-container .like-button.active {
-  color: green;
+  color: #50d250;
 }
 
 .controls-container .dislike-button.active {
@@ -92,4 +92,7 @@
 .cover-overlay .film-title {
   font-weight: bolder;
   font-size: 55px;
+}
+.like-button {
+  margin-left: 30px;
 }

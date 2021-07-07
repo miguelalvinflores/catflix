@@ -9,7 +9,7 @@ import "./CSS/VideoCover.css";
 // videoEnded from store
 const VideoCover = () => {
   return (
-    <div className="video-cover">
+    <div className="video-cover" id="video-cover">
       <div className="image-container">
         <img
           src="https://www.themoviedb.org/t/p/original/7IrQ5vwmTHppBCf51HRFzSd7xMi.jpg"
