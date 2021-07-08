@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 import "./CSS/MovieTile.css";
 
 function MovieTile() {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const sessionUser = useSelector((state) => state.session.user);
   const movieMatches = useSelector((state) => state.movies.allMovies?.matches);
-  const currentProfile = useSelector((state) => state.profile.profile);
 
   useEffect(() => {}, [movieMatches]);
 

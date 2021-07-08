@@ -13,3 +13,12 @@ class Profile(db.Model):
     bookmarks = db.relationship("Movie", secondary=bookmarks, back_populates="profiles", lazy='dynamic')
     # likes = db.relationship("Movie", secondary=likes, back_populates="profile_likes")
     likes = db.relationship("Like", backref="profile_movies", lazy="joined")
+
+
+    def to_dict(self):
+        return {
+        "id": self.id,
+        "name": self.name,
+        "iconId": self.iconId,
+        "userId": self.userId
+        }

@@ -17,7 +17,7 @@
 }
 
 .nav-tile__name {
-    font-size: 15px;
+    font-size: 13px;
     width: fit-content;
     color: white;
     
@@ -28,16 +28,21 @@
     
 }
 
-.full-tile__container {
+.full-tile__container, 
+.add-profile__container {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     cursor: pointer;
     align-items: center;
+    animation: fadeInEffect ease-in 0.25s;
+    animation-iteration-count: 1;
+    animation-direction: forwards;
     
 }
 
-.profile-tile__container {
+.profile-tile__container,
+.add-icon {
     box-sizing: border-box;
     align-items: center;
     height: 175px;
@@ -46,12 +51,12 @@
     background-repeat: no-repeat;
     border: 1px hidden;
     border-radius: 5px;
-    /* transition: all 2s ease-in; */
     background-position: center;
     margin-bottom: 10px;
 }
 
-.profile-tile__name {
+.profile-tile__name,
+.add-profile__label {
     font-size: 18px;
     color: #808080;
 }
@@ -60,7 +65,40 @@
     border: 2px solid white;
 }
 
-.full-tile__container:hover > .profile-tile__name {
+.full-tile__container:hover > .profile-tile__name,
+.add-profile__container:hover > .add-profile__label {
     color: white;
     
+}
+
+.add-profile__container:hover > .add-icon {
+    filter: contrast(100);
+}
+
+.cat-loader {
+    margin: 5px;
+}
+
+.edit {
+    filter: brightness(0.5);
+}
+
+.edit-profile__container {
+    position: absolute;
+    height: 175px;
+    width: 175px;
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 100;
+}
+
+@keyframes fadeInEffect {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+        
+    }
 }

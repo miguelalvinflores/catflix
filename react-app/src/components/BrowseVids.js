@@ -11,7 +11,7 @@ import "./CSS/BrowseVids.css";
 function BrowseVids() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.sessionUser);
-  const userProfiles = useSelector((state) => state.profile);
+  const userProfiles = useSelector((state) => state.profile.profile);
   const movie = useSelector((state) => state.movies.movie);
   const genres = useSelector((state) => state.movies.genres);
 

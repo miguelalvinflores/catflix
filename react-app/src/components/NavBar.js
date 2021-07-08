@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
 import navtriangle from '../images/navtriangle.png'
@@ -8,8 +8,9 @@ import './CSS/NavBar.css'
 
 const NavBar = () => {
   const sessionUser = useSelector( state => state.session.user);
-  const profile = useSelector((state) => state.profile.profile);
+  const profile = useSelector(state => state.profile.profile);
   const location = useLocation()
+  const [home, setHome] = useState(false)
 
   useEffect(() => {
     let navBar = document.querySelector('nav')
@@ -18,7 +19,18 @@ const NavBar = () => {
     } else {
       navBar.classList.remove('logged-in')
     }
-  })
+    
+  }, [location.pathname, sessionUser])
+
+  useEffect(() => {
+    if (home) {
+      setHome(false)
+    }
+  }, [home])
+
+  const handleHome = () => {
+    setHome(true)
+  }
 
   let sessionLinks;
   if (sessionUser) {
@@ -26,8 +38,8 @@ const NavBar = () => {
       sessionLinks = (
         <>
           <div>
-            <a href='/browse' className='home-nav'>Home</a>
-            <Searchbar />
+            <NavLink to='/browse' className='home-nav' onClick={handleHome}>Home</NavLink>
+            <Searchbar home={home} />
             <div className="nav-profile-btn__container" >
               <ProfileButton user = {sessionUser} />
               <img className="triangle-icon" src={navtriangle} alt='dropdown arrow'/>
@@ -49,9 +61,9 @@ const NavBar = () => {
 
   return (
     <nav>
-      <a className='logo-container' href='/' exact="true" activeclassname="active">
+      <NavLink className='logo-container' to='/' exact activeclassname="active" onClick={handleHome}>
         <img src="https://fontmeme.com/permalink/210524/34096974b6eb42471ca7fafc9afb884e.png" alt="Catflix banner" border="0" />
-      </a>
+      </NavLink>
       {sessionLinks}
     </nav>
   );

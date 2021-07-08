@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import searchicon from '../images/searchicon.png'
 import * as movieActions from "../store/movie";
 import "./CSS/SearchBar.css"
 
-function Searchbar() {
+function Searchbar({home}) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const allMovie = useSelector((state) => state.movie?.allMovies);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchActive, setSearchActive] = useState(false);
   // console.log("LOCATION", location.pathname)
   useEffect(() => {
+    if (home) {
+      setSearchTerm("")
+      setSearchActive(false)
+      return
+    }
     if (searchActive) {
       if (searchTerm) {
         dispatch(movieActions.searchMovies(searchTerm));
@@ -25,7 +29,7 @@ function Searchbar() {
       history.push("/browse")
     }
 
-  }, [searchTerm, dispatch]);
+  }, [searchTerm, dispatch, history, searchActive, home]);
 
   const handleClickOut = (e) => {
       e.preventDefault()

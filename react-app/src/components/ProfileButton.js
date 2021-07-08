@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import LogoutButton from './auth/LogoutButton';
 import navtriangle from '../images/navtriangle.png'
 import ProfileTile from "./ProfileTile"
+import * as profileActions from "../store/profile"
 import "./CSS/ProfileButton.css"
 
 const ProfileButton = ({ user }) => {
     const profile = useSelector((state) => state.profile.profile);
     const[showMenu, setshowMenu] = useState(false);
     const history = useHistory()
+    const dispatch = useDispatch();
 
     const openMenu = () => {
         if (showMenu) return;
@@ -20,16 +22,6 @@ const ProfileButton = ({ user }) => {
         if(!showMenu) return;
         setshowMenu(false);
     };
-    useEffect(() => {
-        if (!showMenu) return;
-        // setshowMenu(false);
-
-        document.addEventListener('click', closeMenu);
-
-        return() => document.removeEventListener('click', closeMenu);
-    }, [showMenu]);
-
-
 
 
     return (
@@ -39,9 +31,10 @@ const ProfileButton = ({ user }) => {
                 <>
                 <img className="triangle-dropdown" src={navtriangle} alt='dropdown arrow'/>
                 <ul className='profile-dropdown' >
-                    <ProfileTile where="Navbar" />
+                    <ProfileTile where="Navbar" clicked={closeMenu} />
                     <div className='profile-manage-btn' onClick={(e) => {
                         e.preventDefault()
+                        dispatch(profileActions.logoutProfile())
                         history.push(`/manage_profiles`)
                     }}>Manage Profile</div>
                     <hr/>

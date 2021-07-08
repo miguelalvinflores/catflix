@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { checkEmail } from "../store/session";
 import Footer from './Footer'
@@ -57,7 +57,7 @@ const Splash = () => {
     });
 
     if (user) {
-        history.push('/browse')
+        return <Redirect to='/browse' />
     }
 
     return (

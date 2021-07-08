@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import React from "react";
+import { useHistory } from "react-router-dom";
 
 import ProfileTile from "./ProfileTile"
 
@@ -8,7 +7,6 @@ import "./CSS/SelectProfile.css"
 
 const SelectProfile = () => {
     const history = useHistory()
-    const location = useLocation()
 
     const manageProfileClick = e => {
         e.preventDefault();

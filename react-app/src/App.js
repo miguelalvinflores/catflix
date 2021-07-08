@@ -12,6 +12,7 @@ import Browse from "./components/Browse";
 import Watch from "./components/Watch";
 import SearchPage from "./components/SearchPage";
 import ManageProfiles from "./components/ManageProfiles";
+import CreateProfile from "./components/CreateProfile";
 import { authenticate } from "./store/session";
 import * as profileActions from "./store/profile"
 import "./index.css";
@@ -64,14 +65,17 @@ function App() {
           <Route path="/search" exact={true}>
             {loggedIn ? <SearchPage /> : <Redirect to='/' /> }
           </Route>
+          {/* <ProtectedRoute path="/create_profile" exact={true}>
+            <CreateProfile />
+          </ProtectedRoute> */}
+          <ProtectedRoute path="/watch/:movieId" exact={true}>
+            <Watch />
+          </ProtectedRoute>
           <ProtectedRoute path="/users" exact={true}>
             <UsersList />
           </ProtectedRoute>
           <ProtectedRoute path="/users/:userId" exact={true}>
             <User />
-          </ProtectedRoute>
-          <ProtectedRoute path="/watch/:movieId" exact={true}>
-            <Watch />
           </ProtectedRoute>
         </Switch>
       </BrowserRouter>

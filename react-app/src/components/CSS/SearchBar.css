@@ -29,6 +29,7 @@
     animation: fadeInEffect ease-in 0.2s;
     animation-iteration-count: 1;
     animation-direction: forwards;
+    cursor: pointer;
 }
 
 @keyframes fadeInEffect {

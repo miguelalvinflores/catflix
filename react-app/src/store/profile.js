@@ -3,6 +3,7 @@ const REMOVE_PROFILE = "profile/REMOVE_PROFILE";
 const DELETE_PROFILE = "profile/DELETE_PROFILE";
 const ADD_PROFILE = "profile/ADD_PROFILE";
 const GET_PROFILES = "profile/GET_PROFILES";
+const GET_ICONS = "profile/GET_ICONS";
 const ADD_BOOKMARK = "profile/ADD_BOOKMARK";
 const DELETE_BOOKMARK = "profile/DELETE_BOOKMARK";
 const ADD_LIKE = "profile/ADD_LIKE";
@@ -80,9 +81,9 @@ const removeProfile = () => ({
   type: REMOVE_PROFILE,
 });
 
-const deleteProfile = (profileId) => ({
+const deleteProfile = (data) => ({
   type: DELETE_PROFILE,
-  payload: profileId,
+  payload: data,
 });
 
 const addProfile = (data) => ({
@@ -96,6 +97,13 @@ const getProfiles = (allProfiles) => {
     payload: allProfiles,
   };
 };
+
+const getIcons = (allIcons) => {
+  return {
+    type: GET_ICONS,
+    payload: allIcons,
+  }
+}
 
 export const addBookmark = (profileId, movieId) => async (dispatch) => {
   const res = await fetch(`/api/movies/${movieId}/bookmarks/${profileId}`, {
@@ -124,6 +132,75 @@ export const logoutProfile = () => async (dispatch) => {
   dispatch(removeProfile());
 };
 
+export const createProfile = (profile) => async (dispatch) => {
+  const { profileName, iconId, userId } = profile
+  const name = profileName
+  const res = await fetch(`/api/profiles/create`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      iconId,
+      userId
+    }),
+  });
+
+  const data = await res.json();
+  if (data.errors) {
+    return data
+  }
+  dispatch(addProfile(data))
+  return data;
+}
+
+export const updateProfile = (profile) => async (dispatch) => {
+  const { profileName, iconId, userId, profileId } = profile
+  const name = profileName
+  const res = await fetch(`/api/profiles/${profileId}/edit`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+      iconId,
+      userId,
+      profileId
+    }),
+  })
+
+  const data = await res.json();
+  if (data.errors) {
+    return data
+  }
+  dispatch(addProfile(data))
+  return data;
+
+}
+
+export const deleteOneProfile = (profile) => async (dispatch) => {
+  const { userId, profileId } = profile
+  const res = await fetch(`/api/profiles/${profileId}/delete`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId,
+      profileId
+    }),
+  })
+
+  const data = await res.json()
+  if (data.errors) {
+    return data
+  }
+  dispatch(deleteProfile(data))
+  return data
+}
+
 export const retrieveProfiles = (userId) => async (dispatch) => {
   const res = await fetch(`/api/profiles/`, {
     method: "POST",
@@ -143,6 +220,17 @@ export const retrieveProfiles = (userId) => async (dispatch) => {
   return res;
 };
 
+export const retrieveIcons = () => async (dispatch) => {
+  const res = await fetch('/api/profiles/icons')
+
+  if (res.ok) {
+    const data = await res.json()
+
+    dispatch(getIcons(data))
+  }
+  return res
+}
+
 const initialState = { profile: null };
 export default function reducer(state = initialState, action) {
   let newState = { ...state };
@@ -157,11 +245,26 @@ export default function reducer(state = initialState, action) {
         ...state,
         profile: null,
       };
+    case ADD_PROFILE:
+      return {
+        ...state,
+        changes: action.payload
+      };
+    case DELETE_PROFILE:
+      return {
+        ...state,
+        changes: action.payload
+      };
     case GET_PROFILES:
       return {
         ...state,
         allProfiles: action.payload,
       };
+    case GET_ICONS:
+      return {
+        ...state,
+        ...action.payload,
+      }
     case ADD_BOOKMARK:
       newState.profile[0].bookmarks[action.payload] = action.payload;
       return newState;

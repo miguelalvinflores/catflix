@@ -56,6 +56,7 @@ export const logout = () => async (dispatch) => {
 
   const data = await response.json();
   dispatch(removeUser());
+  return data
 };
 
 export const checkEmail = (email) => async (dispatch) => {
