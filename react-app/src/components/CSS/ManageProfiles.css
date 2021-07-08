@@ -1,0 +1,18 @@
+.done-profiles-button {
+    margin-top: 80px;
+    background-color: white;
+    color: black;
+    height: 40px;
+    width: 125px;
+    font-size: 20px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.done-profiles-button:hover {
+    color: white;
+    background-color: #E50914;
+}

@@ -18,11 +18,10 @@ nav {
   margin-left: 5%;
   width: 200px;
   height: 70px;
-  /* margin-bottom: 10px; */
 }
 
 .logo-container > img {
-  width: 100%;
+  width: 90%;
   height: auto;
 }
 .nav-menu {
@@ -44,6 +43,9 @@ nav {
   font-weight: 400;
   font-size: 1rem;
   height: 32px;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
 }
 
 .login-nav {

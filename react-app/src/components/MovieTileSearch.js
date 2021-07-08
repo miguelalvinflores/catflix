@@ -20,8 +20,13 @@ function MovieTileSearch() {
   // };
 
   if (movieMatches) {
-    // console.log("MOVIE TILE", Array.isArray(movies), movies)
-    // const allMatches = movies.matches
+    
+    if (movieMatches.length <= 0) {
+      return (
+        <h1>Sorry, there are no matches.</h1>
+      )
+    }
+
     return (
       <>
         {movieMatches?.map((movie) => {
@@ -44,7 +49,7 @@ function MovieTileSearch() {
     );
   }
 
-  return <></>;
+  return (<></>);
 }
 
 export default MovieTileSearch;

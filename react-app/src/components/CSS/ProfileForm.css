@@ -1,0 +1,126 @@
+.profile-page__container {
+    background-color: black;
+    min-height: calc(100vh - 80px);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-form {
+    width: 40%;
+    box-sizing: border-box;
+}
+
+.profile-form-label {
+    font-size: 60px;
+    width: 100%;
+    color: white;
+}
+
+.profile-form__container {
+    display: flex;
+    width: 100%;
+    border-top: 1px solid rgba(191, 191, 191, 0.3);
+    border-bottom: 1px solid rgba(191, 191, 191, 0.3);
+    padding-top: 4%;
+    padding-bottom: 4%;
+
+}
+
+.edit-profile-icon {
+    box-sizing: border-box;
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    background-color: black;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 2px solid white;
+    border-radius: 50%;
+    margin-top: 125px;
+    margin-left: 15px;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.profile-icon {
+    box-sizing: border-box;
+    height: 175px;
+    width: 175px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 1px hidden;
+    border-radius: 5px;
+    background-position: center;
+    margin-bottom: 2%;
+    border: 1px solid #808080;
+}
+
+.edit-profile-name::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.edit-profile-name {
+    width: 55%;
+    height: 10%;
+    margin-left: 4%;
+    background-color: #666666;
+    color: white;
+    font-size: 25px;
+    padding: 1.5% 3%;
+    border: none;
+    outline: none;
+}
+
+.profile-form-errors {
+    color: #E50914;
+}
+
+.profile-form-buttons {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 35px;
+}
+
+.save-button {
+    background-color: white;
+    color: black;
+    height: auto;
+    width: auto;
+    padding: 10px 30px;
+    font-size: 20px;
+    box-sizing: content-box;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    margin-right: 3%;
+}
+
+.save-button:hover {
+    color: white;
+    background-color: #E50914;
+}
+
+.cancel-button,
+.delete-button {
+    border: 1px solid #808080;
+    color: #808080;
+    height: auto;
+    width: auto;
+    padding: 10px 30px;
+    font-size: 20px;
+    box-sizing: content-box;
+    text-align: center;
+    cursor: pointer;
+    background-color: black;
+    margin-right: 3%;
+}
+
+.cancel-button:hover,
+.delete-button:hover {
+    border-color: white;
+    color: white;
+}

@@ -23,7 +23,7 @@ const SignUpForm = () => {
     if (location.state) {
       setEmailActive(true)
     }
-  }, [])
+  }, [location.state])
 
   const onSignUp = async (e) => {
     e.preventDefault();

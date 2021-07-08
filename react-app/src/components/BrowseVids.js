@@ -13,7 +13,6 @@ function BrowseVids() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.sessionUser);
   const profile = useSelector((state) => state.profile.profile);
-  const userProfiles = useSelector((state) => state.profile)
   const movie = useSelector((state) => state.movies.movie);
   const genres = useSelector((state) => state.movies.genres);
 

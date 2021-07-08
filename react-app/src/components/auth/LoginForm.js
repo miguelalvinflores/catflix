@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect, useLocation } from "react-router-dom";
 import { login } from "../../store/session";
@@ -21,6 +21,12 @@ const LoginForm = () => {
   const [passwordIsActive, setPasswordIsActive] = useState(false);
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (location.state) {
+      setEmailIsActive(true)
+    }
+  }, [location.state])
 
   const onLogin = async (e) => {
     e.preventDefault();
