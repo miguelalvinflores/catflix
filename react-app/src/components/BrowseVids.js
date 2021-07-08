@@ -32,7 +32,7 @@ function BrowseVids() {
     if (profile) {
       dispatch(profileActions.retrieveBookmarks(profile[0].id))
     }
-  },[dispatch, profile])
+  },[dispatch])
   useEffect(() => {
     // console.log("Browse");
     if (profile) {
@@ -44,7 +44,7 @@ function BrowseVids() {
       dispatch(movieActions.retrieveMoviesByGenreId(15));
       dispatch(movieActions.retrieveMoviesByGenreId(8));
     }
-  }, [dispatch, sessionUser, profile]);
+  }, [dispatch, sessionUser]);
 
   let srcfunc = function (str) {
     let src = "https://" + str;

@@ -7,7 +7,7 @@
   box-sizing: content-box;
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 1;
-  margin-top: 50px;
+  margin-top: 15px;
 }
 .main-form {
   /* margin: auto; */
@@ -61,7 +61,7 @@ select {
 
 .form-other-details {
   color: #737373;
-  margin-top: 50px;
+  margin-top: 5px;
   margin-bottom: 20px;
 }
 .sign-up-link {
