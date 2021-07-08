@@ -4,6 +4,7 @@ const DELETE_PROFILE = "profile/DELETE_PROFILE";
 const ADD_PROFILE = "profile/ADD_PROFILE";
 const GET_PROFILES = "profile/GET_PROFILES";
 const GET_ICONS = "profile/GET_ICONS";
+const GET_BOOKMARKS = 'profile/GET_BOOKMARKS';
 const ADD_BOOKMARK = "profile/ADD_BOOKMARK";
 const DELETE_BOOKMARK = "profile/DELETE_BOOKMARK";
 const ADD_LIKE = "profile/ADD_LIKE";
@@ -62,9 +63,9 @@ export const deleteLike = (movieId, profileId) => async (dispatch) => {
   }
 };
 // bookmarks
-const addOneBookmark = (movieId) => ({
+const addOneBookmark = (movie) => ({
   type: ADD_BOOKMARK,
-  payload: movieId,
+  payload: movie,
 });
 
 const deleteOneBookmark = (movieId) => ({
@@ -105,13 +106,30 @@ const getIcons = (allIcons) => {
   }
 }
 
-export const addBookmark = (profileId, movieId) => async (dispatch) => {
-  const res = await fetch(`/api/movies/${movieId}/bookmarks/${profileId}`, {
+const getBookmarks = (bookmarks) => {
+  return {
+    type: GET_BOOKMARKS,
+    payload: bookmarks,
+  };
+};
+
+export const retrieveBookmarks = (profileId) => async (dispatch) => {
+  const res = await fetch(`api/profiles/${profileId}/bookmarks`)
+  // console.log(res, 'API RESPONSE')
+  if (res.ok) {
+    const data = await res.json()
+    // console.log(data, "DATA")
+    dispatch(getBookmarks(data))
+  }
+}
+
+export const addBookmark = (profileId, movie) => async (dispatch) => {
+  const res = await fetch(`/api/movies/${movie.id}/bookmarks/${profileId}`, {
     method: "POST",
   });
 
   if (res.ok) {
-    dispatch(addOneBookmark(movieId));
+    dispatch(addOneBookmark(movie));
   }
 };
 
@@ -264,10 +282,22 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         ...action.payload,
+      };
+    case GET_BOOKMARKS:
+      return {
+        ...state,
+        profile:{
+          ...state.profile,
+          0: {
+            ...state.profile[0],
+            bookmarks: action.payload,
+          }
+        }
       }
     case ADD_BOOKMARK:
-      newState.profile[0].bookmarks[action.payload] = action.payload;
+      newState.profile[0].bookmarks[action.payload.id] = action.payload;
       return newState;
+
     case DELETE_BOOKMARK:
       delete newState.profile[0].bookmarks[action.payload];
       return newState;

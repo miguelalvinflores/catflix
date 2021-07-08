@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from flask_login import current_user, login_required
-from app.models import Profile, db, Icon
+from app.models import Profile, db, Icon, Movie
 from app.forms import ProfileForm
 from .auth_routes import validation_errors_to_error_messages
 
@@ -16,7 +16,7 @@ def get_user_profiles():
         likes = {}
         bookmarks = {}
         for like in profile[0].likes:
-            likes[like.movieId]=like.upvoteDownvote
+            likes[like.movieId] = like.upvoteDownvote
         for movie in profile[0].bookmarks:
             bookmarks[movie.id] = movie.id
         profiles_lst.append(({
@@ -24,8 +24,8 @@ def get_user_profiles():
             "name": profile[0].name,
             "iconId": profile[0].iconId,
             "userId": profile[0].userId,
-            "likes" : likes,
-            "bookmarks" : bookmarks
+            "likes": likes,
+            "bookmarks": bookmarks
         }, {
             "id": profile[1].id,
             "image_url": profile[1].image_url
@@ -85,3 +85,13 @@ def delete_profile(profileId):
         db.session.commit()
         return { "message": 'The Profile has been deleted.' }
     return {'errors': 'There was an error in validating the delete request.'}, 401 
+@profile_routes.route('/<int:profileId>/bookmarks')
+def get_profile_bookmarks(profileId):
+    # profile = Profile.query.filter(Profile.id == profileId).first()
+    movies = Movie.query.join(Movie.profiles).filter(Profile.id == profileId)
+    bookmarks = {}
+    for movie in movies:
+        bookmarks[movie.id] = movie.to_dict()
+        print(bookmarks, '=====PROFILES=========')
+    return bookmarks
+

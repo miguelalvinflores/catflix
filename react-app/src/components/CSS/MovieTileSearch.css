@@ -1,0 +1,23 @@
+.full-movie-tile__container {
+    box-sizing: border-box;
+    height: 250px;
+    width: 167px;
+    cursor: pointer;
+    margin-bottom: 2%;
+    overflow: hidden;
+    transition: all ease-in 0.25s;    
+}
+
+.movie-tile__container {
+    height: 250px;
+    width: 167px;
+    border-radius: 6px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.full-movie-tile__container:hover {
+    transform: scale(1.5);
+}
+

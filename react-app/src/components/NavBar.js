@@ -38,7 +38,10 @@ const NavBar = () => {
       sessionLinks = (
         <>
           <div>
-            <NavLink to='/browse' className='home-nav' onClick={handleHome}>Home</NavLink>
+            <div>
+              <NavLink to='/browse' className='home-nav' onClick={handleHome}>Home</NavLink>
+              <NavLink to='/bookmarks' className='bookmark-nav'>Bookmarks</NavLink>
+            </div>
             <Searchbar home={home} />
             <div className="nav-profile-btn__container" >
               <ProfileButton user = {sessionUser} />

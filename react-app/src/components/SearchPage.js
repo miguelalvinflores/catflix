@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Redirect } from "react-router-dom"
 
-import MovieTile from "./MovieTile"
+import MovieTileSearch from "./MovieTileSearch"
 import "./CSS/SearchPage.css"
 
 
@@ -15,15 +15,15 @@ const SearchPage = () => {
             return (
                 <div className="full-search-page__container">
                     <div className="search-page__container">
-                        <MovieTile />
+                        <MovieTileSearch />
                     </div>
                 </div>
             )
-           
+
         } else {
             // redirect to /browse to either sign in or choose profile.
             return <Redirect to='/browse' />
-            
+
         }
     }
 

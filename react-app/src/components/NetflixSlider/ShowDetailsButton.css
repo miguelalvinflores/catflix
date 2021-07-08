@@ -9,6 +9,7 @@
   border: 0;
   outline: none;
   width: 100%;
+  height: 3vw
 }
 .show-details-button span {
   display: block;
