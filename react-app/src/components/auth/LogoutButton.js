@@ -8,9 +8,9 @@ import "../CSS/ProfileButton.css";
 const LogoutButton = () => {
   const dispatch = useDispatch();
   const onLogout = async (e) => {
+    dispatch(logout());
     dispatch(profileActions.logoutProfile());
     localStorage.removeItem("chosenProfile");
-    dispatch(logout());
   };
 
   return (
