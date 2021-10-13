@@ -20,8 +20,12 @@ function Searchbar({home}) {
     }
     if (searchActive) {
       if (searchTerm) {
-        dispatch(movieActions.searchMovies(searchTerm));
-        history.push("/search");
+        const timeout = setTimeout(() => {
+          dispatch(movieActions.searchMovies(searchTerm));
+          history.push("/search");
+
+        }, 500)
+        return () => clearTimeout(timeout)
       } else {
         history.push("/browse");
       }
