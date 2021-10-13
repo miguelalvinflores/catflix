@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from sqlalchemy import func
 from app.models import Movie, Genre, Profile, db, Like
 import random
 
@@ -66,13 +67,15 @@ def search_movies():
     if genre:
         movies = Movie.query.join(Movie.genres).filter(
             (Genre.type == genre.type) |
-            Movie.title.ilike(f'% {term} %') |
-            Movie.description.ilike(f'% {term} %')
+            func.concat(' ', Movie.title, ' ').ilike(f'% {term} %') |
+            func.concat(' ', Movie.description, ' ').ilike(f'% {term} %')
         ).all()
     else:
         movies = Movie.query.filter(
-            Movie.title.ilike(f'%{term}%') |
-            Movie.description.ilike(f'% {term} %')).all()
+            Movie.title.ilike(f'{term}%') |
+            func.concat(' ', Movie.title, ' ').ilike(f'% {term} %') |
+            func.concat(' ', Movie.description, ' ').ilike(f'% {term} %')
+        ).all()
 
     matches = {'matches': [movie.to_dict() for movie in movies]}
     return matches
